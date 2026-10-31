@@ -106,7 +106,6 @@ Reported by the founder:
 1. Confirm final public price bands and exactly what each includes.
 2. Confirm whether the Downtown appointment location is ready for customer visits and how access/parking work.
 3. Confirm where home visits are available, and any travel charges or minimum order conditions.
-4. Confirm order journey: appointment, fabric selection, measurements, fitting(s), delivery, expected timeline.
 5. Confirm payment/deposit policy, cancellation policy, alterations, and after-sales handling.
 6. Confirm which actual workshop/fabric/process evidence may be filmed and shown.
 7. Confirm initial ad budget and the maximum affordable test loss.
@@ -131,7 +130,9 @@ This section supersedes earlier open questions wherever the founder has now prov
 - For customers outside Cairo, first check whether travel is feasible and agree on an available appointment. Do not promise a visit automatically.
 
 ### Order timeline and fittings
-- Customer-facing expected completion time: within 14 days.
+- Customer-facing expected completion time: within 14 days from order confirmation.
+- Order confirmation is when the customer selects the fabric and pays the 25% deposit. This may happen at the workshop or during a home visit; the 14-day period starts from that day.
+- Example: if fabric selection and deposit happen on Sunday, count the 14 days from that Sunday.
 - Internal operational aim: complete in 10 days or less when possible. Do not promise the internal target as a guarantee.
 - A fitting between initial measurements and delivery is a standard part of the process.
 - The normal sequence is initial measurement, an intermediate fitting, then final delivery.
