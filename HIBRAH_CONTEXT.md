@@ -115,3 +115,53 @@ Reported by the founder:
 
 ## 11. Governing rule
 Do not make HIBRAH sound more established, more luxurious, more technically capable, or more operationally ready than the facts support. Help the founder challenge assumptions, distinguish evidence from hypotheses, and make decisions that preserve honesty and commercial sustainability.
+
+
+## 12. Confirmed operating model — founder clarification, 2026-10-31
+This section supersedes earlier open questions wherever the founder has now provided a clear answer.
+
+### Inquiry channels
+- Customers may initiate contact through Facebook, Instagram, WhatsApp, or phone call.
+- A website with an inquiry/booking form is a future possibility, not a current channel. Do not imply that it exists.
+
+### Appointment and location
+- The workshop can be used as the meeting point when agreed with the customer.
+- The workshop is a worksite, not a dedicated customer reception space. Do not describe it as a showroom or polished customer-facing branch.
+- Home visits are preferred where practical, but must be coordinated according to location, availability, and schedule.
+- For customers outside Cairo, first check whether travel is feasible and agree on an available appointment. Do not promise a visit automatically.
+
+### Order timeline and fittings
+- Customer-facing expected completion time: within 14 days.
+- Internal operational aim: complete in 10 days or less when possible. Do not promise the internal target as a guarantee.
+- A fitting between initial measurements and delivery is a standard part of the process.
+- The normal sequence is initial measurement, an intermediate fitting, then final delivery.
+- If adjustments are needed, an additional fitting may take place; delivery may occur at the third visit at the latest under the described normal operating plan.
+- Describe the fitting schedule accurately and do not promise an exact number of visits for every order if the customer's case requires adjustment.
+
+### Price and inclusions — founder-confirmed current starting prices
+- Turkish: starts at EGP 6,000.
+- English wool: starts at EGP 9,000.
+- Italian: starts at EGP 11,000.
+- The stated suit price includes the complete suit as offered by HIBRAH; do not invent a breakdown or excluded components.
+- These are starting prices, not a promise that every fabric or specification in a category has the same final price.
+- Do not haggle or invent discretionary discounts. Any exceptional pricing should be explicitly approved by the founder.
+- A trousers-only / separate tailoring request is assessed individually for now. If demand becomes sufficiently consistent, HIBRAH may create a defined price list for that category.
+
+### Payment schedule
+- 25% of the agreed suit price at order confirmation / start of work.
+- 25% at the fitting stage.
+- Remaining 50% at delivery.
+- The founder may agree a different arrangement with a customer in an individual case. Do not present exceptions as the standard policy.
+
+### Alterations and after-sales contact
+- Delivery should take place after the customer's adjustments have been addressed and the final result is checked.
+- Customers may contact HIBRAH after delivery if they need help or wish to discuss a further adjustment.
+- A formal written alteration policy, including how to distinguish a correction related to the original work from a new change requested after delivery, has not yet been defined. Do not promise unlimited free alterations or a warranty unless the founder confirms the terms.
+
+### Still open
+1. Exact geography and operational limits for home visits, and whether travel charges apply.
+2. How appointment availability is communicated and who handles customer messages/calls.
+3. Formal written policy for post-delivery adjustments and new alteration requests.
+4. Cancellation/refund terms and how deposits are treated if an order is cancelled.
+5. Any exceptions to the 14-day timeline and how delays are communicated.
+6. Exact definition of all components included in the suit price, for consistent internal quoting.
