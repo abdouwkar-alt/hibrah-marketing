@@ -1,42 +1,41 @@
-# HIBRAH Marketing — Approved Baseline
+# HIBRAH — Approved Operating Baseline
 
-This repository uses a two-branch governance model confirmed by the Founder on 2026-11-12.
+The Founder approved the three foundational documents on 2026-11-12. They are the current source of truth for HIBRAH's brand, workflow and functional structure.
 
-## Branch roles
+## The three foundations — approved on `main`
 
-- **`main`** — approved/current project documents and authoritative, status-labelled decision records.
-- **`drafts`** — working material: drafts, provisional documents, proposals, research under review, and role packages not yet approved.
-- **`archive/pre-migration-main-2026-11-12`** — recovery checkpoint for the exact pre-migration `main` baseline. The branch is not currently protected; do not move its reference, and configure branch protection manually if repository settings are to enforce this.
+1. [Brand Foundation](BRAND_FOUNDATION.md) — identity, positioning, customer, product/service, values, communication and visual direction.
+2. [Operating Workflow](OPERATING_WORKFLOW.md) — goals-to-tasks, cross-functional workflows, customer journey, handoffs, review and reporting.
+3. [Organizational Structure](ORGANIZATIONAL_STRUCTURE.md) — functions, accountability, authority and reporting relationships.
 
-A document's presence on `drafts` is not approval. A status label inside a decision register controls the scope and meaning of that individual entry.
+Read these documents together. The Brand Foundation defines what HIBRAH is; the Operating Workflow defines how work moves; the Organizational Structure defines who owns the work and how authority/reporting are arranged.
 
-## Current approved records on `main`
+## Authoritative decision record
 
-- [Founder Decision Log](DECISION_LOG.md) — authoritative register; each entry retains its own approval status.
-- [Confirmed Content Sequence — 2026-11-12](content/2026-11-12-approved-content-sequence.md) — approved topic/order decisions only. It does not approve copy, design, publication, or scheduling.
+- [Founder Decision Log](DECISION_LOG.md) — status-labelled record of decisions and their scope.
+- [Confirmed Content Sequence — 2026-11-12](content/2026-11-12-approved-content-sequence.md) — approved topics/order only; does not approve copy, design, publication or scheduling.
 
-## Current working references on `drafts`
+## Working material on `drafts`
 
-These documents remain unapproved or provisional and must not be treated as active policy:
+The `drafts` branch remains available for research, proposals and future revisions. Presence on that branch does not imply approval.
 
-- [Operating Workflow](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/OPERATING_WORKFLOW.md) — PROVISIONAL; Founder review required.
-- [Role Preflight](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/ROLE_PREFLIGHT.md) — DRAFT operating control.
-- [HIBRAH Brand & Business Context](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/HIBRAH_CONTEXT.md) — working reference.
-- [Role Charter Index](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/roles/README.md) — role charters remain DRAFT unless separately approved.
-- [R1 Documentation Package](https://github.com/abdouwkar-alt/hibrah-marketing/tree/drafts/roles/R1) — documentation architecture approved; substantive charter and proposed rules remain DRAFT.
+- [Role Preflight](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/ROLE_PREFLIGHT.md) — DRAFT control; not a prerequisite that blocks execution of the approved foundations.
+- [HIBRAH Brand & Business Context](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/HIBRAH_CONTEXT.md) — historical working reference; use the approved Brand Foundation for current brand direction.
 - [Monthly Content Plan](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/content/HIBRAH_Monthly_Content_Plan_2026-11-12.md) — DRAFT; not scheduled or published.
-- [Repository Migration Plan](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/REPOSITORY_MIGRATION_PLAN.md) — Founder-approved implementation plan; repository cleanup remains subject to the migration PR review.
+- [Repository Migration Plan](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/REPOSITORY_MIGRATION_PLAN.md) — repository governance reference.
 
-The full working project update and research package is also retained under `HIBRAH_PROJECT_UPDATE_2026-11-11/` on `drafts`.
+The earlier eight-role package and its role-interaction protocol are legacy proposals, not the current organizational structure. Do not treat those role titles, responsibilities or handoffs as active. The current structure is defined only by [ORGANIZATIONAL_STRUCTURE.md](ORGANIZATIONAL_STRUCTURE.md).
 
-## Change and promotion rules
+The earlier provisional workflow on `drafts` is superseded by the approved `main/OPERATING_WORKFLOW.md`. Historical files are retained for traceability, not as competing policy.
 
-1. Develop draft work on `drafts` or a short-lived branch based on it; open draft PRs to `drafts`.
-2. When the Founder approves a specific document or package, create a short-lived promotion branch from the latest `main`.
-3. Promote only the exact approved files and scope; update status/version metadata and the decision record.
-4. Open a PR to `main` for Founder review.
-5. Never merge `drafts` wholesale into `main`.
+## Change control
 
-## Approval boundary
+1. Work on improvements in `drafts` or a short-lived branch.
+2. Keep proposals clearly labelled DRAFT / PROPOSED.
+3. When the Founder approves a change, promote only the approved scope to `main` and update the relevant document status/version and `DECISION_LOG.md`.
+4. Never merge `drafts` wholesale into `main`.
+5. Do not silently overwrite approved decisions; preserve material history and mark superseded content accordingly.
 
-This repository structure does not approve any operating workflow, role charter, proposed operating parameter, market-research conclusion, or content plan unless that material has its own explicit approval record.
+## Current operating rule
+
+The Founder retains final authority and may work directly with any function. The GM sets priorities within approved goals and plans and coordinates execution. Each function owns its own work and reporting. The Founder currently performs direct technical review as a temporary control. See the three approved foundation documents for full detail.
