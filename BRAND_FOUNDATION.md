@@ -1,7 +1,7 @@
 ---
 document_id: HIB-FOUNDATION-001
 title: HIBRAH Brand Foundation
-version: 1.0
+version: 1.1
 status: APPROVED
 approved_by: Founder
 approval_date: 2026-11-12
@@ -19,11 +19,13 @@ The Founder retains final authority over brand identity, positioning, strategic 
 
 ## 2. Brand identity
 
-- Arabic name: **حِبرة**
+- Arabic brand name: **حِبَرَة** (kasra under ح and fatha over ب; preserve this exact spelling and diacritic treatment wherever the Arabic brand name is written).
+- English brand name: **HIBRAH**
 - English name: **HIBRAH**
 - Business: men's bespoke / made-to-measure tailoring in Egypt, with men's suits as the primary product.
 - Long-term direction: a tailoring workshop that evolves and uses contemporary tools to design and make refined suits. This is a direction, not a claim that HIBRAH currently owns or operates a dedicated workshop.
-- Slogan: **حُسْنٌ يُرْتَدَى | فَصَّلْنَاهُ لِيَسُرَّكَ**
+- Primary slogan: **حُسْنٌ يُرْتَدَى** (always preserve the supplied diacritics when the slogan is used).
+- The longer phrase previously recorded as a full slogan is not part of the default brand signature and should not be added automatically.
 
 ### Meaning of the slogan
 
@@ -104,13 +106,21 @@ The brand's differentiation should be demonstrated through the finished garment 
 
 Avoid the following customer-facing wording: "فلسفة", "البدلة الحلوة", "قصات", "على قد توقعاتك", "غايتنا", "حسن ظنك", "سعيد", and "راضي".
 
-## 9. Visual identity
+## 9. Visual identity and official logo use
 
 - Core palette: brown and cream.
 - Do not introduce olive/green or gold as brand colours.
-- Arabic wordmark: حِبرة, with the established spelling and diacritic treatment.
-- HIBRAH appears beneath the Arabic name in the established logo arrangement.
+- Arabic brand name in text: **حِبَرَة**; English brand name: **HIBRAH**.
+- Use only the official logo files supplied by the Founder. The Founder intends to provide a transparent version and a standard version in a dedicated `Logo` folder.
+- No HIBRAH design, post, story, visual, or other creative asset may be finalized or published without placing the official supplied logo in it.
+- Do not recreate, redraw, approximate, typeset, generate, or substitute a logo. If the official files are not yet available, keep the design on hold until they are supplied.
 - Keep the visual character quiet, refined and craft-led; avoid loud luxury signals.
+
+### Hashtag rule
+
+- Hashtags are optional, not a mandatory part of HIBRAH content.
+- Marketing should recommend a hashtag only when there is a clear distribution or discoverability rationale. Do not add hashtags decoratively or by default.
+- If a branded hashtag is used, preserve the exact Arabic brand spelling and diacritics: **#حِبَرَة**.
 
 ## 10. Channel and claim rules
 
@@ -143,3 +153,4 @@ This is the current approved brand reference. The Founder may revise it at any t
 | Version | Date | Change | Status |
 |---|---|---|---|
 | 1.0 | 2026-11-12 | Consolidated the Founder-confirmed brand identity, positioning, customer, product direction, values, voice and visual rules | APPROVED |
+| 1.1 | 2026-11-12 | Founder-confirmed exact Arabic brand spelling and diacritics, primary slogan, official-logo-only rule, and optional branded hashtag rule | APPROVED |
