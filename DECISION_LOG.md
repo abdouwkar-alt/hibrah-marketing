@@ -47,6 +47,16 @@ Last updated: 2026-11-12
 - Decision: The eight functional role documents remain DRAFT until explicitly approved by the Founder. Role activation does not imply hiring or staffing. Founder retains approval authority.
 - Source: HIBRAH project operating instructions.
 
+### HIB-2026-004 — R1 documentation architecture
+- Date: 2026-11-12
+- Status: CONFIRMED
+- Decision: Adopt a modular R1 documentation package consisting of a stable role charter, adjustable operating parameters, a centralized decision/unknown register, a time-bound 30-day mandate, a README, and CHANGELOG. Use stable rule IDs, front matter metadata, and branch/PR review. The approval covers the documentation architecture only; it does not approve the substantive R1 role charter, its Proposed rules, or activate R1 authority.
+- Scope: R1 documentation structure and change-control method.
+- Source: Founder approval in the R1 role-establishment conversation on 2026-11-12.
+- Supersedes: None.
+- Owner: Founder.
+- Follow-up required: Review and merge the documentation package PR; separately review and approve the substantive R1 charter and any Proposed operating rules.
+
 ## New decision entry template
 ### HIB-YYYY-NNN — [Short title]
 - Date:
