@@ -2,8 +2,8 @@
 
 **Version:** 0.2  
 **Prepared:** 2026-11-12  
-**Status:** PROVISIONAL — Founder review required  
-**Purpose:** Establish the minimum shared operating rules for HIBRAH while the functional roles are being established. This is a working operating framework, not final approval of any role charter.
+**Status:** SUPERSEDED — retained for history; do not use as current operating policy  
+**Purpose:** Establish the minimum shared operating rules for HIBRAH while the functional roles are being established. This document is retained as historical working material. It is superseded by the Founder-approved `main/OPERATING_WORKFLOW.md` and must not be used as current operating policy.
 
 ---
 
@@ -203,4 +203,4 @@ Do not create or approve a role charter until its establishing work has been dis
 | Version | Date | Change | Approval |
 |---|---|---|---|
 | 0.1 | 2026-11-12 | Initial operating workflow and governance framework | Not approved |
-| 0.2 | 2026-11-12 | Added R2 continuous research/learning loop and R1+R4 customer voice/market feedback loop; clarified R1 cross-functional participation and GM intervention | Not approved |
+| 0.2 | 2026-11-12 | Added R2 continuous research/learning loop and R1+R4 customer voice/market feedback loop; clarified R1 cross-functional participation and GM intervention | Not approved |\n| 1.0 | 2026-11-12 | Superseded by the Founder-approved three-foundation operating baseline on `main` | SUPERSEDED |
