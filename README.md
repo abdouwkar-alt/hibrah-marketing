@@ -6,7 +6,7 @@ This repository uses a two-branch governance model confirmed by the Founder on 2
 
 - **`main`** — approved/current project documents and authoritative, status-labelled decision records.
 - **`drafts`** — working material: drafts, provisional documents, proposals, research under review, and role packages not yet approved.
-- **`archive/pre-migration-main-2026-11-12`** — immutable recovery checkpoint for the exact pre-migration `main` baseline.
+- **`archive/pre-migration-main-2026-11-12`** — recovery checkpoint for the exact pre-migration `main` baseline. The branch is not currently protected; do not move its reference, and configure branch protection manually if repository settings are to enforce this.
 
 A document's presence on `drafts` is not approval. A status label inside a decision register controls the scope and meaning of that individual entry.
 
