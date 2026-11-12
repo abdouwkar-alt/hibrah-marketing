@@ -1,6 +1,6 @@
 # HIBRAH — Founder Decision Log
 
-Status: Working register. Entries are not approvals beyond the status explicitly recorded.
+Status: Authoritative Founder decision register. The recordkeeping mechanism was confirmed by the Founder on 2026-11-12; each entry retains its own status and scope.
 Owner: Founder
 Last updated: 2026-11-12
 
@@ -46,6 +46,26 @@ Last updated: 2026-11-12
 - Status: CONFIRMED
 - Decision: The eight functional role documents remain DRAFT until explicitly approved by the Founder. Role activation does not imply hiring or staffing. Founder retains approval authority.
 - Source: HIBRAH project operating instructions.
+
+### HIB-2026-004 — R1 documentation architecture
+- Date: 2026-11-12
+- Status: CONFIRMED
+- Decision: Adopt a modular R1 documentation package consisting of a stable role charter, adjustable operating parameters, a centralized decision/unknown register, a time-bound 30-day mandate, a README, and CHANGELOG. Use stable rule IDs, front matter metadata, and branch/PR review. The approval covers the documentation architecture only; it does not approve the substantive R1 role charter, its Proposed rules, or activate R1 authority.
+- Scope: R1 documentation structure and change-control method.
+- Source: Founder approval in the R1 role-establishment conversation on 2026-11-12.
+- Supersedes: None.
+- Owner: Founder.
+- Follow-up required: The documentation package is preserved on `drafts`; separately review and approve the substantive R1 charter and any Proposed operating rules.
+
+### HIB-2026-005 — Repository governance and migration
+- Date: 2026-11-12
+- Status: CONFIRMED
+- Decision: Adopt `main` as the approved/current baseline and `drafts` as the long-lived working branch for draft, provisional, proposed, and under-review material. Preserve the exact pre-migration `main` commit in an archive checkpoint before cleanup. Draft PRs target `drafts`; approved changes are selectively promoted through PRs to `main`. Never merge `drafts` wholesale into `main`. Retain this `DECISION_LOG.md` on `main` as the authoritative status-labelled Founder decision register.
+- Scope: Repository governance, branch roles, preservation, and selective promotion. This decision does not approve the substantive content of any draft document or activate any role.
+- Source: Founder approval in the HIBRAH project conversation on 2026-11-12.
+- Supersedes: None.
+- Owner: Founder.
+- Follow-up required: Review and merge the repository migration PR after preservation and path-by-path verification.
 
 ## New decision entry template
 ### HIB-YYYY-NNN — [Short title]
