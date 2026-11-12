@@ -67,6 +67,24 @@ Last updated: 2026-11-12
 - Owner: Founder.
 - Follow-up required: Review and merge the repository migration PR after preservation and path-by-path verification.
 
+
+### HIB-2026-006 — Approval of HIBRAH's three foundations and current operating model
+- Date: 2026-11-12
+- Status: CONFIRMED / APPROVED
+- Decision: Approve the current versions of `BRAND_FOUNDATION.md`, `OPERATING_WORKFLOW.md`, and `ORGANIZATIONAL_STRUCTURE.md` as HIBRAH's three foundational operating references.
+- Brand Foundation: the common reference for brand identity, positioning, customer, product/service, values, voice and visual direction. Functions use it; they do not independently redefine it.
+- Operating Workflow: the approved practical workflow for goal-setting, strategy approval, GM priority-setting, function-level execution, the Sales-owned customer journey through production coordination and delivery, cross-functional information exchange, Founder technical review, reporting and improvement.
+- Organizational Structure: Founder; GM; Marketing; Creative; Sales & Customer Relations; Finance & Accounting; Development & R&D. The GM is currently performed by the marketer, while the GM and Marketing responsibilities remain distinct.
+- Authority: the Founder retains final decision-making authority and currently performs direct technical review as a temporary control. Functions may produce and act within approved plans and responsibilities. The GM sets priorities within approved goals/plans and coordinates execution.
+- Sales scope: includes all customer contact and the complete customer journey from inquiry through appointment, measurement, order, workshop/tailor coordination, fitting, adjustments, delivery and post-sale relationship. No separate Customer Service or Production Coordination function is established at this stage.
+- Finance: financial review of pricing and discounts becomes operational when customer transactions and reliable cost/revenue data begin; Founder retains final authority unless delegation is explicitly recorded.
+- Reporting: each function prepares its own report; GM collects and consolidates; Founder currently determines review-session timing. Automation may be introduced later when the workflow is stable.
+- Scope limitation: approval applies to the three foundational documents and current functional model. It does not imply hiring, legal incorporation, verified technical quality, validated commercial results, automatic approval of the monthly content plan, or approval of legacy eight-role charters.
+- Source: Founder instruction in the HIBRAH project conversation, 2026-11-12.
+- Supersedes: Conflicting provisional workflow and proposed organizational/role architecture on the `drafts` branch, including the earlier eight-role model, wherever inconsistent with these approved foundations.
+- Owner: Founder.
+- Follow-up: Use these three documents as the baseline for immediate work; revise when actual operating issues emerge.
+
 ## New decision entry template
 ### HIB-YYYY-NNN — [Short title]
 - Date:
