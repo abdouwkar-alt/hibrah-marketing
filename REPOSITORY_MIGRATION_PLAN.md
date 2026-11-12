@@ -1,10 +1,12 @@
 ---
 id: HIB-GOV-MIGRATION-PLAN
 version: 0.1
-status: DRAFT — Founder review required
+status: APPROVED FOR IMPLEMENTATION
 owner: Founder
 prepared_by: Founding Strategic & Operating Partner
 prepared: 2026-11-12
+approved_by: Founder
+approved: 2026-11-12
 baseline_branch: main
 baseline_commit: 745beb4345b94395b6f057ee878af9c69716fb84
 depends_on:
@@ -21,7 +23,7 @@ supersedes: null
 
 Establish a safe repository model in which `main` contains only current Founder-approved operating documents and approved project records, while unapproved drafts remain available for review without being mistaken for active policy.
 
-This plan is a proposal. It does not approve, move, delete, rename, or activate any project document. No repository migration is authorized by this file alone.
+Founder approval: On 2026-11-12, the Founder approved the `main` + `drafts` branch model, retention of `DECISION_LOG.md` as the authoritative status-labelled record, and execution of the migration after full inventory and preservation checks. This plan authorizes repository-structure migration only; it does not approve the substantive content of any draft, role charter, operating workflow, or role activation.
 
 ## 2. Desired repository model
 
@@ -156,15 +158,14 @@ Do not merge PR #1 into `main` under the current approval statuses.
 | Confusing branch presence with approval | Explicit branch policy and per-file status metadata |
 | Overcomplicating routine work | Use one long-lived `drafts` branch and short-lived promotion branches only |
 
-## 8. Decisions required before implementation
+## 8. Founder approval record
 
-Founder confirmation is required for:
-1. Adopting the `main` + `drafts` branch model described above.
-2. Authorizing creation of the archive checkpoint and `drafts` branch.
-3. Authorizing the migration PR that removes unapproved documents from the current `main` tree after preservation and verification.
-4. Confirming that `DECISION_LOG.md` remains on `main` as an approved recordkeeping register even though individual entries retain different statuses.
+The Founder confirmed on 2026-11-12:
+1. Adopt the permanent `main` + `drafts` model described above.
+2. Retain `DECISION_LOG.md` on `main` as the authoritative decision register, with status labels controlling the meaning of each entry.
+3. Authorize implementation of the migration after complete inventory, preservation, and verification.
 
-No role charter, workflow, preflight control, or proposed operating parameter is approved by confirming this migration plan.
+The approval applies only to repository governance and migration. No role charter, operating workflow, preflight control, or proposed operating parameter is approved or activated by this decision.
 
 ## 9. Completion criteria
 
