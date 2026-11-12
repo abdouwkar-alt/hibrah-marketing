@@ -46,7 +46,7 @@ Founder approval: On 2026-11-12, the Founder approved the `main` + `drafts` bran
 
 ### 2.3 Archive checkpoint
 
-Before any migration write to `main`, create a read-only preservation branch such as `archive/pre-migration-main-2026-11-12` pointing to the exact pre-migration `main` commit. This is a recovery checkpoint, not a replacement for Git history.
+Before any migration write to `main`, create a preservation checkpoint branch such as `archive/pre-migration-main-2026-11-12` pointing to the exact pre-migration `main` commit. This is a recovery pointer, not a replacement for Git history. Do not move or update the checkpoint reference. A branch is not technically read-only unless branch protection is enabled; repository branches are currently unprotected, so manual protection remains an outstanding repository-settings task.
 
 ## 3. Promotion rule: drafts to main
 
@@ -119,7 +119,7 @@ Before implementation, perform a complete recursive tree inventory and inspect e
 
 Required checks:
 - Every removed file exists on `drafts` with matching content and history context.
-- The archive branch points to the exact pre-migration `main` SHA.
+- The archive checkpoint points to the exact pre-migration `main` SHA; branch protection is configured or the remaining manual setup is explicitly recorded.
 - No confirmed Founder decision is lost from `DECISION_LOG.md`.
 - No approved current file is removed.
 - No broken internal links or references remain in the cleaned `main` tree.
@@ -133,7 +133,7 @@ Required checks:
 - Draft PRs target `drafts`.
 - Founder-approved changes are selectively promoted to `main` through a promotion PR.
 - Never merge `drafts` wholesale into `main`.
-- Keep branch protections and required review settings aligned with this model where repository settings permit.
+- Configure branch protection and required review settings for `main` and the archive checkpoint where repository settings permit. Current observed state: the repository branches are unprotected; manual configuration remains outstanding.
 - Periodically sync the latest `main` baseline into `drafts`, resolving conflicts deliberately.
 
 ## 6. Treatment of existing R1 PR #1
