@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/classic-menswear-image-pilot.yml"
       - "scripts/download_classic_menswear_pilot.py"
+      - "scripts/extend_classic_menswear_pilot.py"
 
 permissions:
   contents: write
@@ -27,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --disable-pip-version-check requests beautifulsoup4 pillow
       - name: Collect specialist menswear reference images
-        run: python scripts/download_classic_menswear_pilot.py
+        run: python scripts/extend_classic_menswear_pilot.py
       - name: Commit pilot images and review manifest
         if: always()
         run: |
