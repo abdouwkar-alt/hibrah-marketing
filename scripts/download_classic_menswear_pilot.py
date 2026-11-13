@@ -7,13 +7,13 @@ from PIL import Image
 from io import BytesIO
 
 ROOT = Path("research-assets/classic-menswear-library/00_incoming_pilot")
-TARGET = 25
+TARGET = 100
 QUOTAS = {
-    "01_Fabrics": 5,
-    "02_Suits": 5,
-    "03_Jacket_Details": 5,
-    "04_Trouser_Details": 5,
-    "05_Complete_Outfits": 5,
+    "01_Fabrics": 20,
+    "02_Suits": 20,
+    "03_Jacket_Details": 20,
+    "04_Trouser_Details": 20,
+    "05_Complete_Outfits": 20,
 }
 MIN_SIDE = 420
 MAX_BYTES = 8 * 1024 * 1024
@@ -22,11 +22,11 @@ S = requests.Session()
 S.headers.update(HEADERS)
 
 SOURCES = [
-    {"category":"01_Fabrics","brand":"Vitale Barberis Canonico","url":"https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/","max":2},
+    {"category":"01_Fabrics","brand":"Vitale Barberis Canonico","url":"https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/","max":20},
     {"category":"01_Fabrics","brand":"Vitale Barberis Canonico","url":"https://vitalebarberiscanonico.com/collection/fabrics/10-712-311/","max":2},
-    {"category":"01_Fabrics","brand":"Reda 1865","url":"https://store.reda1865.com/fabrics/","max":5},
+    {"category":"01_Fabrics","brand":"Reda 1865","url":"https://store.reda1865.com/fabrics/","max":20},
     {"category":"01_Fabrics","brand":"Scabal","url":"https://scabal.com/pages/fabrics-collection-ss26","max":5},
-    {"category":"02_Suits","brand":"Drake's","url":"https://us.drakes.com/blogs/news/tailoring-in-paris","max":4},
+    {"category":"02_Suits","brand":"Drake's","url":"https://us.drakes.com/blogs/news/tailoring-in-paris","max":20},
     {"category":"02_Suits","brand":"Drake's","url":"https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook","max":4},
     {"category":"02_Suits","brand":"Drake's","url":"https://us.drakes.com/blogs/news/the-spring-games-edit","max":4},
     {"category":"03_Jacket_Details","brand":"Gentleman's Gazette","url":"https://www.gentlemansgazette.com/the-anatomy-suit-jacket/","max":5},
