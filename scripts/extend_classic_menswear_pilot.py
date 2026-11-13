@@ -94,6 +94,7 @@ def acceptable(category, item):
 
 manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
 records = manifest.get("images", [])
+initial_total = len(records)
 existing_hashes = {x.get("sha256") for x in records if x.get("sha256")}
 existing_urls = {x.get("image_url") for x in records if x.get("image_url")}
 counts = {k:0 for k in ("01_Fabrics","02_Suits","03_Jacket_Details","04_Trouser_Details","05_Complete_Outfits")}
@@ -105,7 +106,7 @@ remaining = TARGET - len(records)
 for source in SOURCES:
     if remaining <= 0: break
     cat = source["category"]
-    desired = {"03_Jacket_Details":19,"04_Trouser_Details":18,"05_Complete_Outfits":14}[cat]
+    desired = {"03_Jacket_Details":20,"04_Trouser_Details":20,"05_Complete_Outfits":20}[cat]
     if counts.get(cat,0) >= desired: continue
     page = source["url"]
     result = {"source_page":page,"brand":source["brand"],"category":cat,"downloaded":0,"status":"pending"}
@@ -158,6 +159,6 @@ f"- Target: {TARGET}",f"- Current total: {len(records)}",f"- Complete: {'yes' if
 readme += [f"- {k}: {v}" for k,v in counts.items()]
 readme += ["","## Review status","- All records remain PENDING for Creative review.","- All records remain NOT_CLEARED for rights.","- Internal reference review only; no publication or redistribution before item-level rights review.",""]
 (ROOT/"README.md").write_text("\n".join(readme),encoding="utf-8")
-print(json.dumps({"total":len(records),"added":len(records)-(next_index-1-(len(records)-(next_index-1))),"remaining":remaining,"category_counts":counts,"complete":len(records)==TARGET,"sources":page_results,"errors":errors},ensure_ascii=False,indent=2))
+print(json.dumps({"total":len(records),"added":len(records)-initial_total,"remaining":remaining,"category_counts":counts,"complete":len(records)==TARGET,"sources":page_results,"errors":errors},ensure_ascii=False,indent=2))
 if len(records) < TARGET:
     raise SystemExit(f"Collection incomplete: {len(records)}/{TARGET}; existing files preserved.")
