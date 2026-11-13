@@ -1,0 +1,470 @@
+{
+  "test": "HIBRAH specialist classic menswear image pilot",
+  "target": 20,
+  "downloaded": 20,
+  "complete": true,
+  "note": "Files are downloaded for internal Creative review only. Rights are NOT CLEARED; do not publish, upload to public campaign materials, or redistribute until each asset's terms and rights are reviewed.",
+  "sources": [
+    {
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
+      "brand": "Vitale Barberis Canonico",
+      "category": "01_Fabrics",
+      "downloaded": 4,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
+      "brand": "Vitale Barberis Canonico",
+      "category": "01_Fabrics",
+      "downloaded": 2,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "brand": "Reda 1865",
+      "category": "01_Fabrics",
+      "downloaded": 4,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "brand": "Scabal",
+      "category": "01_Fabrics",
+      "downloaded": 4,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "brand": "Drake's",
+      "category": "02_Suits",
+      "downloaded": 4,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
+      "brand": "Drake's",
+      "category": "02_Suits",
+      "downloaded": 2,
+      "status": "images_found"
+    }
+  ],
+  "images": [
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/01_Vitale_Barberis_Canonico_Vitale_Barberis_Canonico_fabrics.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2017/06/VBCsocial.jpg",
+      "alt_text": "Vitale Barberis Canonico fabrics",
+      "page_title": "Vitale Barberis Canonico fabrics",
+      "bytes": 98317,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "df981dfbb76e86bb87493715c4d43428da3a62fdd3fccc28acc9f065c9e0700a",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/02_Vitale_Barberis_Canonico_Our_history.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/storia-1.jpg",
+      "alt_text": "Our history",
+      "page_title": "Vitale Barberis Canonico fabrics",
+      "bytes": 337781,
+      "dimensions": [
+        1000,
+        1250
+      ],
+      "sha256": "b1613e0bcbc1546979bd8c9589ac70866e18d1176f842f187980bb8aa22bcc30",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/03_Vitale_Barberis_Canonico_The_Archives.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/archivio-1.jpg",
+      "alt_text": "The Archives",
+      "page_title": "Vitale Barberis Canonico fabrics",
+      "bytes": 220806,
+      "dimensions": [
+        1000,
+        1250
+      ],
+      "sha256": "c312e145418ebce84bbf5e696b359fd0c7cbd32e9037657bf436b502b0d23b31",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/04_Vitale_Barberis_Canonico_Showroom.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/showroom-1.jpg",
+      "alt_text": "Showroom",
+      "page_title": "Vitale Barberis Canonico fabrics",
+      "bytes": 263271,
+      "dimensions": [
+        1000,
+        1250
+      ],
+      "sha256": "b47defcdf6b44971c25072875a874ba8d548c2ef4bb03e6b63f2a9bc4c458a79",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/05_Vitale_Barberis_Canonico_21_Micron_Sports_jacket_10_712_276.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2017/12/10.712-276-flat.jpg",
+      "alt_text": "21 Micron Sports jacket 10.712/276",
+      "page_title": "21 Micron Sports jacket 10.712/276",
+      "bytes": 1277503,
+      "dimensions": [
+        3000,
+        2002
+      ],
+      "sha256": "e808d675585a0f03695f9a473b99efa1c01d9eae3a58e2b47dbba076d8c97944",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/06_Vitale_Barberis_Canonico_Production_process.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/processo-produttivo-1.jpg",
+      "alt_text": "Production process",
+      "page_title": "21 Micron Sports jacket 10.712/276",
+      "bytes": 232190,
+      "dimensions": [
+        1000,
+        1250
+      ],
+      "sha256": "b6f07d18aa7c63bfb7247f287deef8df4b37a24aca6290070e63072aa197e47e",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/07_Reda_1865_Menu_collection.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/22/c9/54/1790159497/Menu%20collection_814x1117.jpg?ts=1790159497",
+      "alt_text": "Menu collection",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 253252,
+      "dimensions": [
+        814,
+        1117
+      ],
+      "sha256": "51a91880def48c9ffa942ae24f5459db44e2b6e3a2b4663f3c54cc1d225a05e5",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/08_Reda_1865_01_Main_banner_fabric.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/media/28/23/91/1791985656/01_Main%20banner%20fabric.jpg?ts=1791985656",
+      "alt_text": "01_Main banner fabric",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1066595,
+      "dimensions": [
+        2049,
+        832
+      ],
+      "sha256": "0f4aeb50502015856722748cda02cbb6684d0b1d40483789b53de5e60f0bd6dc",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/09_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/de/b5/f2/1791475354/50.00163-0005-000-00003_COVER_1920x1920.jpg?ts=1791475992",
+      "alt_text": "Fancy Jacket Merino Wool & Silk & Linen",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 660091,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "c6fd15aeeddf78bef2e8301fcde857cd41638b694f6dc2c34ea3fb876bbd10c8",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/10_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/13/4c/88/1791475354/50.00163-0005-000-00001_FLAT_1920x1920.jpg?ts=1791475994",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1140999,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "f8ff7644081598b0acf46a589e098bf673bed37c8361878d0ccaa5f7578fa62d",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/11_Scabal_Fabrics_Collection_SS26_Scabal.webp",
+      "category": "01_Fabrics",
+      "source_brand": "Scabal",
+      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_image.png?v=1769372601&width=1100",
+      "alt_text": "",
+      "page_title": "Fabrics Collection SS26\n – Scabal",
+      "bytes": 306942,
+      "dimensions": [
+        1100,
+        1100
+      ],
+      "sha256": "35b87cb6e961280f289d530f6a0762e75d0b6b53c869d2c6b619243ed4f7c18a",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/12_Scabal_Fabrics_Collection_SS26_Scabal.webp",
+      "category": "01_Fabrics",
+      "source_brand": "Scabal",
+      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_wizard.png?v=1769373300&width=1100",
+      "alt_text": "",
+      "page_title": "Fabrics Collection SS26\n – Scabal",
+      "bytes": 218450,
+      "dimensions": [
+        1100,
+        1100
+      ],
+      "sha256": "8f943613e67cc275b3f33926e5c6d42bee4ac83b4cdd5be1189aa381d8fa61a0",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/13_Scabal_Fabrics_Collection_SS26_Scabal.webp",
+      "category": "01_Fabrics",
+      "source_brand": "Scabal",
+      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_phantom.png?v=1769373395&width=1100",
+      "alt_text": "",
+      "page_title": "Fabrics Collection SS26\n – Scabal",
+      "bytes": 305806,
+      "dimensions": [
+        1100,
+        1100
+      ],
+      "sha256": "ed2256f31e3fb3bc2059f95694f32f56bf137ae1ae3320046ac12804281cbe8f",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/14_Scabal_Fabrics_Collection_SS26_Scabal.webp",
+      "category": "01_Fabrics",
+      "source_brand": "Scabal",
+      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_jazz.png?v=1769372708&width=1100",
+      "alt_text": "",
+      "page_title": "Fabrics Collection SS26\n – Scabal",
+      "bytes": 263994,
+      "dimensions": [
+        1100,
+        1100
+      ],
+      "sha256": "0bc712661a69ead2fc7d5cf6d2fa5d558e7824c3781266f314d42576a3d8d328",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/15_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "http://us.drakes.com/cdn/shop/articles/AW26_Paris_Tailoring_58faaa63-3f54-49fb-b7b3-198669ddb767_1200x1200.jpg?v=1789632628",
+      "alt_text": "Tailoring In Paris\n– Drakes US",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 107218,
+      "dimensions": [
+        969,
+        1200
+      ],
+      "sha256": "1f9471701177fb29da961c51617461150661e0ed486d4d4899a991a5a4e9e699",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/16_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/Drake_s_Spring_202635_e07edee1-f17b-4bff-bcb4-7bd4422f270f.jpg?v=1775036195&width=600",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 46440,
+      "dimensions": [
+        600,
+        743
+      ],
+      "sha256": "d37c1f79c57b9eacf66da308106ca7bef77e735d6a3fd5561560b09f5d6811a2",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/17_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/Waxed_Jackets.jpg?v=1765886596&width=600",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 98704,
+      "dimensions": [
+        600,
+        750
+      ],
+      "sha256": "4f57966c5411250ccd5e4fbe61852fa9c865667ff03f1a2e745f95fbccaf8369",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/18_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/Chore_Jackets.jpg?v=1765885226&width=600",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 110140,
+      "dimensions": [
+        600,
+        750
+      ],
+      "sha256": "37ff52c0e94e3a145825ebc1624eea5548677e308009074088c9e47847337da0",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/19_Drake_s_The_Summer_Tailoring_Lookbook_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
+      "image_url": "http://us.drakes.com/cdn/shop/articles/SUMMERTAILORING_1200x1200.jpg?v=1716341202",
+      "alt_text": "The Summer Tailoring Lookbook\n– Drakes US",
+      "page_title": "The Summer Tailoring Lookbook\n– Drakes US",
+      "bytes": 106790,
+      "dimensions": [
+        1200,
+        969
+      ],
+      "sha256": "4037c4ee533b74c61ea5f4b02545faf18e626b3b4e7acf1033e092f6d737d416",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/20_Drake_s_The_Summer_Tailoring_Lookbook_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
+      "image_url": "https://us.drakes.com/cdn/shop/files/Jago_Layout6.jpg?v=1774024309&width=600",
+      "alt_text": "",
+      "page_title": "The Summer Tailoring Lookbook\n– Drakes US",
+      "bytes": 51732,
+      "dimensions": [
+        600,
+        750
+      ],
+      "sha256": "189c1e1079e29edee907892d4f1cd0a7ed37702fe51e21bab0a28001fca2ed1e",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    }
+  ],
+  "errors": [
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/Jackets_on_sale_SS26.png?v=1782823421&width=235",
+      "error": "image too small: (235, 352)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/Trousers_Summer_Sale_ss26.png?v=1782820043&width=235",
+      "error": "image too small: (235, 352)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/knitwear_summer_sale.png?v=1782820043&width=235",
+      "error": "image too small: (235, 352)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/3503810_C_0524624654_qgppfshw.jpg?v=1785422570&width=235",
+      "error": "image too small: (235, 353)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/trousers_menu_image_scabal_aw26.png?v=1790868724&width=235",
+      "error": "image too small: (235, 352)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/9000009_C_2030044426_svvqwusf.jpg?v=1786975173&width=235",
+      "error": "image too small: (235, 352)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/Royal_Gabardine_501900-501895-501891-501903.jpg?v=1786618741&width=235",
+      "error": "image too small: (235, 157)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/04A7142b.jpg?v=1776359595&width=235",
+      "error": "image too small: (235, 235)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/1402_Scabel_001.jpg?v=1703000959&width=235",
+      "error": "image too small: (235, 273)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/Image_07-11-2023_at_11.30.jpg?v=1699369728&width=235",
+      "error": "image too small: (235, 235)"
+    },
+    {
+      "page": "https://scabal.com/pages/fabrics-collection-ss26",
+      "image_url": "https://scabal.com/cdn/shop/files/scabal-tailor-cover-1_0c2b2dbf-aadc-49ce-97d5-a0836876494a.jpg?v=1706814802&width=235",
+      "error": "image too small: (235, 352)"
+    }
+  ]
+}
