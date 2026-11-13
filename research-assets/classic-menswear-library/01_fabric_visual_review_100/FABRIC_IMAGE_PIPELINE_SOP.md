@@ -13,7 +13,7 @@
 - Search specialist clothmakers, fabric mills, and established suiting-fabric retailers first.
 - Prioritise product-specific fabric images, swatches, close-ups, and bunch/sample-book imagery.
 - Record the original product/source page and direct image URL for every candidate.
-- Avoid generic stock images, unrelated textiles, casualwear, and non-suiting products.
+- Avoid generic stock images, unrelated textiles, casualwear, and non-suiting products.\n- Aim for at least 4 distinct specialist sources and no single source above 30% of a 100-image batch where the available source pool permits it. If fallback sources are insufficient and one source exceeds 30%, flag the concentration in the Founder handover rather than presenting the batch as fully diversified.
 
 ### 2. Visual screening
 Review each candidate image before treating it as accepted. Record:
