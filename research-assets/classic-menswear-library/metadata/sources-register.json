@@ -1,6 +1,6 @@
 {
   "library": "HIBRAH Classic Menswear Reference Library",
-  "version": "0.1",
+  "version": "0.2",
   "source_policy": "Every image requires item-level rights review. A site's general license does not automatically clear every item or every intended use.",
   "sources": [
     {
@@ -17,7 +17,8 @@
         "Check every file's exact license and attribution requirements",
         "Search results can be noisy"
       ],
-      "status": "candidate"
+      "status": "approved-for-research-discovery-validation",
+      "approval_scope": "Research discovery only; item-level rights and technical access must be checked before retrieval or reuse."
     },
     {
       "name": "Library of Congress",
@@ -33,7 +34,8 @@
       "cautions": [
         "Use curated Free to Use sets or verify item-level rights; not every catalog item is cleared"
       ],
-      "status": "candidate"
+      "status": "approved-for-research-discovery-validation",
+      "approval_scope": "Research discovery only; item-level rights and technical access must be checked before retrieval or reuse."
     },
     {
       "name": "Smithsonian Open Access",
@@ -49,7 +51,8 @@
       "cautions": [
         "Download only items explicitly marked CC0; metadata availability does not mean media is reusable"
       ],
-      "status": "candidate"
+      "status": "approved-for-research-discovery-validation",
+      "approval_scope": "Research discovery only; item-level rights and technical access must be checked before retrieval or reuse."
     },
     {
       "name": "Europeana Fashion",
@@ -80,7 +83,8 @@
       "cautions": [
         "Rights statements may be territory-specific; check each item"
       ],
-      "status": "research-first"
+      "status": "approved-for-research-discovery-validation",
+      "approval_scope": "Research discovery only; item-level rights and technical access must be checked before retrieval or reuse."
     },
     {
       "name": "Pexels",
@@ -170,7 +174,8 @@
       "cautions": [
         "Only use records marked public domain with image URLs; results may be archival rather than contemporary"
       ],
-      "status": "not-yet-tested-in-current-run"
+      "status": "approved-for-research-discovery-validation",
+      "approval_scope": "Research discovery only; item-level rights and technical access must be checked before retrieval or reuse."
     },
     {
       "name": "Art Institute of Chicago",
@@ -204,5 +209,18 @@
     "14_Fits_Silhouettes",
     "15_Details_Craftsmanship",
     "16_Complete_Outfits"
-  ]
+  ],
+  "approval": {
+    "status": "founder-approved-initial-research-shortlist",
+    "date": "2026-11-13",
+    "scope": "Research discovery and controlled validation only; not blanket image approval, commercial-use clearance, or bulk-download authorization.",
+    "approved_sources": [
+      "FIT SPARC Digital",
+      "The Metropolitan Museum of Art",
+      "Smithsonian Open Access",
+      "Wikimedia Commons",
+      "Library of Congress"
+    ],
+    "next_gate": "Validate relevant item-level examples, image access, rights, and quality across five selected categories before scaling."
+  }
 }
