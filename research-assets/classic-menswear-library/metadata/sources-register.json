@@ -1,0 +1,208 @@
+{
+  "library": "HIBRAH Classic Menswear Reference Library",
+  "version": "0.1",
+  "source_policy": "Every image requires item-level rights review. A site's general license does not automatically clear every item or every intended use.",
+  "sources": [
+    {
+      "name": "Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/",
+      "access": "Public API; no key",
+      "role": "Automated discovery/download candidate",
+      "strengths": [
+        "Historical menswear",
+        "Shoes and accessories",
+        "Tailoring illustrations"
+      ],
+      "cautions": [
+        "Check every file's exact license and attribution requirements",
+        "Search results can be noisy"
+      ],
+      "status": "candidate"
+    },
+    {
+      "name": "Library of Congress",
+      "url": "https://www.loc.gov/free-to-use/fashion/",
+      "api": "https://www.loc.gov/apis/json-and-yaml/",
+      "access": "Public JSON API; no key",
+      "role": "Automated discovery/download candidate",
+      "strengths": [
+        "Historical fashion plates",
+        "Menswear photographs",
+        "Tailoring history"
+      ],
+      "cautions": [
+        "Use curated Free to Use sets or verify item-level rights; not every catalog item is cleared"
+      ],
+      "status": "candidate"
+    },
+    {
+      "name": "Smithsonian Open Access",
+      "url": "https://www.si.edu/openaccess",
+      "api": "https://api.si.edu/",
+      "access": "API key required",
+      "role": "Automated discovery/download candidate",
+      "strengths": [
+        "Historical garments",
+        "Textiles and material culture",
+        "Accessories"
+      ],
+      "cautions": [
+        "Download only items explicitly marked CC0; metadata availability does not mean media is reusable"
+      ],
+      "status": "candidate"
+    },
+    {
+      "name": "Europeana Fashion",
+      "url": "https://www.europeana.eu/en/themes/fashion",
+      "api": "https://api.europeana.eu/",
+      "access": "Free API key required",
+      "role": "Automated discovery and metadata; image access depends on provider",
+      "strengths": [
+        "Fashion photography",
+        "Garments",
+        "Footwear",
+        "Design sketches"
+      ],
+      "cautions": [
+        "Check rights badge for each digital object; rights vary by contributing institution"
+      ],
+      "status": "candidate"
+    },
+    {
+      "name": "FIT SPARC Digital",
+      "url": "https://sparcdigital.fitnyc.edu/",
+      "access": "Web collection; assess item-level download/rights",
+      "role": "Specialist manual research source",
+      "strengths": [
+        "Menswear trade plates",
+        "Suits, coats, trousers, shoes, shirts and ties"
+      ],
+      "cautions": [
+        "Rights statements may be territory-specific; check each item"
+      ],
+      "status": "research-first"
+    },
+    {
+      "name": "Pexels",
+      "url": "https://www.pexels.com/",
+      "api": "https://www.pexels.com/api/documentation/",
+      "access": "API key required; new key issuance currently paused",
+      "role": "Potential contemporary styling source; do not bulk automate",
+      "strengths": [
+        "Modern outfit photography",
+        "Shoes and accessories",
+        "Fabric/lifestyle visuals"
+      ],
+      "cautions": [
+        "Terms prohibit bulk/systematic copying without permission; API key issuance paused as checked 2026-11-13"
+      ],
+      "status": "blocked-for-new-key"
+    },
+    {
+      "name": "Pixabay",
+      "url": "https://pixabay.com/",
+      "api": "https://pixabay.com/api/docs/",
+      "access": "API key required",
+      "role": "Potential selective stock source; not a bulk archive source",
+      "strengths": [
+        "Fashion category",
+        "Accessories",
+        "Textures"
+      ],
+      "cautions": [
+        "API terms prohibit systematic mass downloads; cache API responses for 24 hours; store image locally if used"
+      ],
+      "status": "restricted-selective-use"
+    },
+    {
+      "name": "Unsplash",
+      "url": "https://unsplash.com/",
+      "api": "https://unsplash.com/documentation",
+      "access": "API key required; demo rate limits apply",
+      "role": "Potential selective contemporary styling source",
+      "strengths": [
+        "Classic outfits",
+        "Fabric textures",
+        "Shoes and accessories"
+      ],
+      "cautions": [
+        "API requires hotlinking returned image URLs and triggering download endpoint for download-like use; not suitable for blind bulk scraping"
+      ],
+      "status": "restricted-api-compliance"
+    },
+    {
+      "name": "Openverse",
+      "url": "https://openverse.org/",
+      "api": "https://api.openverse.org/v1/",
+      "access": "Current workflow request returned HTTP 401; investigate current authentication requirements",
+      "role": "Aggregated openly licensed image discovery",
+      "strengths": [
+        "Cross-source open-license discovery"
+      ],
+      "cautions": [
+        "Do not treat API as operational until authentication is fixed and tested; item-level rights still required"
+      ],
+      "status": "authentication-investigation"
+    },
+    {
+      "name": "Cleveland Museum of Art Open Access",
+      "url": "https://www.clevelandart.org/open-access",
+      "api": "https://openaccess-api.clevelandart.org/api/artworks/",
+      "access": "Public API",
+      "role": "Automated CC0 archive source",
+      "strengths": [
+        "Historical garments and material culture"
+      ],
+      "cautions": [
+        "General art searches can return irrelevant paintings and objects; use precise category queries and visual relevance checks"
+      ],
+      "status": "tested-download-provider-relevance-poor"
+    },
+    {
+      "name": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection",
+      "api": "https://collectionapi.metmuseum.org/public/collection/v1/",
+      "access": "Public API",
+      "role": "Automated public-domain archive source",
+      "strengths": [
+        "Historic dress, textiles and accessories"
+      ],
+      "cautions": [
+        "Only use records marked public domain with image URLs; results may be archival rather than contemporary"
+      ],
+      "status": "not-yet-tested-in-current-run"
+    },
+    {
+      "name": "Art Institute of Chicago",
+      "url": "https://www.artic.edu/",
+      "api": "https://api.artic.edu/api/v1/",
+      "access": "Public API",
+      "role": "Automated public-domain archive source",
+      "strengths": [
+        "Historical fashion illustrations and art"
+      ],
+      "cautions": [
+        "Verify public-domain flag and visual relevance"
+      ],
+      "status": "not-yet-tested-in-current-run"
+    }
+  ],
+  "categories": [
+    "01_Suits",
+    "02_Jackets_Blazers",
+    "03_Trousers",
+    "04_Fabrics_Textures",
+    "05_Shirts",
+    "06_Ties",
+    "07_Shoes",
+    "08_Belts",
+    "09_Pocket_Squares",
+    "10_Watches_Accessories",
+    "11_Coats_Outerwear",
+    "12_Knitwear",
+    "13_Colors_Combinations",
+    "14_Fits_Silhouettes",
+    "15_Details_Craftsmanship",
+    "16_Complete_Outfits"
+  ]
+}
