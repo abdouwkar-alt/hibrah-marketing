@@ -10,7 +10,7 @@ ROOT = Path("research-assets/classic-menswear-library/00_incoming_pilot")
 MANIFEST = ROOT / "sources-and-review.json"
 TARGET = 100
 MAX_BYTES = 8 * 1024 * 1024
-MIN_SIDE = 400
+MIN_SIDE = 360
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; HIBRAH-VisualResearch/1.2; internal reference review)", "Accept": "text/html,application/xhtml+xml,image/avif,image/webp,*/*"}
 S = requests.Session()
 S.headers.update(HEADERS)
@@ -21,14 +21,19 @@ SOURCES = [
     {"category":"03_Jacket_Details","brand":"Permanent Style","url":"https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html","max":4},
     {"category":"03_Jacket_Details","brand":"Gentleman's Gazette","url":"https://www.gentlemansgazette.com/surgeons-cuffs-guide/","max":3},
     {"category":"03_Jacket_Details","brand":"Gentleman's Gazette","url":"https://www.gentlemansgazette.com/kiton-jackets-review/","max":3},
+    {"category":"03_Jacket_Details","brand":"Gentleman's Gazette","url":"https://www.gentlemansgazette.com/suit-alterations-what-a-tailor-can-do/","max":5},
+    {"category":"03_Jacket_Details","brand":"Permanent Style","url":"https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html","max":6},
     {"category":"04_Trouser_Details","brand":"Gentleman's Gazette","url":"https://www.gentlemansgazette.com/features-of-a-pair-of-pants/","max":7},
     {"category":"04_Trouser_Details","brand":"Gentleman's Gazette","url":"https://www.gentlemansgazette.com/how-pants-should-fit/","max":5},
     {"category":"04_Trouser_Details","brand":"Permanent Style","url":"https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html","max":3},
     {"category":"04_Trouser_Details","brand":"Permanent Style","url":"https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html","max":3},
+    {"category":"04_Trouser_Details","brand":"The Rake","url":"https://therake.com/default/stories/a-guide-to-fitting-kit-blake-trousers","max":4},
+    {"category":"04_Trouser_Details","brand":"The Rake","url":"https://therake.com/default/stories/the-history-of-the-gurkha-pant","max":4},
     {"category":"05_Complete_Outfits","brand":"Drake's","url":"https://www.drakes.com/blogs/news/the-winter-lookbook-26","max":5},
     {"category":"05_Complete_Outfits","brand":"Drake's","url":"https://www.drakes.com/blogs/news/the-spring-lookbook","max":4},
     {"category":"05_Complete_Outfits","brand":"Drake's","url":"https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook-1","max":3},
     {"category":"05_Complete_Outfits","brand":"Drake's","url":"https://www.drakes.com/blogs/news/drake-s-by-aaron-levine-the-lookbook","max":2},
+    {"category":"05_Complete_Outfits","brand":"Permanent Style","url":"https://www.permanentstyle.com/style-lookbook","max":10},
 ]
 
 def slug(s):
@@ -62,6 +67,8 @@ def candidates(page_url, html):
         if tag.get("srcset"): u = best_srcset(tag.get("srcset")) or u
         if not u or u.startswith("data:"): continue
         u = urljoin(page_url, u)
+        if "drakes.com" in urlparse(u).netloc:
+            u = re.sub(r"([?&])width=\\d+", r"\\1width=1800", u)
         if u in seen: continue
         seen.add(u)
         low = (u + " " + alt).lower()
