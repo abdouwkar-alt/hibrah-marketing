@@ -1,16 +1,16 @@
 {
   "test": "HIBRAH specialist classic menswear image pilot — balanced categories",
   "target": 100,
-  "downloaded": 49,
+  "downloaded": 71,
   "complete": false,
   "category_counts": {
     "01_Fabrics": 20,
     "02_Suits": 20,
-    "03_Jacket_Details": 1,
-    "04_Trouser_Details": 2,
-    "05_Complete_Outfits": 6
+    "03_Jacket_Details": 9,
+    "04_Trouser_Details": 12,
+    "05_Complete_Outfits": 10
   },
-  "note": "Files are for internal Creative review only. Rights are NOT CLEARED; do not publish or redistribute until item-level terms and rights are reviewed.",
+  "note": "All images are for internal Creative review only. Rights are NOT CLEARED; do not publish, redistribute, or use in campaigns until item-level terms and rights are reviewed.",
   "sources": [
     {
       "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
@@ -66,6 +66,90 @@
       "brand": "Drake's",
       "category": "05_Complete_Outfits",
       "downloaded": 5,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/the-anatomy-suit-jacket/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "brand": "Permanent Style",
+      "category": "03_Jacket_Details",
+      "downloaded": 4,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/surgeons-cuffs-guide/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 2,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/kiton-jackets-review/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 2,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/features-of-a-pair-of-pants/",
+      "brand": "Gentleman's Gazette",
+      "category": "04_Trouser_Details",
+      "downloaded": 2,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/how-pants-should-fit/",
+      "brand": "Gentleman's Gazette",
+      "category": "04_Trouser_Details",
+      "downloaded": 2,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "brand": "Permanent Style",
+      "category": "04_Trouser_Details",
+      "downloaded": 3,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "brand": "Permanent Style",
+      "category": "04_Trouser_Details",
+      "downloaded": 3,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.drakes.com/blogs/news/the-winter-lookbook-26",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 1,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.drakes.com/blogs/news/the-spring-lookbook",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 1,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook-1",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 1,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.drakes.com/blogs/news/drake-s-by-aaron-levine-the-lookbook",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 1,
       "status": "images_found"
     }
   ],
@@ -951,6 +1035,402 @@
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/050_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2017/12/The-Rake-Simon-Crompton-Pocket-Guide-00008-1-400x600.jpg",
+      "alt_text": "The guide to jacket pockets – Permanent Style",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 79501,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "c3a72ad9cb3b8917b03d25bfb7747902a4f74decfdfd86c16593834d4c20f816",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/051_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2015/06/tan-Caliendo-jacket-and-cream-pocket-square.jpg",
+      "alt_text": "",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 151768,
+      "dimensions": [
+        900,
+        1354
+      ],
+      "sha256": "4b26b236dd305cdcd144c278a3aec8206e924c3f839c90d95cf68a65ce7aced2",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/052_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2017/12/The-Rake-Simon-Crompton-Pocket-Guide-00008-1.jpg",
+      "alt_text": "",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 121388,
+      "dimensions": [
+        600,
+        899
+      ],
+      "sha256": "541fc570182a831ed4d21234b8b781cdcc613803e703ce6268cf70fb2261cd31",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/053_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2020/03/chambray-shirt-bespoke.jpg",
+      "alt_text": "",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 1119755,
+      "dimensions": [
+        900,
+        1125
+      ],
+      "sha256": "586da92c5e1d41868e794118e8aad1a292174a5783310ec0608605f120a4fb53",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/054_Gentleman_s_Gazette_Surgeon_s_Cuffs_Myth_Or_Magic_Men_s_Suit_Sleeve_Buttons_Gentleman.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/surgeons-cuffs-guide/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2022/02/surgeons-cuffs_1200x630.jpg",
+      "alt_text": "Surgeon's Cuffs: Myth Or Magic? (Men's Suit Sleeve Buttons) | Gentleman's Gazette",
+      "page_title": "Surgeon's Cuffs: Myth Or Magic? (Men's Suit Sleeve Buttons) | Gentleman's Gazette",
+      "bytes": 113756,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "3afef649363d1941e36624c1cd22a895cdaa75fc0af0323f6cdf3c085ed6be58",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/055_Gentleman_s_Gazette_surgeons_cuffs_3840x2160_scaled.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/surgeons-cuffs-guide/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2022/02/surgeons-cuffs_3840x2160-scaled.jpg",
+      "alt_text": "surgeons cuffs 3840x2160 scaled",
+      "page_title": "Surgeon's Cuffs: Myth Or Magic? (Men's Suit Sleeve Buttons) | Gentleman's Gazette",
+      "bytes": 263537,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256": "67281d1f0a90b325f5fe1a4079f0fabe6e490b2df812a09a2adfc51cca1afd25",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/056_Gentleman_s_Gazette_Are_Kiton_Jackets_Worth_It_Luxury_Italian_Menswear_Review_Gentlem.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/kiton-jackets-review/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2023/08/kiton-jackets_1200x630.jpg",
+      "alt_text": "Are Kiton Jackets Worth It? Luxury Italian Menswear Review | Gentleman's Gazette",
+      "page_title": "Are Kiton Jackets Worth It? Luxury Italian Menswear Review | Gentleman's Gazette",
+      "bytes": 79868,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "16bffe65801f5fde3233fd38523a2e2dd9192767b60d778de780c24a2274892a",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/057_Gentleman_s_Gazette_kiton_jackets_3840x2160_scaled.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/kiton-jackets-review/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2023/08/kiton-jackets_3840x2160-scaled.jpg",
+      "alt_text": "kiton jackets 3840x2160 scaled",
+      "page_title": "Are Kiton Jackets Worth It? Luxury Italian Menswear Review | Gentleman's Gazette",
+      "bytes": 102851,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256": "6213208af2fa2ad2dec082be1f797896d43aad0fd11b767dc25792b9fb71d966",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/058_Gentleman_s_Gazette_Features_Of_A_Pair_Of_Pants.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/features-of-a-pair-of-pants/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2018/10/features-of-a-pair-of-pants_3840x2160-1030x580.jpg",
+      "alt_text": "Features Of A Pair Of Pants",
+      "page_title": "Features Of A Pair Of Pants",
+      "bytes": 129182,
+      "dimensions": [
+        1030,
+        580
+      ],
+      "sha256": "0460d1f6126397b59ac11fbfa66c70943aab7896f4514f51efeeae58a96b53db",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/059_Gentleman_s_Gazette_features_of_a_pair_of_pants_3840x2160_scaled.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/features-of-a-pair-of-pants/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2018/10/features-of-a-pair-of-pants_3840x2160-scaled.jpg",
+      "alt_text": "features of a pair of pants 3840x2160 scaled",
+      "page_title": "Features Of A Pair Of Pants",
+      "bytes": 123526,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256": "c66911d22084097997e84b759d7751271add21d4d7392e04d8e5188027f4aef4",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/060_Gentleman_s_Gazette_How_Pants_Should_Fit.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/how-pants-should-fit/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2017/07/how_pants_should_fit_1200x630_wp.jpeg",
+      "alt_text": "How Pants Should Fit",
+      "page_title": "How Pants Should Fit",
+      "bytes": 56514,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "89507352fa720f67c9f5de3d520a3daf01ca126fd5a54d31b3d4d99f42007e5e",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/061_Gentleman_s_Gazette_how_pants_should_fit_3840x2160_wp_scaled.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/how-pants-should-fit/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2017/07/how-pants-should-fit-_3840x2160_wp-scaled.jpg",
+      "alt_text": "how pants should fit 3840x2160 wp scaled",
+      "page_title": "How Pants Should Fit",
+      "bytes": 107073,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256": "ea937f6e65718d3aa3ebb5cdef84d74b41e75aa0a5806d152f15dd74cd8d8a46",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/062_Permanent_Style_Suit_style_9_Trouser_cuffs_belts_and_tabs_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2017/03/holland-and-sherry-cavalry-twill-trouser.jpg",
+      "alt_text": "",
+      "page_title": "Suit style 9: Trouser cuffs, belts and tabs – Permanent Style",
+      "bytes": 580804,
+      "dimensions": [
+        1333,
+        2000
+      ],
+      "sha256": "66888beecd7fa29a4bfa7f2738588fb3b8c196b3c576eb45d9f7a412aef45a84",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/063_Permanent_Style_Suit_style_9_Trouser_cuffs_belts_and_tabs_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/07/panico-flannel-trouser.jpg",
+      "alt_text": "",
+      "page_title": "Suit style 9: Trouser cuffs, belts and tabs – Permanent Style",
+      "bytes": 376121,
+      "dimensions": [
+        1487,
+        975
+      ],
+      "sha256": "75e7134694cda99df46af223aa8e706f811b6e9f34b3f9cd3ad8df96fb81b9ef",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/064_Permanent_Style_Suit_style_9_Trouser_cuffs_belts_and_tabs_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2019/02/loafer-and-flannel-trousers.jpg",
+      "alt_text": "",
+      "page_title": "Suit style 9: Trouser cuffs, belts and tabs – Permanent Style",
+      "bytes": 750201,
+      "dimensions": [
+        1100,
+        733
+      ],
+      "sha256": "7b70b5bc214c60a9ddb1302ed659b369ea82b82d6170b09299dde85784a3da48",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/065_Permanent_Style_Suit_Style_7_A_guide_to_pleats_on_trousers_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/08/Panico-bespoke-trousers.jpg",
+      "alt_text": "",
+      "page_title": "Suit Style 7: A guide to pleats on trousers – Permanent Style",
+      "bytes": 455152,
+      "dimensions": [
+        1333,
+        2000
+      ],
+      "sha256": "010f85d8822ee86db9e2578b72224f8fb93c071c606d8e2770ba5af501c7fc19",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/066_Permanent_Style_Suit_Style_7_A_guide_to_pleats_on_trousers_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/07/Prologue-Trousers-5.jpg",
+      "alt_text": "",
+      "page_title": "Suit Style 7: A guide to pleats on trousers – Permanent Style",
+      "bytes": 62583,
+      "dimensions": [
+        1080,
+        1349
+      ],
+      "sha256": "7f63441b6fc732e4d6f85b6937e4a0980585055cf65c8745d90fda2a4e4dc53b",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/067_Permanent_Style_Suit_Style_7_A_guide_to_pleats_on_trousers_Permanent_Style.png",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2019/11/Screenshot-2019-11-08-at-13.00.03.png",
+      "alt_text": "",
+      "page_title": "Suit Style 7: A guide to pleats on trousers – Permanent Style",
+      "bytes": 667155,
+      "dimensions": [
+        586,
+        595
+      ],
+      "sha256": "6c9c02269bc311e4fb723ce57c09517d6bf4be88ff67314faf3f441caa5b3a9d",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/068_Drake_s_The_Winter_Lookbook_Drakes.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://www.drakes.com/blogs/news/the-winter-lookbook-26",
+      "image_url": "http://www.drakes.com/cdn/shop/articles/740200080004_2_1200x1200.jpg?v=1792661825",
+      "alt_text": "The Winter Lookbook\n– Drakes",
+      "page_title": "The Winter Lookbook\n– Drakes",
+      "bytes": 94874,
+      "dimensions": [
+        958,
+        1200
+      ],
+      "sha256": "a179bc35cf22cdef28df6180f3875b410dba1994d8f1860d314f9429a1d60c90",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/069_Drake_s_The_Spring_Lookbook_Drakes.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://www.drakes.com/blogs/news/the-spring-lookbook",
+      "image_url": "http://www.drakes.com/cdn/shop/articles/SPRING_LB_V1-01_1200x1200.jpg?v=1743678572",
+      "alt_text": "The Spring Lookbook\n– Drakes",
+      "page_title": "The Spring Lookbook\n– Drakes",
+      "bytes": 166916,
+      "dimensions": [
+        960,
+        1200
+      ],
+      "sha256": "89eb7397fd0cdbb1f5de354ff5c7c3c0dac87e15281dbbf90d8c85a9bf164452",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/070_Drake_s_The_Summer_Tailoring_Lookbook_Drakes_US.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook-1",
+      "image_url": "http://us.drakes.com/cdn/shop/articles/Drake_s_SUMMERTAILORING_25_648335d7-9ebf-49a7-b8d4-40e66cf7e3ec_1200x1200.jpg?v=1746697327",
+      "alt_text": "The Summer Tailoring Lookbook\n– Drakes US",
+      "page_title": "The Summer Tailoring Lookbook\n– Drakes US",
+      "bytes": 117644,
+      "dimensions": [
+        1200,
+        763
+      ],
+      "sha256": "12e169d25efe44782d658d09d3ef9bd2c0c5403490b9eba3557459e9fad7dfc4",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/071_Drake_s_Drake_s_by_Aaron_Levine_The_Lookbook_Drakes.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://www.drakes.com/blogs/news/drake-s-by-aaron-levine-the-lookbook",
+      "image_url": "http://www.drakes.com/cdn/shop/articles/AaronLevine_AW24_LayoutDOC_1200x1200.jpg?v=1730891485",
+      "alt_text": "Drake’s by Aaron Levine: The Lookbook\n– Drakes",
+      "page_title": "Drake’s by Aaron Levine: The Lookbook\n– Drakes",
+      "bytes": 211344,
+      "dimensions": [
+        969,
+        1200
+      ],
+      "sha256": "2552215579005dec6abce6b34d321a55335d717fa306fb9e69fae53337d6f2b5",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
     }
   ],
   "errors": [
@@ -1433,6 +1913,36 @@
       "page": "https://www.permanentstyle.com/style-lookbook",
       "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/07/seersucker-jacket-casual-400x500.jpg",
       "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/04/fox-brothers-vintage-serge-navy-trouser-400x267.jpg",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2017/07/kissing-pleat-cerrato-400x267.jpg",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.drakes.com/blogs/news/the-winter-lookbook-26",
+      "image_url": "https://www.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787752789&width=196",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.drakes.com/blogs/news/the-spring-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787752789&width=196",
+      "error": "image too small"
+    },
+    {
+      "page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook-1",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787749829&width=196",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.drakes.com/blogs/news/drake-s-by-aaron-levine-the-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787752789&width=196",
+      "error": "image too small"
     }
   ]
 }
