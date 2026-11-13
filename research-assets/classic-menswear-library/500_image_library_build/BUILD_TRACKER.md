@@ -7,17 +7,17 @@
 
 | Category | Target | Current Canva assets | Status |
 |---|---:|---:|---|
-| Fabrics | 50 | 0 in new category folder; existing 100-image fabric candidate batch remains in its original folder | Existing pool needs Founder review and reduction to 50 |
-| Suits | 50 | 9 | Pilot imports; inspect relevance and duplicates |
-| Jacket Details | 50 | 9 | Pilot imports; inspect relevance and duplicates |
-| Trouser Details | 50 | 9 | Pilot imports; inspect relevance and duplicates |
-| Tailoring Craftsmanship | 50 | 0 | Not yet collected |
-| Fit & Silhouette | 50 | 0 | Not yet collected |
+| Fabrics | 50 | Existing 100-image candidate pool nested in category folder | Select the strongest 50 after visual review |
+| Suits | 50 | 10 | Pilot imports; inspect relevance and duplicates |
+| Jacket Details | 50 | 10 | Pilot imports; inspect relevance and duplicates |
+| Trouser Details | 50 | 10 | Pilot imports; inspect relevance and duplicates |
+| Tailoring Craftsmanship | 50 | 1 | Not yet collected |
+| Fit & Silhouette | 50 | 1 | Not yet collected |
 | Styling Combinations | 50 | 0 | Not yet collected |
-| Complete Outfits | 50 | 5 | Pilot imports; inspect relevance and duplicates |
-| Shoes & Accessories | 50 | 0 | Not yet collected |
+| Complete Outfits | 50 | 6 | Pilot imports; inspect relevance and duplicates |
+| Shoes & Accessories | 50 | 2 | Not yet collected |
 | Reference & Inspiration | 50 | 0 | Not yet collected |
-| **Total** | **500** | **32** | **In progress** |
+| **Total** | **500** | **40** | **In progress** |
 
 ## Canva structure
 
