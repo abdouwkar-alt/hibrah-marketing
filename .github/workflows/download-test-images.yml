@@ -1,4 +1,5 @@
 name: Download 10 HIBRAH test images
+# Multi-provider sequential fallback is implemented in scripts/download_test_images.py
 
 on:
   push:
