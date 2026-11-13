@@ -1,15 +1,15 @@
-# Creative Review Brief — Classic Menswear Image Pilot (49 Images)
+# Creative Review Brief — Classic Menswear Image Pilot (100 Images)
 
 **Repository:** `abdouwkar-alt/hibrah-marketing`  
 **Branch:** `drafts`  
 **Review folder:** `research-assets/classic-menswear-library/00_incoming_pilot/`  
 **Manifest:** `sources-and-review.json`  
-**Review status:** Pending for all 49 images  
-**Rights status:** Not cleared for all 49 images
+**Review status:** Pending for all 100 images  
+**Rights status:** Not cleared for all 100 images
 
 ## 1. Purpose
 
-Review the 49 downloaded images for their suitability as a specialist internal visual-reference library for HIBRAH's classic menswear, tailoring, suit, and fabric work.
+Review the 100 downloaded images for their suitability as a specialist internal visual-reference library for HIBRAH's classic menswear, tailoring, suit, and fabric work.
 
 This is a Creative relevance and quality review only. It is not permission to publish, redistribute, use in campaigns, or upload to Canva.
 
@@ -19,12 +19,12 @@ This is a Creative relevance and quality review only. It is not permission to pu
 |---|---:|
 | Fabrics | 20 |
 | Suits | 20 |
-| Jacket details | 1 |
-| Trouser details | 2 |
-| Complete outfits | 6 |
-| **Total** | **49** |
+| Jacket details | 22 |
+| Trouser details | 22 |
+| Complete outfits | 16 |
+| **Total** | **100** |
 
-The original pilot target was 100 images; the current downloaded set contains 49 and is therefore incomplete.
+The original pilot target was 100 images; the current downloaded set contains 100 images and meets the pilot target.
 
 ## 3. Required review for every image
 
@@ -51,14 +51,15 @@ These are metadata-based flags, not completed visual judgments. Confirm them by 
 - Images **29–30** are named as a navy/brown check cotton-silk two-pocket long-point item; verify whether they are shirts rather than suits and reclassify or reject accordingly.
 - Images **35–36** are explicitly named as bleach-wash Japanese selvedge denim; these appear outside the suits category and should be rejected or reclassified if they have a justified reference use.
 - Images **44** is only 512 × 512 pixels; assess whether its resolution and content provide meaningful reference value.
-- The jacket-details category has only **1** image and trouser-details has only **2**; report the collection gaps rather than accepting weak images merely to fill categories.
+- The jacket-details and trouser-details categories have been expanded. Assess whether the added detail references are distinct and useful; do not accept weak or repetitive images merely to fill categories.
+- Images **95–96** and **100** are metadata-described as a jungle jacket with jeans, a Harrington with jeans, and shorts with a crewneck. Check whether these casual looks belong in a suit-led HIBRAH reference library.
 - Check Drake's images for repeated product angles, near-duplicates, and campaign/editorial images that add no distinct reference value.
 
 ## 5. Separate rights review — mandatory
 
 Creative approval does not equal rights clearance.
 
-All 49 images currently have:
+All 100 images currently have:
 - `creative_review_status: PENDING`
 - `rights_status: NOT_CLEARED`
 - `intended_use: INTERNAL_CREATIVE_REVIEW_ONLY`
@@ -81,7 +82,7 @@ The repository is public, so rights-uncleared images must not be treated as appr
 ## 7. Required output
 
 Create `CREATIVE_REVIEW.md` in this pilot folder with:
-- A 49-row item-level decision table.
+- A 100-row item-level decision table.
 - Reasons for every REJECT and RECLASSIFY decision.
 - Duplicate/near-duplicate notes.
 - Category-level assessment and missing-library gaps.
