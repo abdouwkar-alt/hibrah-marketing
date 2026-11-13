@@ -2,10 +2,10 @@ name: HIBRAH Fabric Reference — 100 Images
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/hibrah-fabric-100.yml"
+
+concurrency:
+  group: hibrah-fabric-100-main
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -34,9 +34,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research-assets/classic-menswear-library/01_fabric_visual_review_100
           git commit -m "Add 100 curated fabric reference images"
-          git fetch origin main
-          git rebase origin/main
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              echo "Batch committed to main."
+              exit 0
+            fi
+            echo "Push race detected; retrying ($attempt/5)."
+          done
+          echo "Unable to push after five retries."
+          exit 1
       - name: Upload review contact sheets
         uses: actions/upload-artifact@v4
         with:
