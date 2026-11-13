@@ -96,3 +96,15 @@ Last updated: 2026-11-12
 - Supersedes:
 - Owner:
 - Follow-up required:
+
+
+### HIB-2026-007 — Classic menswear image-library source shortlist and validation workflow
+- Date: 2026-11-13
+- Status: CONFIRMED
+- Decision: Approve FIT SPARC Digital, The Metropolitan Museum of Art, Smithsonian Open Access, Wikimedia Commons, and the Library of Congress as the initial research-discovery source shortlist for the Classic Menswear Reference Library. Approve the staged validation workflow: search by category; verify that relevant items actually exist; review item-level rights and intended-use permissions; then run a small controlled retrieval test before scaling.
+- Scope: Approval is for research discovery and controlled validation only. It does not approve every image, grant commercial-use rights, authorize bulk downloading, or establish that all five sources are technically automatable. FIT SPARC is primarily a specialist manual research source unless its access and rights are separately validated.
+- Rationale: The shortlist has demonstrated relevant menswear/fashion holdings, unlike the previous generic search test whose downloaded results were mostly irrelevant.
+- Source: Founder approval in project conversation, 2026-11-13; source examples and research presented in the same conversation.
+- Supersedes: None.
+- Owner: Creative for visual research and relevance review; Development & R&D for technical access, retrieval and automation tests. Founder retains final approval of system changes.
+- Follow-up required: Validate five initial categories with specific relevant item records, source URLs, image availability, license/rights, and quality before implementing or scaling automated downloads.
