@@ -1,14 +1,14 @@
 {
   "test": "HIBRAH specialist classic menswear image pilot — balanced categories",
-  "target": 25,
-  "downloaded": 18,
+  "target": 100,
+  "downloaded": 49,
   "complete": false,
   "category_counts": {
-    "01_Fabrics": 5,
-    "02_Suits": 5,
+    "01_Fabrics": 20,
+    "02_Suits": 20,
     "03_Jacket_Details": 1,
     "04_Trouser_Details": 2,
-    "05_Complete_Outfits": 5
+    "05_Complete_Outfits": 6
   },
   "note": "Files are for internal Creative review only. Rights are NOT CLEARED; do not publish or redistribute until item-level terms and rights are reviewed.",
   "sources": [
@@ -16,35 +16,28 @@
       "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
       "brand": "Vitale Barberis Canonico",
       "category": "01_Fabrics",
-      "downloaded": 2,
+      "downloaded": 5,
       "status": "images_found"
     },
     {
       "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-311/",
       "brand": "Vitale Barberis Canonico",
       "category": "01_Fabrics",
-      "downloaded": 2,
+      "downloaded": 1,
       "status": "images_found"
     },
     {
       "source_page": "https://store.reda1865.com/fabrics/",
       "brand": "Reda 1865",
       "category": "01_Fabrics",
-      "downloaded": 1,
+      "downloaded": 14,
       "status": "images_found"
     },
     {
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
       "brand": "Drake's",
       "category": "02_Suits",
-      "downloaded": 4,
-      "status": "images_found"
-    },
-    {
-      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
-      "brand": "Drake's",
-      "category": "02_Suits",
-      "downloaded": 1,
+      "downloaded": 20,
       "status": "images_found"
     },
     {
@@ -72,7 +65,7 @@
       "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
       "brand": "Drake's",
       "category": "05_Complete_Outfits",
-      "downloaded": 4,
+      "downloaded": 5,
       "status": "images_found"
     }
   ],
@@ -114,7 +107,61 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/03_Vitale_Barberis_Canonico_21_Micron_Sports_jacket_10_712_311.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/03_Vitale_Barberis_Canonico_Wool_excellence_award_club.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/wec.jpg",
+      "alt_text": "Wool excellence award & club",
+      "page_title": "21 Micron Sports jacket 10.712/276",
+      "bytes": 227171,
+      "dimensions": [
+        1000,
+        1250
+      ],
+      "sha256": "a65517ebb984c9610da7caeac985bece9bb55a2bf97ef278fb03c98b13e947fb",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/04_Vitale_Barberis_Canonico_Covert.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2026/07/Sottomenù_COVERT.jpg",
+      "alt_text": "Covert",
+      "page_title": "21 Micron Sports jacket 10.712/276",
+      "bytes": 1745511,
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "sha256": "0978bd48b99d77d9c0be8223e47c7984bad038c6ac600ecd84f205a7445513f9",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/05_Vitale_Barberis_Canonico_Fabric_academy.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/fabric-academy.jpg",
+      "alt_text": "Fabric academy",
+      "page_title": "21 Micron Sports jacket 10.712/276",
+      "bytes": 248628,
+      "dimensions": [
+        1000,
+        1250
+      ],
+      "sha256": "9515fb20387d1459248e0eb811b22cb0e308612753bfa45458390c5a3bee880e",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/06_Vitale_Barberis_Canonico_21_Micron_Sports_jacket_10_712_311.jpg",
       "category": "01_Fabrics",
       "source_brand": "Vitale Barberis Canonico",
       "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-311/",
@@ -132,25 +179,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/04_Vitale_Barberis_Canonico_Wool_excellence_award_club.jpg",
-      "category": "01_Fabrics",
-      "source_brand": "Vitale Barberis Canonico",
-      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-311/",
-      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/wec.jpg",
-      "alt_text": "Wool excellence award & club",
-      "page_title": "21 Micron Sports jacket 10.712/311",
-      "bytes": 227171,
-      "dimensions": [
-        1000,
-        1250
-      ],
-      "sha256": "a65517ebb984c9610da7caeac985bece9bb55a2bf97ef278fb03c98b13e947fb",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/05_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/07_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
       "category": "01_Fabrics",
       "source_brand": "Reda 1865",
       "source_page": "https://store.reda1865.com/fabrics/",
@@ -168,7 +197,241 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/06_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/08_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/13/4c/88/1791475354/50.00163-0005-000-00001_FLAT_1920x1920.jpg?ts=1791475994",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1140999,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "f8ff7644081598b0acf46a589e098bf673bed37c8361878d0ccaa5f7578fa62d",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/09_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/f1/89/51/1791475354/50.00163-0005-000-00003_FLAT_1920x1920.jpg?ts=1791475993",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1126993,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "712b3df3325fd2f9db7338b4c2e50686fc6550017ffc5eb422c87f72d195ccab",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/10_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/79/ab/f6/1791475354/50.00163-0005-000-00001_COVER_1920x1920.jpg?ts=1791475991",
+      "alt_text": "Fancy Jacket Merino Wool & Silk & Linen",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 677290,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "bd0eec3d9caddab254260b0377e05ea9d5a4f67629e3c8d5e8b217f3e754ff16",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/11_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/c3/d4/a9/1791475354/50.00163-0003-000-00004_COVER_1920x1920.jpg?ts=1791475988",
+      "alt_text": "Fancy Jacket Merino Wool & Silk & Linen",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 771411,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "9f925101dcc98171f670563e6476d990c79a9a7c402f5bfb77f6b8e85bc537a4",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/12_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/e7/60/ff/1791475353/50.00163-0003-000-00001_FLAT_1920x1920.jpg?ts=1791475986",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1011286,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "a3f140603cb780b098478ce6affd348d645af9db86836d00d0f7cd83f788e4e5",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/13_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/01/0f/62/1791475353/50.00163-0003-000-00003_FLAT_1920x1920.jpg?ts=1791475984",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 930066,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "3f2e38a617e492741b4cf10293d94fb08cdcaf044b6f835d0994bc061aacc944",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/14_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/39/65/41/1791475354/50.00163-0003-000-00004_FLAT_1920x1920.jpg?ts=1791475989",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1113309,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "eb53edff60b2135c1504da52cd6b29e08955f5b660a444cf94cda9414b1a948b",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/15_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/95/1a/d7/1791475353/50.00163-0003-000-00003_COVER_1920x1920.jpg?ts=1791475983",
+      "alt_text": "Fancy Jacket Merino Wool & Silk & Linen",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 552681,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "3526d549fb64c1d163b7e1d2bb61cf80f2ab29a44213582110c03fb1e65dbbcb",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/16_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/8a/77/65/1791475353/50.00163-0003-000-00001_COVER_1920x1920.jpg?ts=1791475982",
+      "alt_text": "Fancy Jacket Merino Wool & Silk & Linen",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 503117,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "5229150457c44ecd034b7c654f73520bd6b98ff7ebc2f2ec58706a6e00205d5b",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/17_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/99/31/7b/1791475351/50.00163-0001-000-00006_COVER_1920x1920.jpg?ts=1791475971",
+      "alt_text": "Fancy Jacket Merino Wool & Silk & Linen",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 723237,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "976f0be65ddade5ccb565e41228184bceded7ff30e2ee83046cca78bdb0cec55",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/18_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/74/74/8b/1791475351/50.00163-0001-000-00001_FLAT_1920x1920.jpg?ts=1791475968",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1238806,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "9ff106fece355ca90cfb483cb96debdd22031e42804f3e15e58166a7eab0044d",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/19_Reda_1865_FABRICS_-_Reda_1865.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/06/68/f8/1791475351/50.00163-0001-000-00006_FLAT_1920x1920.jpg?ts=1791475972",
+      "alt_text": "",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 1110498,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "247b34daf215cda34fe5eb5e87d1977c3c46784e1ba5230dc99356ef1057a1f5",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/20_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "category": "01_Fabrics",
+      "source_brand": "Reda 1865",
+      "source_page": "https://store.reda1865.com/fabrics/",
+      "image_url": "https://store.reda1865.com/thumbnail/40/2a/f1/1791475351/50.00163-0001-000-00001_COVER_1920x1920.jpg?ts=1791475967",
+      "alt_text": "Fancy Jacket Merino Wool & Silk & Linen",
+      "page_title": "FABRICS - Reda 1865",
+      "bytes": 702165,
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "sha256": "a792963ae876ed5ebdd98fd821423b54f03ef84c0c2442f2cfdcd335d24489b4",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/21_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
@@ -186,7 +449,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/07_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/22_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
@@ -204,7 +467,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/08_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/23_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
@@ -222,7 +485,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/09_Drake_s_Tailoring_In_Paris.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/24_Drake_s_Tailoring_In_Paris.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
@@ -240,25 +503,295 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/10_Drake_s_The_Summer_Tailoring_Lookbook_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/25_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
-      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
-      "image_url": "http://us.drakes.com/cdn/shop/articles/SUMMERTAILORING_1200x1200.jpg?v=1716341202",
-      "alt_text": "The Summer Tailoring Lookbook\n– Drakes US",
-      "page_title": "The Summer Tailoring Lookbook\n– Drakes US",
-      "bytes": 106790,
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/AW26_Paris_Tailoring2.jpg?v=1789559787&width=1660",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 103696,
       "dimensions": [
-        1200,
-        969
+        1240,
+        1535
       ],
-      "sha256": "4037c4ee533b74c61ea5f4b02545faf18e626b3b4e7acf1033e092f6d737d416",
+      "sha256": "7feadc17292f25adec811b8083a6d64fbbd43385a33f8ec3bfdda76b0bc44eee",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/11_Gentleman_s_Gazette_The_Anatomy_Of_A_Suit_Jacket_A_Comprehensive_Vocabulary.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/26_Drake_s_Navy_Chalkstripe_Wool_Flannel_Double-Breasted_Tailored_.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/25747.jpg?v=1789551070&width=900",
+      "alt_text": "Navy Chalkstripe Wool Flannel Double-Breasted Tailored Jacket",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 88692,
+      "dimensions": [
+        900,
+        1127
+      ],
+      "sha256": "122a3e78d1d38b573d2e6370cc7d85a6e1143d1e88eeda3088b8a779896fb793",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/27_Drake_s_Navy_Chalkstripe_Wool_Flannel_Double-Breasted_Tailored_.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/25747_2.jpg?v=1789554946&width=900",
+      "alt_text": "Navy Chalkstripe Wool Flannel Double-Breasted Tailored Jacket",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 117956,
+      "dimensions": [
+        900,
+        1127
+      ],
+      "sha256": "56d74f02a91c6b208cc271edd9d329470a108bcb6de0f2d62e4825e9ce213b76",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/28_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/AW26_Paris_Tailoring3.jpg?v=1789559810&width=1660",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 363074,
+      "dimensions": [
+        1240,
+        1535
+      ],
+      "sha256": "f2dba879eb949272d4adf7f19d72ddeae1cf6a228100520dbfc98a01072a8832",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/29_Drake_s_Navy_and_Brown_Check_Cotton-Silk_Two-Pocket_Long_Point_.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/26658_cd2abf83-9e98-442e-b7d0-53ea25b6c08e.jpg?v=1793265082&width=900",
+      "alt_text": "Navy and Brown Check Cotton-Silk Two-Pocket Long Point Collar Work Shirt",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 130418,
+      "dimensions": [
+        900,
+        1173
+      ],
+      "sha256": "f4e20f7b3c96cdf5d8f7f439f4a5b22cb5d6a31b9bd81d1b5eebdd98cd494704",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/30_Drake_s_Navy_and_Brown_Check_Cotton-Silk_Two-Pocket_Long_Point_.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR2A4Q26658-01-253-1_8d5f9d3f-d9d4-4d78-9c35-739e3c77f1aa.jpg?v=1793610746&width=900",
+      "alt_text": "Navy and Brown Check Cotton-Silk Two-Pocket Long Point Collar Work Shirt",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 36708,
+      "dimensions": [
+        900,
+        1008
+      ],
+      "sha256": "35f89a2da27a2937b1a871c6160c9c67a414766ce25c47bb190aef0bd82466b7",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/31_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/AW26_Paris_Tailoring4.jpg?v=1789559876&width=1660",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 114668,
+      "dimensions": [
+        1512,
+        1240
+      ],
+      "sha256": "e4e8a580f2b1e0e08b45a21fd9ae995043737916d8b9df5499c3316df76f5129",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/32_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/AW26_Paris_Tailoring5.jpg?v=1789559898&width=1660",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 266584,
+      "dimensions": [
+        1240,
+        1535
+      ],
+      "sha256": "c7ac2f07378277fff1f4f75096e3cc0e4be1841047df722a8e3d0f36a8ca5d7e",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/33_Drake_s_Brown_and_Ecru_Houndstooth_Harris_Tweed_Blazer.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/26540.jpg?v=1789551216&width=900",
+      "alt_text": "Brown and Ecru Houndstooth Harris Tweed® Blazer",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 167188,
+      "dimensions": [
+        900,
+        1127
+      ],
+      "sha256": "57e0df25875d46c0444dc2d70b4c0f8dad50dd396535d33b52890a4255fb5168",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/34_Drake_s_Brown_and_Ecru_Houndstooth_Harris_Tweed_Blazer.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR2A2B26540-01303-1.jpg?v=1789551260&width=900",
+      "alt_text": "Brown and Ecru Houndstooth Harris Tweed® Blazer",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 160658,
+      "dimensions": [
+        900,
+        1008
+      ],
+      "sha256": "5398ca8f10b875c1a75a0786542cb4fa655ecf283c279ea9313e1969912b66f6",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/35_Drake_s_Bleach_Wash_14_2oz_Japanese_Selvedge_Denim_Five-Pocket_.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/238800470006.jpg?v=1717685486&width=900",
+      "alt_text": "Bleach Wash 14.2oz Japanese Selvedge Denim Five-Pocket Jeans",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 73276,
+      "dimensions": [
+        900,
+        1128
+      ],
+      "sha256": "9519a44d31e145d4d826d4671af5e62c445c1863e094c0750b6f662f08fccf2b",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/36_Drake_s_Bleach_Wash_14_2oz_Japanese_Selvedge_Denim_Five-Pocket_.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR2A6A19555-03200-1.jpg?v=1717685486&width=900",
+      "alt_text": "Bleach Wash 14.2oz Japanese Selvedge Denim Five-Pocket Jeans",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 72578,
+      "dimensions": [
+        900,
+        1008
+      ],
+      "sha256": "b37065ea05dffdc0b69cd66d6f7ff2e166607144966b903ccd03cdf312002ceb",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/37_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/AW26_Paris_Tailoring6.jpg?v=1789559955&width=1660",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 314586,
+      "dimensions": [
+        1240,
+        1535
+      ],
+      "sha256": "c03d447fb43b5b24ea9965152d1d7c83b00a153dae5635417b5d7480e57727ff",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/38_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/AW26_Paris_Tailoring7.jpg?v=1789559979&width=1660",
+      "alt_text": "",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 257326,
+      "dimensions": [
+        1660,
+        1056
+      ],
+      "sha256": "d43f96621c42c0986d78b3efc619ade90472c7b3e60255b4eec48bbb1f4089c2",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/39_Drake_s_Brown_Cotton_Corduroy_Tailored_Jacket.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/26547.jpg?v=1789551896&width=900",
+      "alt_text": "Brown Cotton Corduroy Tailored Jacket",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 202090,
+      "dimensions": [
+        900,
+        1127
+      ],
+      "sha256": "da76b84a8d63f3e40106008e8a9bea5a438ad34cfc1798e04c4ce6c64f0a6094",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/40_Drake_s_Brown_Cotton_Corduroy_Tailored_Jacket.webp",
+      "category": "02_Suits",
+      "source_brand": "Drake's",
+      "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR2A2B26547-01300-1.jpg?v=1789392086&width=900",
+      "alt_text": "Brown Cotton Corduroy Tailored Jacket",
+      "page_title": "Tailoring In Paris\n– Drakes US",
+      "bytes": 50932,
+      "dimensions": [
+        900,
+        1008
+      ],
+      "sha256": "6e64cbae160899e33ab32ba858249e1090e0f0557bf84334bdd42b9918f53a45",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/41_Gentleman_s_Gazette_The_Anatomy_Of_A_Suit_Jacket_A_Comprehensive_Vocabulary.jpg",
       "category": "03_Jacket_Details",
       "source_brand": "Gentleman's Gazette",
       "source_page": "https://www.gentlemansgazette.com/the-anatomy-suit-jacket/",
@@ -276,7 +809,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/12_Gentleman_s_Gazette_How_A_Suit_Should_Fit_-_Jacket_Dress_Pants.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/42_Gentleman_s_Gazette_How_A_Suit_Should_Fit_-_Jacket_Dress_Pants.jpg",
       "category": "04_Trouser_Details",
       "source_brand": "Gentleman's Gazette",
       "source_page": "https://www.gentlemansgazette.com/how-a-suit-should-fit/",
@@ -294,7 +827,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/13_Gentleman_s_Gazette_how_a_suit_should_fit_1_3840x2160_scaled.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/43_Gentleman_s_Gazette_how_a_suit_should_fit_1_3840x2160_scaled.jpg",
       "category": "04_Trouser_Details",
       "source_brand": "Gentleman's Gazette",
       "source_page": "https://www.gentlemansgazette.com/how-a-suit-should-fit/",
@@ -312,7 +845,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/14_Permanent_Style_Lookbook_Permanent_Style.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/44_Permanent_Style_Lookbook_Permanent_Style.jpg",
       "category": "05_Complete_Outfits",
       "source_brand": "Permanent Style",
       "source_page": "https://www.permanentstyle.com/style-lookbook",
@@ -330,7 +863,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/15_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/45_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
       "category": "05_Complete_Outfits",
       "source_brand": "Drake's",
       "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
@@ -348,7 +881,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/16_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/46_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
       "category": "05_Complete_Outfits",
       "source_brand": "Drake's",
       "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
@@ -366,7 +899,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/17_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/47_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
       "category": "05_Complete_Outfits",
       "source_brand": "Drake's",
       "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
@@ -384,7 +917,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/18_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/48_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
       "category": "05_Complete_Outfits",
       "source_brand": "Drake's",
       "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
@@ -397,6 +930,24 @@
         752
       ],
       "sha256": "a109156f96e74e7f680a57b834e97b2214268ec12212ec13ac0b54653ee35d1a",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/49_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/Jago_Layout6.jpg?v=1774029644&width=600",
+      "alt_text": "",
+      "page_title": "The Autumn Collection: Part One\n– Drakes",
+      "bytes": 58134,
+      "dimensions": [
+        600,
+        750
+      ],
+      "sha256": "09ee2d0c69797352ecaed67b8e136a9d18dc8bde485417f5ec2da8511ac20af9",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
