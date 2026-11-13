@@ -32,7 +32,7 @@ These four entries are less clearly product-swatch images from their source meta
 - The batch contains 100 downloaded and file-validated image candidates.
 - All 100 have source-page and direct-image references in `manifest.json` and `manifest.csv`.
 - The script has not marked any image as visually approved; visual review fields remain `PENDING`.
-- The four items above are metadata/automatic-tag flags, not final reject decisions.
+- The flagged items above are preliminary metadata/automatic-tag flags, not final reject decisions. Canva smart tags are machine-generated clues, not a substitute for the Founder’s visual decision.
 - Use the Canva folder for the Founder’s image-by-image ACCEPT / REJECT / REVIEW decision.
 
 ## Rights and use
