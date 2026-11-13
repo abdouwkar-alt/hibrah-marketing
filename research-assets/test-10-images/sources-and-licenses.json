@@ -1,0 +1,166 @@
+{
+  "requested_images": 10,
+  "downloaded_images": 10,
+  "complete": true,
+  "source_order": [
+    "run_openverse",
+    "run_cleveland",
+    "run_met",
+    "run_artic",
+    "run_commons"
+  ],
+  "provider_status": {
+    "Openverse": {
+      "status": "failed_or_blocked",
+      "error": "Request failed: 401 Client Error: Unauthorized for url: https://api.openverse.org/v1/images/?q=mens+suit&license=cc0%2Cpdm%2Cby%2Cby-sa&page_size=30",
+      "images_downloaded": 0
+    },
+    "Cleveland Museum of Art Open Access": {
+      "status": "accessible",
+      "images_downloaded": 10
+    }
+  },
+  "license_policy": "Accept only CC0, public-domain, or CC BY/CC BY-SA assets. Exclude non-commercial, no-derivatives, and unknown-license assets. Verify each individual record before commercial publication.",
+  "images": [
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Charles Apthorp",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1919.1006/1919.1006_web.jpg",
+      "source_page": "https://clevelandart.org/art/1919.1006",
+      "creator": "Robert Feke (American, born The Thirteen Colonies, c. 1707–c. 1752)",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1919.1006",
+      "file": "research-assets/test-10-images/01_Charles_Apthorp.jpg",
+      "bytes": 368533,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Romaine Lacaux",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1942.1065/1942.1065_web.jpg",
+      "source_page": "https://clevelandart.org/art/1942.1065",
+      "creator": "Pierre-Auguste Renoir (French, 1841–1919)",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1942.1065",
+      "file": "research-assets/test-10-images/02_Romaine_Lacaux.jpg",
+      "bytes": 235174,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Pair of Boots",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1992.349/1992.349_web.jpg",
+      "source_page": "https://clevelandart.org/art/1992.349",
+      "creator": "",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1992.349",
+      "file": "research-assets/test-10-images/03_Pair_of_Boots.jpg",
+      "bytes": 256852,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Pair of Boots",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1992.349.2/1992.349.2_web.jpg",
+      "source_page": "https://clevelandart.org/art/1992.349.2",
+      "creator": "",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1992.349.2",
+      "file": "research-assets/test-10-images/04_Pair_of_Boots.jpg",
+      "bytes": 200511,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Virgin and Child, with Saints Anthony Abbott, Mark, Severino, and Sebastian",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1916.800/1916.800_web.jpg",
+      "source_page": "https://clevelandart.org/art/1916.800",
+      "creator": "Lorenzo da Sanseverino (Italian, 1468–1500)",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1916.800",
+      "file": "research-assets/test-10-images/05_Virgin_and_Child_with_Saints_Anthony_Abbott_M.jpg",
+      "bytes": 407484,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Pair of Boots",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1992.349.1/1992.349.1_web.jpg",
+      "source_page": "https://clevelandart.org/art/1992.349.1",
+      "creator": "",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1992.349.1",
+      "file": "research-assets/test-10-images/06_Pair_of_Boots.jpg",
+      "bytes": 188954,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "The cat attacks the mice which disturb the lion, from a Tuti-nama (Tales of a Parrot): Fifteenth Night",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1962.279.115.b/1962.279.115.b_web.jpg",
+      "source_page": "https://clevelandart.org/art/1962.279.115.b",
+      "creator": "",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1962.279.115.b",
+      "file": "research-assets/test-10-images/07_The_cat_attacks_the_mice_which_disturb_the_li.jpg",
+      "bytes": 358507,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Tibetan Man's Robe, Chuba",
+      "download_url": "https://openaccess-cdn.clevelandart.org/2007.216/2007.216_web.jpg",
+      "source_page": "https://clevelandart.org/art/2007.216",
+      "creator": "",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "2007.216",
+      "file": "research-assets/test-10-images/08_Tibetan_Man_s_Robe_Chuba.jpg",
+      "bytes": 74495,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Neckpiece with panel (umphapheni)",
+      "download_url": "https://openaccess-cdn.clevelandart.org/2010.207/2010.207_web.jpg",
+      "source_page": "https://clevelandart.org/art/2010.207",
+      "creator": "",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "2010.207",
+      "file": "research-assets/test-10-images/09_Neckpiece_with_panel_umphapheni.jpg",
+      "bytes": 448483,
+      "content_type": "image/jpeg"
+    },
+    {
+      "provider": "Cleveland Museum of Art Open Access",
+      "title": "Jar with Four Auspicious Characters in Relief",
+      "download_url": "https://openaccess-cdn.clevelandart.org/1981.3/1981.3_web.jpg",
+      "source_page": "https://clevelandart.org/art/1981.3",
+      "creator": "",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "search_term": "tailoring",
+      "accession_number": "1981.3",
+      "file": "research-assets/test-10-images/10_Jar_with_Four_Auspicious_Characters_in_Relief.jpg",
+      "bytes": 102709,
+      "content_type": "image/jpeg"
+    }
+  ]
+}
