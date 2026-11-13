@@ -11,7 +11,7 @@
 
 Review the 100 downloaded images for their suitability as a specialist internal visual-reference library for HIBRAH's classic menswear, tailoring, suit, and fabric work.
 
-This is a Creative relevance and quality review only. It is not permission to publish, redistribute, use in campaigns, or upload to Canva.
+This is a Creative relevance and quality review only. Uploading images to Canva for internal review and preview is permitted, even while rights status is pending. This permission does not extend to publication, redistribution, or campaign use.
 
 ## 2. Current inventory
 
@@ -75,7 +75,7 @@ Do not move the full folder to `main` as a batch.
 3. Correct categories and filenames for reclassified images.
 4. Complete a separate item-level rights review.
 5. Only images that pass both reviews may be considered for migration to `main`.
-6. Upload to Canva only after the image has passed Creative review and rights clearance for the intended Canva use.
+6. Uploading to Canva for internal review and preview is permitted before rights clearance. Publication, redistribution, or campaign use remains blocked until item-level rights clearance confirms the intended use.
 
 The repository is public, so rights-uncleared images must not be treated as approved assets or migrated into the approved library.
 
