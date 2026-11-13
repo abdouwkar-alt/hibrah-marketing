@@ -1,19 +1,26 @@
 {
-  "test": "HIBRAH specialist classic menswear image pilot",
-  "target": 20,
-  "downloaded": 20,
-  "complete": true,
-  "note": "Files are downloaded for internal Creative review only. Rights are NOT CLEARED; do not publish, upload to public campaign materials, or redistribute until each asset's terms and rights are reviewed.",
+  "test": "HIBRAH specialist classic menswear image pilot — balanced categories",
+  "target": 25,
+  "downloaded": 18,
+  "complete": false,
+  "category_counts": {
+    "01_Fabrics": 5,
+    "02_Suits": 5,
+    "03_Jacket_Details": 1,
+    "04_Trouser_Details": 2,
+    "05_Complete_Outfits": 5
+  },
+  "note": "Files are for internal Creative review only. Rights are NOT CLEARED; do not publish or redistribute until item-level terms and rights are reviewed.",
   "sources": [
     {
-      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
       "brand": "Vitale Barberis Canonico",
       "category": "01_Fabrics",
-      "downloaded": 4,
+      "downloaded": 2,
       "status": "images_found"
     },
     {
-      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-311/",
       "brand": "Vitale Barberis Canonico",
       "category": "01_Fabrics",
       "downloaded": 2,
@@ -23,14 +30,7 @@
       "source_page": "https://store.reda1865.com/fabrics/",
       "brand": "Reda 1865",
       "category": "01_Fabrics",
-      "downloaded": 4,
-      "status": "images_found"
-    },
-    {
-      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "brand": "Scabal",
-      "category": "01_Fabrics",
-      "downloaded": 4,
+      "downloaded": 1,
       "status": "images_found"
     },
     {
@@ -44,85 +44,41 @@
       "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
       "brand": "Drake's",
       "category": "02_Suits",
+      "downloaded": 1,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/the-anatomy-suit-jacket/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 1,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/how-a-suit-should-fit/",
+      "brand": "Gentleman's Gazette",
+      "category": "04_Trouser_Details",
       "downloaded": 2,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "brand": "Permanent Style",
+      "category": "05_Complete_Outfits",
+      "downloaded": 1,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 4,
       "status": "images_found"
     }
   ],
   "images": [
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/01_Vitale_Barberis_Canonico_Vitale_Barberis_Canonico_fabrics.jpg",
-      "category": "01_Fabrics",
-      "source_brand": "Vitale Barberis Canonico",
-      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
-      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2017/06/VBCsocial.jpg",
-      "alt_text": "Vitale Barberis Canonico fabrics",
-      "page_title": "Vitale Barberis Canonico fabrics",
-      "bytes": 98317,
-      "dimensions": [
-        1200,
-        630
-      ],
-      "sha256": "df981dfbb76e86bb87493715c4d43428da3a62fdd3fccc28acc9f065c9e0700a",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/02_Vitale_Barberis_Canonico_Our_history.jpg",
-      "category": "01_Fabrics",
-      "source_brand": "Vitale Barberis Canonico",
-      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
-      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/storia-1.jpg",
-      "alt_text": "Our history",
-      "page_title": "Vitale Barberis Canonico fabrics",
-      "bytes": 337781,
-      "dimensions": [
-        1000,
-        1250
-      ],
-      "sha256": "b1613e0bcbc1546979bd8c9589ac70866e18d1176f842f187980bb8aa22bcc30",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/03_Vitale_Barberis_Canonico_The_Archives.jpg",
-      "category": "01_Fabrics",
-      "source_brand": "Vitale Barberis Canonico",
-      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
-      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/archivio-1.jpg",
-      "alt_text": "The Archives",
-      "page_title": "Vitale Barberis Canonico fabrics",
-      "bytes": 220806,
-      "dimensions": [
-        1000,
-        1250
-      ],
-      "sha256": "c312e145418ebce84bbf5e696b359fd0c7cbd32e9037657bf436b502b0d23b31",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/04_Vitale_Barberis_Canonico_Showroom.jpg",
-      "category": "01_Fabrics",
-      "source_brand": "Vitale Barberis Canonico",
-      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/",
-      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/showroom-1.jpg",
-      "alt_text": "Showroom",
-      "page_title": "Vitale Barberis Canonico fabrics",
-      "bytes": 263271,
-      "dimensions": [
-        1000,
-        1250
-      ],
-      "sha256": "b47defcdf6b44971c25072875a874ba8d548c2ef4bb03e6b63f2a9bc4c458a79",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/05_Vitale_Barberis_Canonico_21_Micron_Sports_jacket_10_712_276.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/01_Vitale_Barberis_Canonico_21_Micron_Sports_jacket_10_712_276.jpg",
       "category": "01_Fabrics",
       "source_brand": "Vitale Barberis Canonico",
       "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
@@ -140,61 +96,61 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/06_Vitale_Barberis_Canonico_Production_process.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/02_Vitale_Barberis_Canonico_Wool_Blends.jpg",
       "category": "01_Fabrics",
       "source_brand": "Vitale Barberis Canonico",
       "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-276/",
-      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/processo-produttivo-1.jpg",
-      "alt_text": "Production process",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/wool-and-blends.jpg",
+      "alt_text": "Wool & Blends",
       "page_title": "21 Micron Sports jacket 10.712/276",
-      "bytes": 232190,
+      "bytes": 238136,
       "dimensions": [
         1000,
         1250
       ],
-      "sha256": "b6f07d18aa7c63bfb7247f287deef8df4b37a24aca6290070e63072aa197e47e",
+      "sha256": "f2ce271bb841e107a8321d77c4f5bbab5080f7865c01aac00270ff745ec43309",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/07_Reda_1865_Menu_collection.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/03_Vitale_Barberis_Canonico_21_Micron_Sports_jacket_10_712_311.jpg",
       "category": "01_Fabrics",
-      "source_brand": "Reda 1865",
-      "source_page": "https://store.reda1865.com/fabrics/",
-      "image_url": "https://store.reda1865.com/thumbnail/22/c9/54/1790159497/Menu%20collection_814x1117.jpg?ts=1790159497",
-      "alt_text": "Menu collection",
-      "page_title": "FABRICS - Reda 1865",
-      "bytes": 253252,
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-311/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2017/12/10.712-311-flat.jpg",
+      "alt_text": "21 Micron Sports jacket 10.712/311",
+      "page_title": "21 Micron Sports jacket 10.712/311",
+      "bytes": 1715001,
       "dimensions": [
-        814,
-        1117
+        3000,
+        2003
       ],
-      "sha256": "51a91880def48c9ffa942ae24f5459db44e2b6e3a2b4663f3c54cc1d225a05e5",
+      "sha256": "a4bee4f58a4964b0905fdd8b828d88de735029eacbaa416388ca516be2bc5734",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/08_Reda_1865_01_Main_banner_fabric.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/04_Vitale_Barberis_Canonico_Wool_excellence_award_club.jpg",
       "category": "01_Fabrics",
-      "source_brand": "Reda 1865",
-      "source_page": "https://store.reda1865.com/fabrics/",
-      "image_url": "https://store.reda1865.com/media/28/23/91/1791985656/01_Main%20banner%20fabric.jpg?ts=1791985656",
-      "alt_text": "01_Main banner fabric",
-      "page_title": "FABRICS - Reda 1865",
-      "bytes": 1066595,
+      "source_brand": "Vitale Barberis Canonico",
+      "source_page": "https://vitalebarberiscanonico.com/collection/fabrics/10-712-311/",
+      "image_url": "https://vitalebarberiscanonico.it/public/uploads/2021/06/wec.jpg",
+      "alt_text": "Wool excellence award & club",
+      "page_title": "21 Micron Sports jacket 10.712/311",
+      "bytes": 227171,
       "dimensions": [
-        2049,
-        832
+        1000,
+        1250
       ],
-      "sha256": "0f4aeb50502015856722748cda02cbb6684d0b1d40483789b53de5e60f0bd6dc",
+      "sha256": "a65517ebb984c9610da7caeac985bece9bb55a2bf97ef278fb03c98b13e947fb",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/09_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/05_Reda_1865_Fancy_Jacket_Merino_Wool_Silk_Linen.jpg",
       "category": "01_Fabrics",
       "source_brand": "Reda 1865",
       "source_page": "https://store.reda1865.com/fabrics/",
@@ -212,97 +168,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/10_Reda_1865_FABRICS_-_Reda_1865.jpg",
-      "category": "01_Fabrics",
-      "source_brand": "Reda 1865",
-      "source_page": "https://store.reda1865.com/fabrics/",
-      "image_url": "https://store.reda1865.com/thumbnail/13/4c/88/1791475354/50.00163-0005-000-00001_FLAT_1920x1920.jpg?ts=1791475994",
-      "alt_text": "",
-      "page_title": "FABRICS - Reda 1865",
-      "bytes": 1140999,
-      "dimensions": [
-        1920,
-        1920
-      ],
-      "sha256": "f8ff7644081598b0acf46a589e098bf673bed37c8361878d0ccaa5f7578fa62d",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/11_Scabal_Fabrics_Collection_SS26_Scabal.webp",
-      "category": "01_Fabrics",
-      "source_brand": "Scabal",
-      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_image.png?v=1769372601&width=1100",
-      "alt_text": "",
-      "page_title": "Fabrics Collection SS26\n – Scabal",
-      "bytes": 306942,
-      "dimensions": [
-        1100,
-        1100
-      ],
-      "sha256": "35b87cb6e961280f289d530f6a0762e75d0b6b53c869d2c6b619243ed4f7c18a",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/12_Scabal_Fabrics_Collection_SS26_Scabal.webp",
-      "category": "01_Fabrics",
-      "source_brand": "Scabal",
-      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_wizard.png?v=1769373300&width=1100",
-      "alt_text": "",
-      "page_title": "Fabrics Collection SS26\n – Scabal",
-      "bytes": 218450,
-      "dimensions": [
-        1100,
-        1100
-      ],
-      "sha256": "8f943613e67cc275b3f33926e5c6d42bee4ac83b4cdd5be1189aa381d8fa61a0",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/13_Scabal_Fabrics_Collection_SS26_Scabal.webp",
-      "category": "01_Fabrics",
-      "source_brand": "Scabal",
-      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_phantom.png?v=1769373395&width=1100",
-      "alt_text": "",
-      "page_title": "Fabrics Collection SS26\n – Scabal",
-      "bytes": 305806,
-      "dimensions": [
-        1100,
-        1100
-      ],
-      "sha256": "ed2256f31e3fb3bc2059f95694f32f56bf137ae1ae3320046ac12804281cbe8f",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/01_Fabrics/14_Scabal_Fabrics_Collection_SS26_Scabal.webp",
-      "category": "01_Fabrics",
-      "source_brand": "Scabal",
-      "source_page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/fabrics_ss26_jazz.png?v=1769372708&width=1100",
-      "alt_text": "",
-      "page_title": "Fabrics Collection SS26\n – Scabal",
-      "bytes": 263994,
-      "dimensions": [
-        1100,
-        1100
-      ],
-      "sha256": "0bc712661a69ead2fc7d5cf6d2fa5d558e7824c3781266f314d42576a3d8d328",
-      "rights_status": "NOT_CLEARED",
-      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
-      "creative_review_status": "PENDING"
-    },
-    {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/15_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/06_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
@@ -320,7 +186,7 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/16_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/07_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
@@ -338,43 +204,43 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/17_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/08_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
-      "image_url": "https://us.drakes.com/cdn/shop/files/Waxed_Jackets.jpg?v=1765886596&width=600",
+      "image_url": "https://us.drakes.com/cdn/shop/files/Jago_Layout6.jpg?v=1774024309&width=600",
       "alt_text": "",
       "page_title": "Tailoring In Paris\n– Drakes US",
-      "bytes": 98704,
+      "bytes": 51732,
       "dimensions": [
         600,
         750
       ],
-      "sha256": "4f57966c5411250ccd5e4fbe61852fa9c865667ff03f1a2e745f95fbccaf8369",
+      "sha256": "189c1e1079e29edee907892d4f1cd0a7ed37702fe51e21bab0a28001fca2ed1e",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/18_Drake_s_Tailoring_In_Paris_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/09_Drake_s_Tailoring_In_Paris.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
-      "image_url": "https://us.drakes.com/cdn/shop/files/Chore_Jackets.jpg?v=1765885226&width=600",
-      "alt_text": "",
+      "image_url": "https://us.drakes.com/cdn/shop/articles/AW26_Paris_Tailoring_58faaa63-3f54-49fb-b7b3-198669ddb767_1080x.jpg?v=1789632628",
+      "alt_text": "Tailoring In Paris",
       "page_title": "Tailoring In Paris\n– Drakes US",
-      "bytes": 110140,
+      "bytes": 120856,
       "dimensions": [
-        600,
-        750
+        1080,
+        1337
       ],
-      "sha256": "37ff52c0e94e3a145825ebc1624eea5548677e308009074088c9e47847337da0",
+      "sha256": "28cd591e6750c312950ce4649850d839a251393ea28f8b7f9c80ce30f65cbb85",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/19_Drake_s_The_Summer_Tailoring_Lookbook_Drakes_US.webp",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/10_Drake_s_The_Summer_Tailoring_Lookbook_Drakes_US.webp",
       "category": "02_Suits",
       "source_brand": "Drake's",
       "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
@@ -392,19 +258,145 @@
       "creative_review_status": "PENDING"
     },
     {
-      "file": "research-assets/classic-menswear-library/00_incoming_pilot/02_Suits/20_Drake_s_The_Summer_Tailoring_Lookbook_Drakes_US.webp",
-      "category": "02_Suits",
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/11_Gentleman_s_Gazette_The_Anatomy_Of_A_Suit_Jacket_A_Comprehensive_Vocabulary.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/the-anatomy-suit-jacket/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2018/08/suit-jacket-anatomy.jpg",
+      "alt_text": "The Anatomy Of A Suit Jacket: A Comprehensive Vocabulary",
+      "page_title": "The Anatomy Of A Suit Jacket: A Comprehensive Vocabulary",
+      "bytes": 26136,
+      "dimensions": [
+        800,
+        450
+      ],
+      "sha256": "9b289412198d1e49069f8aa0ee3e9128589a0690cda724d217e97df2b1272084",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/12_Gentleman_s_Gazette_How_A_Suit_Should_Fit_-_Jacket_Dress_Pants.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/how-a-suit-should-fit/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2017/09/how-a-suit-should-fit-1_3840x2160-1030x580.jpg",
+      "alt_text": "How A Suit Should Fit - Jacket & Dress Pants",
+      "page_title": "How A Suit Should Fit - Jacket & Dress Pants",
+      "bytes": 65801,
+      "dimensions": [
+        1030,
+        580
+      ],
+      "sha256": "56a2886f68d402f79f75b86492e15fc509bde4895fe1d3fc3e4bd758aea976c7",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/13_Gentleman_s_Gazette_how_a_suit_should_fit_1_3840x2160_scaled.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/how-a-suit-should-fit/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2017/09/how-a-suit-should-fit-1_3840x2160-scaled.jpg",
+      "alt_text": "how a suit should fit 1 3840x2160 scaled",
+      "page_title": "How A Suit Should Fit - Jacket & Dress Pants",
+      "bytes": 167124,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256": "e111415e1115c9d3a62205d0a76a1314e402d6201d8a7f734c436056129f4ee0",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/14_Permanent_Style_Lookbook_Permanent_Style.jpg",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/themes/ps22/img/fnf.jpg",
+      "alt_text": "Lookbook – Permanent Style",
+      "page_title": "Lookbook – Permanent Style",
+      "bytes": 9005,
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "9c874b20a7fd4ea5117e08ba598de84001739d23b87d08751fa11ee995b5e3cd",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/15_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "category": "05_Complete_Outfits",
       "source_brand": "Drake's",
-      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook",
-      "image_url": "https://us.drakes.com/cdn/shop/files/Jago_Layout6.jpg?v=1774024309&width=600",
+      "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
+      "image_url": "http://www.drakes.com/cdn/shop/articles/AutumnCollection_One_1_Layout_c7e46611-5ff8-46a6-8eba-85acbb6b24db_1200x1200.jpg?v=1790072358",
+      "alt_text": "The Autumn Collection: Part One\n– Drakes",
+      "page_title": "The Autumn Collection: Part One\n– Drakes",
+      "bytes": 305788,
+      "dimensions": [
+        969,
+        1200
+      ],
+      "sha256": "289dfe68db0e976a6ae17b6ce9975820624840f6b14d64173954404e45af5742",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/16_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/Drake_s_Spring_202635.jpg?v=1775037800&width=600",
       "alt_text": "",
-      "page_title": "The Summer Tailoring Lookbook\n– Drakes US",
-      "bytes": 51732,
+      "page_title": "The Autumn Collection: Part One\n– Drakes",
+      "bytes": 45656,
       "dimensions": [
         600,
-        750
+        743
       ],
-      "sha256": "189c1e1079e29edee907892d4f1cd0a7ed37702fe51e21bab0a28001fca2ed1e",
+      "sha256": "1816f8e3a66fd94b2bd717cb62c5de257904196e891a6ce52b01786eaba77e5a",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/17_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/471400070001.jpg?v=1773749088&width=600",
+      "alt_text": "",
+      "page_title": "The Autumn Collection: Part One\n– Drakes",
+      "bytes": 45650,
+      "dimensions": [
+        600,
+        752
+      ],
+      "sha256": "6c201ce3ebe6bc63f9fa3b88292081c3e7a15b194b7e67f4b121ef5fc0884427",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/18_Drake_s_The_Autumn_Collection_Part_One_Drakes.webp",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Drake's",
+      "source_page": "https://www.drakes.com/blogs/news/the-autumn-collection-part-one-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/471400260010.jpg?v=1773756028&width=600",
+      "alt_text": "",
+      "page_title": "The Autumn Collection: Part One\n– Drakes",
+      "bytes": 65660,
+      "dimensions": [
+        600,
+        752
+      ],
+      "sha256": "a109156f96e74e7f680a57b834e97b2214268ec12212ec13ac0b54653ee35d1a",
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
@@ -412,59 +404,484 @@
   ],
   "errors": [
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/Jackets_on_sale_SS26.png?v=1782823421&width=235",
-      "error": "image too small: (235, 352)"
+      "page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787749829&width=196",
+      "error": "image too small: (196, 261)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/Trousers_Summer_Sale_ss26.png?v=1782820043&width=235",
-      "error": "image too small: (235, 352)"
+      "page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR1AQ326371-02500-1.jpg?v=1782311380&width=196",
+      "error": "image too small: (196, 219)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/knitwear_summer_sale.png?v=1782820043&width=235",
-      "error": "image too small: (235, 352)"
+      "page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/26743.jpg?v=1787824197&width=196",
+      "error": "image too small: (196, 246)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/3503810_C_0524624654_qgppfshw.jpg?v=1785422570&width=235",
-      "error": "image too small: (235, 353)"
+      "page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR1AE026766-02-401-1.jpg?v=1787750167&width=196",
+      "error": "image too small: (196, 219)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/trousers_menu_image_scabal_aw26.png?v=1790868724&width=235",
-      "error": "image too small: (235, 352)"
+      "page": "https://us.drakes.com/blogs/news/tailoring-in-paris",
+      "image_url": "https://us.drakes.com/cdn/shop/files/image_8.png?v=1763383501&width=344",
+      "error": "image too small: (344, 192)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/9000009_C_2030044426_svvqwusf.jpg?v=1786975173&width=235",
-      "error": "image too small: (235, 352)"
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/11/PS-Desktop-Banner-1-1400-x-240-Crockett-Jones-AW26.jpg?20261113",
+      "error": "image too small: (1400, 240)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/Royal_Gabardine_501900-501895-501891-501903.jpg?v=1786618741&width=235",
-      "error": "image too small: (235, 157)"
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/are-Jacques-Maria-Mage-any-good-1-400x600.jpg",
+      "error": "image too small: (400, 600)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/04A7142b.jpg?v=1776359595&width=235",
-      "error": "image too small: (235, 235)"
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/Jacques-Maria-Mage-well-made-1-400x600.jpg",
+      "error": "image too small: (400, 600)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/1402_Scabel_001.jpg?v=1703000959&width=235",
-      "error": "image too small: (235, 273)"
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/Luca-Museo-price-scaled-1-400x600.jpg",
+      "error": "image too small: (400, 600)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/Image_07-11-2023_at_11.30.jpg?v=1699369728&width=235",
-      "error": "image too small: (235, 235)"
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/U1I2079-copy-400x600.jpg",
+      "error": "image too small: (400, 600)"
     },
     {
-      "page": "https://scabal.com/pages/fabrics-collection-ss26",
-      "image_url": "https://scabal.com/cdn/shop/files/scabal-tailor-cover-1_0c2b2dbf-aadc-49ce-97d5-a0836876494a.jpg?v=1706814802&width=235",
-      "error": "image too small: (235, 352)"
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/U1I1935-copy-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/U1I1517-copy-1-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/06/E4A8199-1-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/06/E4A7504-467x700-1-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/03/ADN3270-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/03/ADN3206-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/03/ADN2902-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/02/ascot-drapers-six-ply-cloth-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/02/best-clothes-for-long-haul-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/02/Summer-jacket-men-outfit-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/01/modern-cord-suit-men-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/01/anthology-cord-suit-review-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/01/How-to-wear-a-tweed-jacket-casually-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/01/vintage-levis-jeans-style-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/12/prince-of-wales-double-breasted-suit-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/12/Maison-Bonnet-glasses-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/12/PS-Christmas-Drinks-2025-027-400x587.jpg",
+      "error": "image too small: (400, 587)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/12/ADN0007-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/12/DSC07224-Studio-Milad-Abedi-copy-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/11/black-polo-shirt-wool-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/10/perfect-mens-leather-jacket-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/10/L1000475-copy-400x554.jpg",
+      "error": "image too small: (400, 554)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/10/real-mccoys-coach-jacket-review-copy-400x521.jpg",
+      "error": "image too small: (400, 521)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/10/how-to-wear-a-modern-coat-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/09/wear-shoes-lighter-than-trousers-400x591.jpg",
+      "error": "image too small: (400, 591)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/09/finest-gilet-men-400x533.jpg",
+      "error": "image too small: (400, 533)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/09/perfect-sleeveless-sweater-400x533.jpg",
+      "error": "image too small: (400, 533)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/09/most-versatile-coat-copy-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/09/best-short-coat-london-copy-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/08/Simon-Crompton-bespoke-review-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/07/holiday-capsule-menswear-400x531.jpg",
+      "error": "image too small: (400, 531)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/07/Simon-Crompton-4x5-copy-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/07/ADN4373-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/06/how-to-wear-madras-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/06/Perfect-madras-shirt-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/06/Cifonelli-jacket-price-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/06/IMG_0714-copy-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/06/polo-shirts-with-tailoring-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/06/ciardi-bespoke-review-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/05/Outfits-55-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/05/Outfits-13-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/05/silk-dupioni-summer-jacket-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/05/Perfect-summer-shorts-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/04/ADN9764-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/04/ADN9753-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/04/how-to-style-a-gilet-and-denim-jacket-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/04/best-denim-jackets-for-men-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/04/Outfits-59-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/04/Outfits-23-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/03/best-jacket-for-summer-men-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/03/How-to-wear-an-olive-shirt-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/03/cotton-sweater-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/03/hand-framed-cotton-sweater-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/03/L1009841-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/03/L1009796-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/02/L1009446-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/02/L1009536-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/02/tweed-jacket-urban-style-men-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2025/01/modern-navy-blazer-style-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/12/how-to-wear-a-mohair-suit-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/12/IMG-20241223-WA0001-400x596.jpg",
+      "error": "image too small: (400, 596)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/12/handmade-pea-coat-1-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/12/rubato-V-neck-sweater-review-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/12/Body-Coat-from-Michael-Browne-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/11/review-tweed-overcoat-400x600.jpeg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/11/how-to-wear-denim-with-jacket-400x600.jpeg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/11/permanent-style-fox-tweed-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/11/oxford-shirt-with-black-jeans-400x535.jpg",
+      "error": "image too small: (400, 535)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/11/green-OCBD-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/10/ADN1943-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/10/PS-x-PWVC-in-Oxford-IG-79-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/10/PS-x-PWVC-in-Oxford-IG-42-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/10/how-to-wear-a-dark-shirt-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/10/PS-x-PWVC-in-Oxford-IG-135-400x600.jpg",
+      "error": "image too small: (400, 600)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/10/PS-x-PWVC-in-Oxford-IG-175-copy-400x562.jpg",
+      "error": "image too small: (400, 562)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/09/Drakes-x-Permanent-Style-raincoat-400x501.jpg",
+      "error": "image too small: (400, 501)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/09/Fox-Tweed-collaboration-permanent-style-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/09/permanent-style-fox-tweed-jacket-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/08/L1001229-400x500.jpg",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/08/How-to-wear-a-chalk-stripe-suit-400x560.jpg",
+      "error": "image too small: (400, 560)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/08/navy-chalkstripe-suit-style-400x539.jpg",
+      "error": "image too small: (400, 539)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/08/Hopsack-bespoke-nacy-jacket-400x521.jpg",
+      "error": "image too small: (400, 521)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/07/perfect-summer-swimming-shorts-400x521.jpg",
+      "error": "image too small: (400, 521)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/07/Barth-paraboot-400x500.webp",
+      "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/06/Black-linen-overshirt-400x521.jpg",
+      "error": "image too small: (400, 521)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/07/seersucker-jacket-casual-400x500.jpg",
+      "error": "image too small: (400, 500)"
     }
   ]
 }
