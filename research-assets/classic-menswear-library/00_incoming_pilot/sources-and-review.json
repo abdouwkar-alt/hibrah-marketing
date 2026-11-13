@@ -1,14 +1,14 @@
 {
   "test": "HIBRAH specialist classic menswear image pilot — balanced categories",
   "target": 100,
-  "downloaded": 71,
-  "complete": false,
+  "downloaded": 100,
+  "complete": true,
   "category_counts": {
     "01_Fabrics": 20,
     "02_Suits": 20,
-    "03_Jacket_Details": 9,
-    "04_Trouser_Details": 12,
-    "05_Complete_Outfits": 10
+    "03_Jacket_Details": 22,
+    "04_Trouser_Details": 22,
+    "05_Complete_Outfits": 16
   },
   "note": "All images are for internal Creative review only. Rights are NOT CLEARED; do not publish, redistribute, or use in campaigns until item-level terms and rights are reviewed.",
   "sources": [
@@ -150,6 +150,118 @@
       "brand": "Drake's",
       "category": "05_Complete_Outfits",
       "downloaded": 1,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/the-anatomy-suit-jacket/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "brand": "Permanent Style",
+      "category": "03_Jacket_Details",
+      "downloaded": 4,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/surgeons-cuffs-guide/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/kiton-jackets-review/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/suit-alterations-what-a-tailor-can-do/",
+      "brand": "Gentleman's Gazette",
+      "category": "03_Jacket_Details",
+      "downloaded": 3,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html",
+      "brand": "Permanent Style",
+      "category": "03_Jacket_Details",
+      "downloaded": 6,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/features-of-a-pair-of-pants/",
+      "brand": "Gentleman's Gazette",
+      "category": "04_Trouser_Details",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.gentlemansgazette.com/how-pants-should-fit/",
+      "brand": "Gentleman's Gazette",
+      "category": "04_Trouser_Details",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "brand": "Permanent Style",
+      "category": "04_Trouser_Details",
+      "downloaded": 3,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "brand": "Permanent Style",
+      "category": "04_Trouser_Details",
+      "downloaded": 3,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://therake.com/default/stories/a-guide-to-fitting-kit-blake-trousers",
+      "brand": "The Rake",
+      "category": "04_Trouser_Details",
+      "downloaded": 4,
+      "status": "images_found"
+    },
+    {
+      "source_page": "https://www.drakes.com/blogs/news/the-winter-lookbook-26",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.drakes.com/blogs/news/the-spring-lookbook",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook-1",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.drakes.com/blogs/news/drake-s-by-aaron-levine-the-lookbook",
+      "brand": "Drake's",
+      "category": "05_Complete_Outfits",
+      "downloaded": 0,
+      "status": "no_new_usable_images"
+    },
+    {
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "brand": "Permanent Style",
+      "category": "05_Complete_Outfits",
+      "downloaded": 6,
       "status": "images_found"
     }
   ],
@@ -1431,6 +1543,528 @@
       "rights_status": "NOT_CLEARED",
       "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
       "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/072_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2019/11/velvet-jacket-double-breasted.jpg",
+      "alt_text": "",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 712296,
+      "dimensions": [
+        900,
+        1350
+      ],
+      "sha256": "ec64bd068a95afb8085f69e5b8f3670efcd7f6e4cee4fe5cd0e0db1f27243cd7",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/073_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/02/sartoria-ciardi-naples.jpg",
+      "alt_text": "",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 134101,
+      "dimensions": [
+        636,
+        931
+      ],
+      "sha256": "1f6119dc950ae18c80753ed40b736e547d330c682b78de4f4200295d4e0bc167",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/074_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/10/simon-crompton-in-Steven-Hitchcock-jacket.jpg",
+      "alt_text": "",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 996307,
+      "dimensions": [
+        900,
+        1350
+      ],
+      "sha256": "55b1d2961c193632ca57d777aab069afdb9c6fa88436c2032f7970b54d8a4dd7",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/075_Permanent_Style_The_guide_to_jacket_pockets_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/07/the-guide-to-jacket-pockets.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/12/Huntsman-tweed-and-denim-shirt-copy-2.jpg",
+      "alt_text": "",
+      "page_title": "The guide to jacket pockets – Permanent Style",
+      "bytes": 288771,
+      "dimensions": [
+        668,
+        1036
+      ],
+      "sha256": "25f075119cbae8e76909e972bf81571c244895f65c8b9d698cc36c3ef423fff0",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/076_Gentleman_s_Gazette_Suit_Alterations_What_A_Tailor_Can_Can_t_Do_Gentleman_s_Gazette.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/suit-alterations-what-a-tailor-can-do/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2020/06/suit-alterations_1200x630_wp.jpg",
+      "alt_text": "Suit Alterations: What A Tailor Can (& Can't) Do | Gentleman's Gazette",
+      "page_title": "Suit Alterations: What A Tailor Can (& Can't) Do | Gentleman's Gazette",
+      "bytes": 67721,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "ba63db208ac0b6ba9d6de302440140f5abae837fc65920d4d336ff033818a648",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/077_Gentleman_s_Gazette_Suit_Alterations_What_A_Tailor_Can_Can_t_Do_Gentleman_s_Gazette.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/suit-alterations-what-a-tailor-can-do/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2020/06/suit-alterations_3840x2160_wp-1030x579.jpg",
+      "alt_text": "Suit Alterations: What A Tailor Can (& Can't) Do | Gentleman's Gazette",
+      "page_title": "Suit Alterations: What A Tailor Can (& Can't) Do | Gentleman's Gazette",
+      "bytes": 111544,
+      "dimensions": [
+        1030,
+        579
+      ],
+      "sha256": "f6cbc123200494f287419eacea2dde22f37506d97d79801ef6e7a324685ca3e8",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/078_Gentleman_s_Gazette_suit_alterations_3840x2160_wp_scaled.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Gentleman's Gazette",
+      "source_page": "https://www.gentlemansgazette.com/suit-alterations-what-a-tailor-can-do/",
+      "image_url": "https://www.gentlemansgazette.com/wp-content/uploads/2020/06/suit-alterations_3840x2160_wp-scaled.jpg",
+      "alt_text": "suit alterations 3840x2160 wp scaled",
+      "page_title": "Suit Alterations: What A Tailor Can (& Can't) Do | Gentleman's Gazette",
+      "bytes": 139728,
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256": "fea3ed5e11866e4c81deb4c72df72f67fc607151b476e2ab41eb289e9dab27ac",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/079_Permanent_Style_How_wide_should_my_jacket_lapels_be_Permanent_Style.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/03/Cifonelli-tweed-jacket-400x600.jpg",
+      "alt_text": "How wide should my jacket lapels be? – Permanent Style",
+      "page_title": "How wide should my jacket lapels be? – Permanent Style",
+      "bytes": 46597,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "cd9f9d8ad946a2d7cfb8b55439f2275a23a1f78ff5f0cfe8f17ac17aa0e8fa09",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/080_Permanent_Style_Cifonelli_tweed_jacket.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/03/Cifonelli-tweed-jacket.jpg",
+      "alt_text": "Cifonelli tweed jacket",
+      "page_title": "How wide should my jacket lapels be? – Permanent Style",
+      "bytes": 586302,
+      "dimensions": [
+        1200,
+        1800
+      ],
+      "sha256": "144c4f60d2faa9a8654948072811f71a52e10c2550dc43c3dfad93349c077983",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/081_Permanent_Style_Cifonelli_harris_tweed_jacket.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/03/Cifonelli-harris-tweed-jacket.jpg",
+      "alt_text": "Cifonelli harris tweed jacket",
+      "page_title": "How wide should my jacket lapels be? – Permanent Style",
+      "bytes": 731289,
+      "dimensions": [
+        2000,
+        1333
+      ],
+      "sha256": "2970f11bdd96082bf7e5e23e317e33862ee9054a0272daa2cfa3388ad7d66878",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/082_Permanent_Style_liverano_and_liverano_bespoke_jacket.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/03/liverano-and-liverano-bespoke-jacket.jpg",
+      "alt_text": "liverano and liverano bespoke jacket",
+      "page_title": "How wide should my jacket lapels be? – Permanent Style",
+      "bytes": 400652,
+      "dimensions": [
+        2000,
+        1333
+      ],
+      "sha256": "5d94bf013ec1e105899466e859a2c127e5a01369495c17e93cf97131823c3450",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/083_Permanent_Style_anderson_sheppard_bespoke_flannel_suit.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/03/anderson-sheppard-bespoke-flannel-suit.jpg",
+      "alt_text": "anderson sheppard bespoke flannel suit",
+      "page_title": "How wide should my jacket lapels be? – Permanent Style",
+      "bytes": 468375,
+      "dimensions": [
+        2000,
+        1333
+      ],
+      "sha256": "88c01dfb68a5b59e775eeb72a892aed05ff1e5e336a709c21406eabaefc71114",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/03_Jacket_Details/084_Permanent_Style_Huntsman_tweed_jacket_hunting.jpg",
+      "category": "03_Jacket_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2016/03/how-wide-should-my-jacket-lapels-be.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/03/Huntsman-tweed-jacket-hunting.jpg",
+      "alt_text": "Huntsman tweed jacket hunting",
+      "page_title": "How wide should my jacket lapels be? – Permanent Style",
+      "bytes": 621859,
+      "dimensions": [
+        2000,
+        1333
+      ],
+      "sha256": "a3c9e02537ec446a73fc36d7673325d4cf05ab11677d88d992710bc651e19c01",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/085_Permanent_Style_Suit_style_9_Trouser_cuffs_belts_and_tabs_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/03/bespoke-trouser-side-adjustor-buckle.jpg",
+      "alt_text": "",
+      "page_title": "Suit style 9: Trouser cuffs, belts and tabs – Permanent Style",
+      "bytes": 241398,
+      "dimensions": [
+        2000,
+        1333
+      ],
+      "sha256": "a37e6bd22912f973205d20c56e7ddec3cce9c02d27cac26dbf4e6cf5409e7203",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/086_Permanent_Style_Suit_style_9_Trouser_cuffs_belts_and_tabs_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/08/Drakes-trousers-and-alligator-belt.jpg",
+      "alt_text": "",
+      "page_title": "Suit style 9: Trouser cuffs, belts and tabs – Permanent Style",
+      "bytes": 1210106,
+      "dimensions": [
+        1700,
+        1133
+      ],
+      "sha256": "a109fbdbd1ffdcd7c006f286ef9f5ae9800ac7cda6a6aaadd2477ec2002c1f4f",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/087_Permanent_Style_Suit_style_9_Trouser_cuffs_belts_and_tabs_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/04/fox-brothers-vintage-serge-navy-trouser.jpg",
+      "alt_text": "",
+      "page_title": "Suit style 9: Trouser cuffs, belts and tabs – Permanent Style",
+      "bytes": 383259,
+      "dimensions": [
+        2000,
+        1333
+      ],
+      "sha256": "629eb655ee2dc3bbc83acc8a8841962568ed5e919f266e2f899b7597e216ee33",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/088_Permanent_Style_Suit_Style_7_A_guide_to_pleats_on_trousers_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2017/09/Ambrosi-ready-made-trousers.jpg",
+      "alt_text": "",
+      "page_title": "Suit Style 7: A guide to pleats on trousers – Permanent Style",
+      "bytes": 267138,
+      "dimensions": [
+        1333,
+        2000
+      ],
+      "sha256": "1945f340349a2351ab29f4efbb002cfc6f479ab22d4e548f3671b3a100d8c6bc",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/089_Permanent_Style_Suit_Style_7_A_guide_to_pleats_on_trousers_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2016/12/igarashi-trousers-bespoke.jpg",
+      "alt_text": "",
+      "page_title": "Suit Style 7: A guide to pleats on trousers – Permanent Style",
+      "bytes": 199996,
+      "dimensions": [
+        1333,
+        2000
+      ],
+      "sha256": "0f3f7b39251a0817ef7f85900ef429505cf7e3b0505b06fc168857e171c3682b",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/090_Permanent_Style_Suit_Style_7_A_guide_to_pleats_on_trousers_Permanent_Style.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2017/07/kissing-pleat-cerrato.jpg",
+      "alt_text": "",
+      "page_title": "Suit Style 7: A guide to pleats on trousers – Permanent Style",
+      "bytes": 252295,
+      "dimensions": [
+        2000,
+        1333
+      ],
+      "sha256": "06e8d330441c7404d83029c1fee2745faad64856f35b1094afe11b9e258595fa",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/091_The_Rake_A_guide_to_fitting_Kit_Blake_trousers.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "The Rake",
+      "source_page": "https://therake.com/default/stories/a-guide-to-fitting-kit-blake-trousers",
+      "image_url": "https://therake.com/media/blog/HANNAH-MILES_CHRIS-MODOO_O99A0104.jpg",
+      "alt_text": "A guide to fitting Kit Blake trousers",
+      "page_title": "A guide to fitting Kit Blake trousers",
+      "bytes": 1216600,
+      "dimensions": [
+        1200,
+        800
+      ],
+      "sha256": "ca4b2a66703f77f4163c2cabb5d113e92fbf6ee704d2bb490c61d83c5237d1c4",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/092_The_Rake_A_guide_to_fitting_Kit_Blake_trousers.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "The Rake",
+      "source_page": "https://therake.com/default/stories/a-guide-to-fitting-kit-blake-trousers",
+      "image_url": "https://therake.com/media/legacy_images/wp-content/uploads/2020/02/KB-Trousers-18.jpg",
+      "alt_text": "",
+      "page_title": "A guide to fitting Kit Blake trousers",
+      "bytes": 295363,
+      "dimensions": [
+        1200,
+        800
+      ],
+      "sha256": "f7a4957708a509bf225b7a3cb09f7fc4919a8c9d506cb86a5da7e67a271ab6cd",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/093_The_Rake_A_guide_to_fitting_Kit_Blake_trousers.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "The Rake",
+      "source_page": "https://therake.com/default/stories/a-guide-to-fitting-kit-blake-trousers",
+      "image_url": "https://therake.com/media/legacy_images/wp-content/uploads/2021/10/HANNAH-MILES_CHRIS-MODOO_O99A9982-2.jpg",
+      "alt_text": "",
+      "page_title": "A guide to fitting Kit Blake trousers",
+      "bytes": 1190876,
+      "dimensions": [
+        1200,
+        800
+      ],
+      "sha256": "c0f8c6f00a6f9b998399780ecc1f79d8b7a085dd0b1702368d21c3793b9a87d5",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/04_Trouser_Details/094_The_Rake_A_guide_to_fitting_Kit_Blake_trousers.jpg",
+      "category": "04_Trouser_Details",
+      "source_brand": "The Rake",
+      "source_page": "https://therake.com/default/stories/a-guide-to-fitting-kit-blake-trousers",
+      "image_url": "https://therake.com/media/legacy_images/wp-content/uploads/2020/07/Andre-TheRake-21.jpg",
+      "alt_text": "",
+      "page_title": "A guide to fitting Kit Blake trousers",
+      "bytes": 381077,
+      "dimensions": [
+        1200,
+        800
+      ],
+      "sha256": "a2397bebbd244f49a09069dccc4b2e9962f02d8e888a7b490d3b55a2cf4fa5c6",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/095_Permanent_Style_Jungle_jacket_with_black_jeans.jpg",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/are-Jacques-Maria-Mage-any-good-1-400x600.jpg",
+      "alt_text": "Jungle jacket with black jeans ",
+      "page_title": "Lookbook – Permanent Style",
+      "bytes": 43399,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "5668d205107d1e6bc5e9ecb9cd6eaf555856bcbf0cf022ea07fcb9a137dd55d5",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/096_Permanent_Style_Brown_Harrington_with_black_jeans.jpg",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/Jacques-Maria-Mage-well-made-1-400x600.jpg",
+      "alt_text": "Brown Harrington with black jeans ",
+      "page_title": "Lookbook – Permanent Style",
+      "bytes": 39962,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "32bd46e7b3848185433c6463055f00814da840e7660a371ed10b68e0738ef10e",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/097_Permanent_Style_Cotton_suit_with_shirt.jpg",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/Luca-Museo-price-scaled-1-400x600.jpg",
+      "alt_text": "Cotton suit with shirt ",
+      "page_title": "Lookbook – Permanent Style",
+      "bytes": 94113,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "a85bc7057882c749470e5e8d5eb694ed38873eeac459aec3edf09e432ecaf55e",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/098_Permanent_Style_Cotton_jacket_with_trousers.jpg",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/U1I2079-copy-400x600.jpg",
+      "alt_text": "Cotton jacket with trousers ",
+      "page_title": "Lookbook – Permanent Style",
+      "bytes": 33354,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "35e32acd0636ae7e9637c56936a4945bd50d942856808e1c21b25a1da5e30237",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/099_Permanent_Style_Cotton_jacket_with_denim.jpg",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/U1I1935-copy-400x600.jpg",
+      "alt_text": "Cotton jacket with denim",
+      "page_title": "Lookbook – Permanent Style",
+      "bytes": 27814,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "aabf3f06df80d2c96e099e27c0bf13bbf4caeb876462a0b5428a2455e3c80827",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
+    },
+    {
+      "file": "research-assets/classic-menswear-library/00_incoming_pilot/05_Complete_Outfits/100_Permanent_Style_Bruce_shorts_with_navy_crewneck.jpg",
+      "category": "05_Complete_Outfits",
+      "source_brand": "Permanent Style",
+      "source_page": "https://www.permanentstyle.com/style-lookbook",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2026/07/U1I1517-copy-1-400x600.jpg",
+      "alt_text": "Bruce shorts with navy crewneck",
+      "page_title": "Lookbook – Permanent Style",
+      "bytes": 42427,
+      "dimensions": [
+        400,
+        600
+      ],
+      "sha256": "7e0620d5f18b8918a1af5801cc0ffa4b635a0068e27fdc5dd00d9bba75808a07",
+      "rights_status": "NOT_CLEARED",
+      "intended_use": "INTERNAL_CREATIVE_REVIEW_ONLY",
+      "creative_review_status": "PENDING"
     }
   ],
   "errors": [
@@ -1913,6 +2547,36 @@
       "page": "https://www.permanentstyle.com/style-lookbook",
       "image_url": "https://www.permanentstyle.com/wp-content/uploads/2024/07/seersucker-jacket-casual-400x500.jpg",
       "error": "image too small: (400, 500)"
+    },
+    {
+      "page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2018/04/fox-brothers-vintage-serge-navy-trouser-400x267.jpg",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.permanentstyle.com/2019/11/suit-style-7-a-guide-to-pleats-on-trousers.html",
+      "image_url": "https://www.permanentstyle.com/wp-content/uploads/2017/07/kissing-pleat-cerrato-400x267.jpg",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.drakes.com/blogs/news/the-winter-lookbook-26",
+      "image_url": "https://www.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787752789&width=196",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.drakes.com/blogs/news/the-spring-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787752789&width=196",
+      "error": "image too small"
+    },
+    {
+      "page": "https://us.drakes.com/blogs/news/the-summer-tailoring-lookbook-1",
+      "image_url": "https://us.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787749829&width=196",
+      "error": "image too small"
+    },
+    {
+      "page": "https://www.drakes.com/blogs/news/drake-s-by-aaron-levine-the-lookbook",
+      "image_url": "https://www.drakes.com/cdn/shop/files/DR1AE026765-02701_transitional_2.jpg?v=1787752789&width=196",
+      "error": "image too small"
     },
     {
       "page": "https://www.permanentstyle.com/2020/01/suit-style-9-trouser-cuffs-belts-and-tabs.html",
