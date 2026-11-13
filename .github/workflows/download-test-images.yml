@@ -1,0 +1,124 @@
+name: Download 10 HIBRAH test images
+
+on:
+  push:
+    paths:
+      - ".github/workflows/download-test-images.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download 10 images from Wikimedia Commons
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import time
+          from pathlib import Path
+          from urllib.parse import quote
+          import requests
+
+          files = [
+              "1959 suit, Kilgour, French and Stanbury Ltd. Glen Uruqhart check, basketweave wool 01.jpg",
+              "1959 suit, Kilgour, French and Stanbury Ltd. Glen Uruqhart check, basketweave wool 02.jpg",
+              "1959 suit, Kilgour, French and Stanbury Ltd. Glen Uruqhart check, basketweave wool 03.jpg",
+              "1959 suit, Kilgour, French and Stanbury Ltd. Glen Uruqhart check, basketweave wool 04.jpg",
+              "1959 suit, Kilgour, French and Stanbury Ltd. Glen Uruqhart check, basketweave wool 05.jpg",
+              "2012-13 in-progress jacket and vest showing the tailoring process, by Kathryn Sargent of Savile Row.jpg",
+              "English tailoring lapel.jpg",
+              "Spanish tailoring lapel.jpg",
+              "Bespoke Tailor is taking measurement.jpg",
+              "TailoringFirstFitFront01.jpg",
+          ]
+
+          out = Path("research-assets/test-10-images")
+          out.mkdir(parents=True, exist_ok=True)
+          session = requests.Session()
+          session.headers.update({"User-Agent": "HIBRAH-ImageTest/1.0 (GitHub Actions; image archival test)"})
+          records = []
+
+          for index, filename in enumerate(files, start=1):
+              title = "File:" + filename
+              api = "https://commons.wikimedia.org/w/api.php"
+              response = session.get(api, params={
+                  "action": "query",
+                  "format": "json",
+                  "prop": "imageinfo",
+                  "iiprop": "url|extmetadata",
+                  "titles": title
+              }, timeout=30)
+              response.raise_for_status()
+              pages = response.json()["query"]["pages"]
+              page = next(iter(pages.values()))
+              if "missing" in page or not page.get("imageinfo"):
+                  raise RuntimeError(f"Commons file not found: {title}")
+
+              info = page["imageinfo"][0]
+              image_url = info["url"]
+              image = session.get(image_url, timeout=90)
+              image.raise_for_status()
+              content_type = image.headers.get("Content-Type", "").lower()
+              if not content_type.startswith("image/"):
+                  raise RuntimeError(f"Not an image ({content_type}): {title}")
+
+              safe_name = re.sub(r"[^A-Za-z0-9._-]+", "_", filename).strip("_")
+              target = out / f"{index:02d}_{safe_name}"
+              target.write_bytes(image.content)
+
+              meta = info.get("extmetadata", {})
+              def value(key):
+                  return re.sub(r"<[^>]+>", "", meta.get(key, {}).get("value", "")).strip()
+
+              records.append({
+                  "file": str(target),
+                  "original_title": filename,
+                  "source_page": f"https://commons.wikimedia.org/wiki/{quote(title.replace(' ', '_'))}",
+                  "direct_download_url": image_url,
+                  "artist": value("Artist"),
+                  "credit": value("Credit"),
+                  "license": value("LicenseShortName"),
+                  "license_url": value("LicenseUrl"),
+                  "description": value("ImageDescription"),
+                  "bytes": len(image.content),
+                  "content_type": content_type
+              })
+              print(f"Downloaded {index}/10: {target} ({len(image.content)} bytes)")
+              time.sleep(1)
+
+          (out / "sources-and-licenses.json").write_text(
+              json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8"
+          )
+          (out / "README.md").write_text(
+              "# HIBRAH — 10-image GitHub Actions download test\n\n"
+              "These files were downloaded by GitHub Actions from Wikimedia Commons. "
+              "Review the source and license metadata in `sources-and-licenses.json` "
+              "before any commercial or public use. Attribution/share-alike conditions may apply.\n",
+              encoding="utf-8"
+          )
+          print(f"SUCCESS: downloaded {len(records)} images.")
+          PY
+
+      - name: Commit downloaded images to the repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research-assets/test-10-images
+          if git diff --cached --quiet; then
+            echo "No new files to commit."
+          else
+            git commit -m "Add 10-image download test from Wikimedia Commons"
+            git push
+          fi
