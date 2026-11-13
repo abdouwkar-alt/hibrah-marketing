@@ -22,7 +22,7 @@
 - Select images by opening the linked filename; this table records metadata and does not substitute for visual inspection.
 - The description column uses recorded alt text or page title. Blank alt text is not interpreted as proof of image subject.
 - Some records may be repeated angles, editorial banners, or weak category matches. Check image content and duplicates before keeping.
-- Rights are NOT CLEARED for every image. This is an internal selection stage only; do not publish, redistribute, use in campaigns, or upload to Canva.
+- Rights are NOT CLEARED for every image. Uploading to Canva for internal review and preview is permitted. This does not grant publication, redistribution, or campaign-use rights; those require separate item-level rights clearance.
 
 ## Full image index
 
