@@ -7,7 +7,7 @@
 
 | Category | Target | Current Canva assets | Status |
 |---|---:|---:|---|
-| Fabrics | 50 | Existing 100-image candidate pool nested in category folder | Select the strongest 50 after visual review |
+| Fabrics | 50 | 100 candidates in nested pool | Select the strongest 50 after visual review |
 | Suits | 50 | 10 | Pilot imports; inspect relevance and duplicates |
 | Jacket Details | 50 | 10 | Pilot imports; inspect relevance and duplicates |
 | Trouser Details | 50 | 10 | Pilot imports; inspect relevance and duplicates |
@@ -17,7 +17,7 @@
 | Complete Outfits | 50 | 6 | Pilot imports; inspect relevance and duplicates |
 | Shoes & Accessories | 50 | 2 | Not yet collected |
 | Reference & Inspiration | 50 | 0 | Not yet collected |
-| **Total** | **500** | **40** | **In progress** |
+| **Total** | **500** | **140 candidates (including the 100-image fabric pool) | **In progress** |
 
 ## Canva structure
 
