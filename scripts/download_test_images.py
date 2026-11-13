@@ -1,6 +1,5 @@
 import html
 import json
-import os
 import re
 import sys
 import time
@@ -12,229 +11,267 @@ import requests
 OUT = Path("research-assets/test-10-images")
 OUT.mkdir(parents=True, exist_ok=True)
 TARGET = 10
+TERMS = ["mens suit", "tailoring", "suit jacket", "mens fashion", "wool fabric", "tailor workshop"]
 HEADERS = {
-    "User-Agent": "HIBRAH-ResearchAssetDownloader/2.0 (GitHub Actions; contact: repository maintainer)",
+    "User-Agent": "HIBRAH-ResearchAssetDownloader/3.0 (GitHub Actions)",
     "Accept": "application/json,image/*,*/*;q=0.8",
 }
-SESSION = requests.Session()
-SESSION.headers.update(HEADERS)
+S = requests.Session()
+S.headers.update(HEADERS)
+records = []
+seen = set()
+provider_status = {}
 
-# Only licenses suitable for commercial use and redistribution are accepted.
-ALLOWED_LICENSES = {"cc0", "pdm", "by", "by-sa"}
-SEARCH_TERMS = [
-    "mens bespoke suit",
-    "mens tailoring workshop",
-    "wool suiting fabric",
-    "suit lapel tailoring",
-    "tailor taking measurements",
-    "hand stitched suit",
-]
-
-def request_with_retry(url, *, params=None, stream=False, timeout=45, attempts=5):
-    last_error = None
-    for attempt in range(attempts):
+def get(url, params=None, stream=False, attempts=4, timeout=50):
+    last = None
+    for n in range(attempts):
         try:
-            response = SESSION.get(url, params=params, timeout=timeout, stream=stream)
-            if response.status_code == 429 or 500 <= response.status_code < 600:
-                retry_after = response.headers.get("Retry-After")
+            r = S.get(url, params=params, stream=stream, timeout=timeout)
+            if r.status_code == 429 or 500 <= r.status_code < 600:
+                retry = r.headers.get("Retry-After")
                 try:
-                    delay = min(60, max(2, int(retry_after))) if retry_after else min(60, 2 ** attempt * 3)
+                    wait = min(45, max(2, int(retry))) if retry else min(45, 2 ** n * 3)
                 except ValueError:
-                    delay = min(60, 2 ** attempt * 3)
-                response.close()
-                if attempt == attempts - 1:
-                    raise requests.HTTPError(f"HTTP {response.status_code} after {attempts} attempts")
-                print(f"Temporary HTTP {response.status_code}; retrying in {delay}s")
-                time.sleep(delay)
+                    wait = min(45, 2 ** n * 3)
+                r.close()
+                if n == attempts - 1:
+                    raise requests.HTTPError(f"HTTP {r.status_code} after retries")
+                print(f"HTTP {r.status_code}; retrying in {wait}s")
+                time.sleep(wait)
                 continue
-            response.raise_for_status()
-            return response
-        except (requests.RequestException, TimeoutError) as exc:
-            last_error = exc
-            if attempt == attempts - 1:
+            r.raise_for_status()
+            return r
+        except requests.RequestException as e:
+            last = e
+            if n == attempts - 1:
                 break
-            delay = min(45, 2 ** attempt * 3)
-            print(f"Request error: {exc}; retrying in {delay}s")
-            time.sleep(delay)
-    raise RuntimeError(f"Request failed after {attempts} attempts: {last_error}")
+            wait = min(30, 2 ** n * 3)
+            print(f"Request failed ({e}); retrying in {wait}s")
+            time.sleep(wait)
+    raise RuntimeError(f"Request failed: {last}")
 
-def clean(value):
-    if not value:
+def clean(v):
+    if not v:
         return ""
-    return html.unescape(re.sub(r"<[^>]*>", "", str(value))).strip()
+    return html.unescape(re.sub(r"<[^>]*>", "", str(v))).strip()
 
-def safe_extension(url, content_type):
-    ext = Path(url.split("?", 1)[0]).suffix.lower()
-    if ext in {".jpg", ".jpeg", ".png", ".webp", ".gif", ".tif", ".tiff"}:
-        return ".jpg" if ext == ".jpeg" else ext
-    return {
+def download(item):
+    url = item.get("download_url")
+    if not url or not url.startswith("https://") or url in seen:
+        return False
+    seen.add(url)
+    r = get(url, stream=True, attempts=3, timeout=90)
+    ctype = r.headers.get("Content-Type", "").lower()
+    if not ctype.startswith("image/"):
+        r.close()
+        raise ValueError(f"Not an image response: {ctype}")
+    data = bytearray()
+    for chunk in r.iter_content(128 * 1024):
+        if chunk:
+            data.extend(chunk)
+            if len(data) > 25 * 1024 * 1024:
+                r.close()
+                raise ValueError("Image exceeds 25 MB")
+    r.close()
+    if len(data) < 5000:
+        raise ValueError(f"Image too small: {len(data)} bytes")
+    ext = {
         "image/jpeg": ".jpg", "image/png": ".png", "image/webp": ".webp",
         "image/gif": ".gif", "image/tiff": ".tiff",
-    }.get(content_type.split(";", 1)[0].lower(), ".img")
+    }.get(ctype.split(";")[0], ".img")
+    title = re.sub(r"[^A-Za-z0-9_-]+", "_", item.get("title", "image"))[:45].strip("_") or "image"
+    idx = len(records) + 1
+    path = OUT / f"{idx:02d}_{title}{ext}"
+    path.write_bytes(data)
+    item.update({"file": str(path), "bytes": len(data), "content_type": ctype})
+    records.append(item)
+    print(f"SUCCESS {idx}/{TARGET} — {item['provider']} — {path} ({len(data)} bytes)")
+    return True
 
-def download_candidate(candidate, index):
-    url = candidate.get("download_url")
-    if not url or not url.startswith("https://"):
-        raise ValueError("Missing or non-HTTPS image URL")
-    response = request_with_retry(url, stream=True, timeout=90, attempts=4)
-    content_type = response.headers.get("Content-Type", "").lower()
-    if not content_type.startswith("image/"):
-        response.close()
-        raise ValueError(f"URL did not return an image: {content_type}")
-    chunks, size = [], 0
-    for chunk in response.iter_content(chunk_size=1024 * 128):
-        if chunk:
-            size += len(chunk)
-            if size > 25 * 1024 * 1024:
-                response.close()
-                raise ValueError("Image exceeds 25 MB test limit")
-            chunks.append(chunk)
-    response.close()
-    if size < 5_000:
-        raise ValueError(f"Image too small ({size} bytes)")
-    ext = safe_extension(url, content_type)
-    slug = re.sub(r"[^A-Za-z0-9_-]+", "_", candidate.get("title", "image"))[:55].strip("_") or "image"
-    target = OUT / f"{index:02d}_{slug}{ext}"
-    target.write_bytes(b"".join(chunks))
-    candidate["file"] = str(target)
-    candidate["bytes"] = size
-    candidate["content_type"] = content_type
-    print(f"Downloaded {index}/{TARGET} from {candidate['provider']}: {target} ({size} bytes)")
-    return candidate
+def add_candidate(item):
+    if len(records) >= TARGET:
+        return
+    try:
+        download(item)
+    except Exception as e:
+        print(f"Candidate skipped from {item.get('provider')}: {e}")
 
-def openverse_candidates(status):
-    api = "https://api.openverse.org/v1/images/"
-    seen = set()
-    for term in SEARCH_TERMS:
-        if len(records) >= TARGET:
-            break
-        try:
-            response = request_with_retry(api, params={
-                "q": term,
-                "license": "cc0,pdm,by,by-sa",
-                "page_size": 20,
-            }, timeout=45, attempts=4)
-            data = response.json()
-            status["openverse"] = "accessible"
-            for item in data.get("results", []):
-                license_code = (item.get("license") or "").lower()
-                url = item.get("url")
-                if license_code not in ALLOWED_LICENSES or not url or url in seen:
-                    continue
-                seen.add(url)
-                candidate = {
-                    "provider": "Openverse",
-                    "title": clean(item.get("title")) or term,
-                    "download_url": url,
-                    "source_page": item.get("foreign_landing_url") or item.get("detail_url"),
-                    "creator": clean(item.get("creator")),
-                    "attribution": clean(item.get("attribution")),
-                    "license": license_code,
-                    "license_version": item.get("license_version"),
-                    "license_url": item.get("license_url"),
-                    "search_term": term,
-                }
-                try:
-                    records.append(download_candidate(candidate, len(records) + 1))
-                except Exception as exc:
-                    print(f"Openverse candidate skipped: {exc}")
-                if len(records) >= TARGET:
-                    break
+def run_openverse():
+    name = "Openverse"
+    try:
+        for term in TERMS:
+            if len(records) >= TARGET: break
+            data = get("https://api.openverse.org/v1/images/", {
+                "q": term, "license": "cc0,pdm,by,by-sa", "page_size": 30
+            }).json()
+            for x in data.get("results", []):
+                if len(records) >= TARGET: break
+                lic = (x.get("license") or "").lower()
+                if lic not in {"cc0", "pdm", "by", "by-sa"}: continue
+                add_candidate({
+                    "provider": name, "title": clean(x.get("title")) or term,
+                    "download_url": x.get("url"),
+                    "source_page": x.get("foreign_landing_url") or x.get("detail_url"),
+                    "creator": clean(x.get("creator")),
+                    "attribution": clean(x.get("attribution")),
+                    "license": lic, "license_version": x.get("license_version"),
+                    "license_url": x.get("license_url"), "search_term": term,
+                })
             time.sleep(1)
-        except Exception as exc:
-            status["openverse"] = f"error: {exc}"
-            print(f"Openverse search failed for '{term}': {exc}")
+        provider_status[name] = {"status": "accessible", "images_downloaded": sum(x["provider"] == name for x in records)}
+    except Exception as e:
+        provider_status[name] = {"status": "failed_or_blocked", "error": str(e), "images_downloaded": sum(x["provider"] == name for x in records)}
+        print(f"{name} unavailable; moving to next source: {e}")
 
-def commons_candidates(status):
-    api = "https://commons.wikimedia.org/w/api.php"
-    seen = set()
-    for term in SEARCH_TERMS:
-        if len(records) >= TARGET:
-            break
-        try:
-            response = request_with_retry(api, params={
-                "action": "query",
-                "format": "json",
-                "generator": "search",
-                "gsrsearch": f"filetype:bitmap {term}",
-                "gsrnamespace": 6,
-                "gsrlimit": 30,
-                "prop": "imageinfo",
-                "iiprop": "url|extmetadata",
-            }, timeout=45, attempts=5)
-            pages = response.json().get("query", {}).get("pages", {})
-            status["wikimedia_commons"] = "accessible"
+def run_cleveland():
+    name = "Cleveland Museum of Art Open Access"
+    try:
+        for term in TERMS:
+            if len(records) >= TARGET: break
+            data = get("https://openaccess-api.clevelandart.org/api/artworks/", {
+                "q": term, "cc0": "", "has_image": 1, "limit": 50
+            }).json()
+            for x in data.get("data", []):
+                if len(records) >= TARGET: break
+                if x.get("share_license_status") != "CC0": continue
+                image = x.get("images") or {}
+                web = image.get("web") or {}
+                url = web.get("url") or image.get("print", {}).get("url") or image.get("full", {}).get("url")
+                if not url: continue
+                add_candidate({
+                    "provider": name, "title": clean(x.get("title")) or term,
+                    "download_url": url, "source_page": x.get("url") or f"https://www.clevelandart.org/art/{x.get('id')}",
+                    "creator": clean(x.get("creators", [{}])[0].get("description")) if x.get("creators") else "",
+                    "license": "CC0", "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+                    "search_term": term, "accession_number": x.get("accession_number"),
+                })
+            time.sleep(1)
+        provider_status[name] = {"status": "accessible", "images_downloaded": sum(x["provider"] == name for x in records)}
+    except Exception as e:
+        provider_status[name] = {"status": "failed_or_blocked", "error": str(e), "images_downloaded": sum(x["provider"] == name for x in records)}
+        print(f"{name} unavailable; moving to next source: {e}")
+
+def run_met():
+    name = "The Metropolitan Museum of Art"
+    try:
+        for term in TERMS:
+            if len(records) >= TARGET: break
+            search = get("https://collectionapi.metmuseum.org/public/collection/v1/search", {
+                "q": term, "hasImages": "true"
+            }).json()
+            for oid in (search.get("objectIDs") or [])[:35]:
+                if len(records) >= TARGET: break
+                obj = get(f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{oid}").json()
+                if not obj.get("isPublicDomain") or not obj.get("primaryImage"): continue
+                add_candidate({
+                    "provider": name, "title": clean(obj.get("title")) or term,
+                    "download_url": obj.get("primaryImage"),
+                    "source_page": obj.get("objectURL"),
+                    "creator": clean(obj.get("artistDisplayName")),
+                    "license": "Public Domain / CC0 Open Access",
+                    "license_url": "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access",
+                    "search_term": term, "object_id": oid,
+                })
+                time.sleep(0.25)
+            time.sleep(1)
+        provider_status[name] = {"status": "accessible", "images_downloaded": sum(x["provider"] == name for x in records)}
+    except Exception as e:
+        provider_status[name] = {"status": "failed_or_blocked", "error": str(e), "images_downloaded": sum(x["provider"] == name for x in records)}
+        print(f"{name} unavailable; moving to next source: {e}")
+
+def run_artic():
+    name = "Art Institute of Chicago"
+    try:
+        for term in TERMS:
+            if len(records) >= TARGET: break
+            data = get("https://api.artic.edu/api/v1/artworks/search", {
+                "q": term, "limit": 50,
+                "fields": "id,title,image_id,is_public_domain,artist_title,date_display,api_link"
+            }).json()
+            for x in data.get("data", []):
+                if len(records) >= TARGET: break
+                if x.get("is_public_domain") is not True or not x.get("image_id"): continue
+                image_url = f"https://www.artic.edu/iiif/2/{x['image_id']}/full/843,/0/default.jpg"
+                add_candidate({
+                    "provider": name, "title": clean(x.get("title")) or term,
+                    "download_url": image_url, "source_page": x.get("api_link"),
+                    "creator": clean(x.get("artist_title")),
+                    "license": "Public Domain", "license_url": "https://www.artic.edu/image-licensing",
+                    "search_term": term, "artwork_id": x.get("id"),
+                    "date": x.get("date_display"),
+                })
+                time.sleep(1)
+        provider_status[name] = {"status": "accessible", "images_downloaded": sum(x["provider"] == name for x in records)}
+    except Exception as e:
+        provider_status[name] = {"status": "failed_or_blocked", "error": str(e), "images_downloaded": sum(x["provider"] == name for x in records)}
+        print(f"{name} unavailable; moving to next source: {e}")
+
+def run_commons():
+    name = "Wikimedia Commons"
+    try:
+        for term in TERMS:
+            if len(records) >= TARGET: break
+            data = get("https://commons.wikimedia.org/w/api.php", {
+                "action": "query", "format": "json", "generator": "search",
+                "gsrsearch": f"filetype:bitmap {term}", "gsrnamespace": 6,
+                "gsrlimit": 30, "prop": "imageinfo", "iiprop": "url|extmetadata"
+            }).json()
+            pages = data.get("query", {}).get("pages", {})
             for page in pages.values():
-                infos = page.get("imageinfo", [])
-                if not infos:
-                    continue
-                info = infos[0]
+                if len(records) >= TARGET: break
+                info_list = page.get("imageinfo", [])
+                if not info_list: continue
+                info = info_list[0]
                 meta = info.get("extmetadata", {})
-                license_name = clean(meta.get("LicenseShortName", {}).get("value"))
-                license_url = clean(meta.get("LicenseUrl", {}).get("value"))
-                license_lower = license_name.lower()
-                # Reject non-commercial and no-derivatives terms; permit CC0, public domain, CC BY and CC BY-SA.
-                if any(term in license_lower for term in ("nc", "noncommercial", "nd", "no derivatives")):
-                    continue
-                if not any(term in license_lower for term in ("cc0", "public domain", "cc by", "cc-by")):
-                    continue
-                url = info.get("url")
-                if not url or url in seen:
-                    continue
-                seen.add(url)
+                lic = clean(meta.get("LicenseShortName", {}).get("value"))
+                low = lic.lower()
+                if any(x in low for x in ("noncommercial", "non-commercial", "no derivatives", "no-derivatives")): continue
+                if not any(x in low for x in ("cc0", "public domain", "cc by", "cc-by")): continue
                 title = page.get("title", term)
-                candidate = {
-                    "provider": "Wikimedia Commons",
-                    "title": title,
-                    "download_url": url,
+                add_candidate({
+                    "provider": name, "title": title, "download_url": info.get("url"),
                     "source_page": "https://commons.wikimedia.org/wiki/" + quote(title.replace(" ", "_")),
                     "creator": clean(meta.get("Artist", {}).get("value")),
                     "attribution": clean(meta.get("Credit", {}).get("value")),
-                    "license": license_name,
-                    "license_url": license_url,
-                    "description": clean(meta.get("ImageDescription", {}).get("value")),
+                    "license": lic, "license_url": clean(meta.get("LicenseUrl", {}).get("value")),
                     "search_term": term,
-                }
-                try:
-                    records.append(download_candidate(candidate, len(records) + 1))
-                except Exception as exc:
-                    print(f"Wikimedia candidate skipped: {exc}")
-                if len(records) >= TARGET:
-                    break
-            time.sleep(2)
-        except Exception as exc:
-            status["wikimedia_commons"] = f"error: {exc}"
-            print(f"Wikimedia search failed for '{term}': {exc}")
+                })
+            time.sleep(3)
+        provider_status[name] = {"status": "accessible", "images_downloaded": sum(x["provider"] == name for x in records)}
+    except Exception as e:
+        provider_status[name] = {"status": "failed_or_blocked", "error": str(e), "images_downloaded": sum(x["provider"] == name for x in records)}
+        print(f"{name} unavailable: {e}")
 
-records = []
-provider_status = {"openverse": "not_tested", "wikimedia_commons": "not_tested"}
-openverse_candidates(provider_status)
-if len(records) < TARGET:
-    print(f"Openverse supplied {len(records)} images; trying Wikimedia Commons fallback.")
-    commons_candidates(provider_status)
+# Sequential fallback: a failed, blocked, rate-limited, or exhausted provider never stops later providers.
+SOURCES = [run_openverse, run_cleveland, run_met, run_artic, run_commons]
+for source in SOURCES:
+    if len(records) >= TARGET: break
+    source()
+    print(f"Progress: {len(records)}/{TARGET} images after {source.__name__}")
 
-metadata = {
+result = {
     "requested_images": TARGET,
     "downloaded_images": len(records),
     "complete": len(records) == TARGET,
+    "source_order": [f.__name__ for f in SOURCES],
     "provider_status": provider_status,
-    "license_policy": "Only CC0, public-domain, CC BY and CC BY-SA assets are accepted; NC/ND and unknown licenses are excluded.",
+    "license_policy": "Accept only CC0, public-domain, or CC BY/CC BY-SA assets. Exclude non-commercial, no-derivatives, and unknown-license assets. Verify each individual record before commercial publication.",
     "images": records,
 }
-(OUT / "sources-and-licenses.json").write_text(
-    json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8"
-)
+(OUT / "sources-and-licenses.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 (OUT / "README.md").write_text(
-    "# HIBRAH — 10-image download test\n\n"
+    "# HIBRAH — Multi-source 10-image download test\n\n"
     f"- Requested: {TARGET}\n- Downloaded: {len(records)}\n"
     f"- Complete: {'yes' if len(records) == TARGET else 'no'}\n\n"
-    "Downloaded by GitHub Actions from Openverse and, when needed, Wikimedia Commons. "
-    "Review each source page and license/attribution record before any use. "
-    "This test does not imply that every image is suitable for HIBRAH's brand or campaigns.\n",
+    "Sequential fallback providers: Openverse, Cleveland Museum of Art Open Access, "
+    "The Metropolitan Museum of Art Open Access, Art Institute of Chicago public-domain collection, "
+    "then Wikimedia Commons. Provider failures do not stop the next provider. "
+    "Source URLs, creator details and license metadata are recorded in sources-and-licenses.json. "
+    "These are research assets, not approved HIBRAH campaign assets.\n",
     encoding="utf-8",
 )
-print(json.dumps(metadata, ensure_ascii=False, indent=2))
+print(json.dumps(result, ensure_ascii=False, indent=2))
 if len(records) != TARGET:
-    print(f"INCOMPLETE: expected {TARGET}, downloaded {len(records)}.")
+    print(f"INCOMPLETE: {len(records)}/{TARGET}; no false success reported.")
     sys.exit(1)
-print(f"SUCCESS: downloaded all {TARGET} images.")
+print(f"SUCCESS: all {TARGET} image files downloaded.")
