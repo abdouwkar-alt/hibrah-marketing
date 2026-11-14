@@ -1,5 +1,5 @@
 ---
-document_id: HIB-MKT- PERSONA-001
+document_id: HIB-MKT-PERSONA-001
 title: HIBRAH Customer and Brand Persona Development Framework
 version: 0.1
 status: DRAFT
