@@ -1,41 +1,32 @@
-# HIBRAH — Approved Operating Baseline
+# HIBRAH — Archived Project Repository
 
-The Founder approved the three foundational documents on 2026-11-12. They are the current source of truth for HIBRAH's brand, workflow and functional structure.
+**Project status: DISCONTINUED by Founder on 2026-11-20.**
 
-## The three foundations — approved on `main`
+HIBRAH is no longer an active business project. This repository is retained as a historical knowledge archive. Its documents, research, workflows, role proposals, prompts, and creative assets may be studied and selectively reused as learning material in future work.
 
-1. [Brand Foundation](BRAND_FOUNDATION.md) — identity, positioning, customer, product/service, values, communication and visual direction.
-2. [Operating Workflow](OPERATING_WORKFLOW.md) — goals-to-tasks, cross-functional workflows, customer journey, handoffs, review and reporting.
-3. [Organizational Structure](ORGANIZATIONAL_STRUCTURE.md) — functions, accountability, authority and reporting relationships.
+## Historical approved baseline
 
-Read these documents together. The Brand Foundation defines what HIBRAH is; the Operating Workflow defines how work moves; the Organizational Structure defines who owns the work and how authority/reporting are arranged.
+The following documents were approved on 2026-11-12 and describe the HIBRAH project as it existed at that time. Their historical approval does not make them current instructions for the Founder’s future projects:
 
-## Authoritative decision record
+1. [Brand Foundation](BRAND_FOUNDATION.md)
+2. [Operating Workflow](OPERATING_WORKFLOW.md)
+3. [Organizational Structure](ORGANIZATIONAL_STRUCTURE.md)
+4. [Founder Decision Log](DECISION_LOG.md)
 
-- [Founder Decision Log](DECISION_LOG.md) — status-labelled record of decisions and their scope.
-- [Confirmed Content Sequence — 2026-11-12](content/2026-11-12-approved-content-sequence.md) — approved topics/order only; does not approve copy, design, publication or scheduling.
+## Preserved working material
 
-## Working material on `drafts`
+- [Drafts branch](https://github.com/abdouwkar-alt/hibrah-marketing/tree/drafts) — original working branch, left unchanged.
+- [Archived drafts snapshot — 2026-11-20](https://github.com/abdouwkar-alt/hibrah-marketing/tree/archive/hibrah-drafts-2026-11-20) — preservation snapshot of the complete drafts tree at commit `45719cb83fa49fcc2f1f916c94d31dd3bd5e6d89`, plus an archive index. Snapshot inventory: 157 original files across 25 directories.
+- [Islamic Awareness workspace](https://github.com/abdouwkar-alt/hibrah-marketing/tree/islamic-awareness) — a separate DRAFT framework exploring Islamic awareness as a method for AI-assisted understanding. It is not an approved final framework.
 
-The `drafts` branch remains available for research, proposals and future revisions. Presence on that branch does not imply approval.
+## Reuse rules
 
-- [Role Preflight](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/ROLE_PREFLIGHT.md) — DRAFT control; not a prerequisite that blocks execution of the approved foundations.
-- [HIBRAH Brand & Business Context](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/HIBRAH_CONTEXT.md) — historical working reference; use the approved Brand Foundation for current brand direction.
-- [Monthly Content Plan](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/content/HIBRAH_Monthly_Content_Plan_2026-11-12.md) — DRAFT; not scheduled or published.
-- [Repository Migration Plan](https://github.com/abdouwkar-alt/hibrah-marketing/blob/drafts/REPOSITORY_MIGRATION_PLAN.md) — repository governance reference.
+1. Treat HIBRAH materials as historical, not active business policy.
+2. Preserve original status labels (APPROVED, DRAFT, PROPOSED, OUTDATED, UNKNOWN) when reusing material.
+3. Do not assume that a draft proposal was implemented or that a historical role became active.
+4. Extract reusable methods only after checking their original context, evidence, limitations, and approval status.
+5. Do not treat the Islamic Awareness files as authoritative religious guidance or a guarantee of model correctness.
 
-The earlier eight-role package and its role-interaction protocol are legacy proposals, not the current organizational structure. Do not treat those role titles, responsibilities or handoffs as active. The current structure is defined only by [ORGANIZATIONAL_STRUCTURE.md](ORGANIZATIONAL_STRUCTURE.md).
+## Repository history
 
-The earlier provisional workflow on `drafts` is superseded by the approved `main/OPERATING_WORKFLOW.md`. Historical files are retained for traceability, not as competing policy.
-
-## Change control
-
-1. Work on improvements in `drafts` or a short-lived branch.
-2. Keep proposals clearly labelled DRAFT / PROPOSED.
-3. When the Founder approves a change, promote only the approved scope to `main` and update the relevant document status/version and `DECISION_LOG.md`.
-4. Never merge `drafts` wholesale into `main`.
-5. Do not silently overwrite approved decisions; preserve material history and mark superseded content accordingly.
-
-## Current operating rule
-
-The Founder retains final authority and may work directly with any function. The GM sets priorities within approved goals and plans and coordinates execution. Each function owns its own work and reporting. The Founder currently performs direct technical review as a temporary control. See the three approved foundation documents for full detail.
+The original `main` and `drafts` branches are retained. The archive snapshot preserves the complete `drafts` tree as it stood on 2026-11-20. No historical project files have been deleted as part of this status update.
