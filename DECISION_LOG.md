@@ -85,6 +85,17 @@ Last updated: 2026-11-12
 - Owner: Founder.
 - Follow-up: Use these three documents as the baseline for immediate work; revise when actual operating issues emerge.
 
+### HIB-2026-008 — Discontinuation of HIBRAH as an active business project
+- Date: 2026-11-20
+- Status: CONFIRMED
+- Decision: The Founder has discontinued HIBRAH as an active business project. The repository and its documents are retained as historical material for learning, review, and selective reuse. Do not treat HIBRAH as an active business, assume its previous strategy or operating model remains current, or prioritize its brand/product work unless the Founder explicitly reopens it.
+- Scope: Project status and future use of the repository. This decision does not invalidate the historical record of documents that were approved at the time, and it does not approve any draft content.
+- Preservation: The original `drafts` branch remains unchanged. A snapshot branch `archive/hibrah-drafts-2026-11-20` preserves the complete drafts tree at commit `45719cb83fa49fcc2f1f916c94d31dd3bd5e6d89`, with an archive index.
+- Related work: A separate `islamic-awareness` branch contains DRAFT framework files and is not yet approved as a final method.
+- Source: Founder instruction in ChatGPT conversation, 2026-11-20.
+- Owner: Founder.
+- Follow-up required: Use the archived material selectively as learning inputs; establish new project-specific instructions for future work.
+
 ## New decision entry template
 ### HIB-YYYY-NNN — [Short title]
 - Date:
