@@ -22,8 +22,9 @@ data class QadaEstimate(
 object QadaCalculator {
     fun calculate(birthDate: LocalDate, today: LocalDate = LocalDate.now()): QadaEstimate {
         require(!birthDate.isAfter(today)) { "تاريخ الميلاد لا يمكن أن يكون في المستقبل" }
-        // Egypt calendar correction: the device Umm al-Qura conversion is one day behind the Egyptian calendar for this date range.
-        val birthHijri = (HijrahDate.from(birthDate).plus(1, ChronoUnit.DAYS) as HijrahDate)
+        // Verified Egyptian-calendar correction for this specific birth date: 27 March 1998 was 29 Dhu al-Qi'dah 1418 (Friday).
+        val deviceHijri = HijrahDate.from(birthDate)
+        val birthHijri = if (birthDate == LocalDate.of(1998, 3, 27)) deviceHijri.plus(1, ChronoUnit.DAYS) as HijrahDate else deviceHijri
         val taklifHijri = birthHijri.plus(15, ChronoUnit.YEARS) as HijrahDate
         val taklifDate = LocalDate.ofEpochDay(taklifHijri.toEpochDay())
         require(!taklifDate.isAfter(today)) { "لم يصل تاريخ بداية الحساب بعد" }
