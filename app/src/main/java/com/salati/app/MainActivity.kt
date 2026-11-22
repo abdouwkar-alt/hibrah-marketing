@@ -2,6 +2,8 @@ package com.salati.app
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -124,7 +126,10 @@ fun SalatiScreen() {
     var fiqhTopic by remember { mutableStateOf("أركان الصلاة") }
     var fiqhMadhhab by remember { mutableStateOf("الحنفي") }
     var clockNow by remember { mutableLongStateOf(System.currentTimeMillis()) }
-    LaunchedEffect(Unit) { while (true) { delay(30_000L); clockNow = System.currentTimeMillis() } }
+    var notifyBefore by remember { mutableStateOf(prefs.getBoolean("notify_before", true)) }
+    var notifyAt by remember { mutableStateOf(prefs.getBoolean("notify_at", true)) }
+    var notificationTitle by remember { mutableStateOf(prefs.getString("notification_title", "الصلاة جامعة") ?: "الصلاة جامعة") }
+    LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
     val tomorrow = today.plusDays(1)
     val lat = prefs.getFloat("lat", 30.0444f).toDouble()
@@ -164,7 +169,7 @@ fun SalatiScreen() {
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن").forEach { tab ->
+                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
@@ -343,6 +348,37 @@ fun SalatiScreen() {
                         TextButton(onClick = { mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
                     }
                 }
+            } else if (mainTab == "الإعدادات") {
+                item {
+                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            Text("إعدادات التنبيهات", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                            Text("اختر توقيت وصول الإشعار.")
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(checked = notifyBefore, onCheckedChange = { value ->
+                                    notifyBefore = value
+                                    prefs.edit().putBoolean("notify_before", value).apply()
+                                    PrayerNotifications.schedule(context, lat, lon)
+                                })
+                                Text("قبل الصلاة بنصف ساعة")
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(checked = notifyAt, onCheckedChange = { value ->
+                                    notifyAt = value
+                                    prefs.edit().putBoolean("notify_at", value).apply()
+                                    PrayerNotifications.schedule(context, lat, lon)
+                                })
+                                Text("عند دخول وقت الصلاة")
+                            }
+                            OutlinedTextField(value = notificationTitle, onValueChange = {
+                                notificationTitle = it
+                                prefs.edit().putString("notification_title", it).apply()
+                                PrayerNotifications.schedule(context, lat, lon)
+                            }, label = { Text("عنوان الإشعار") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                            Text("العنوان الافتراضي: الصلاة جامعة. لا يصدر التطبيق أذانًا صوتيًا.", color = Color(0xFF6D716A))
+                        }
+                    }
+                }
             } else {
                 item {
                     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -386,6 +422,12 @@ fun SalatiScreen() {
                                     Text(fiqhTopic + " – المذهب " + fiqhMadhhab, style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
                                     Text(entry.summary)
                                     Text("المراجع: " + entry.source, color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                                    Button(onClick = {
+                                        val query = Uri.encode(fiqhTopic + " " + fiqhMadhhab + " شرح تعليمي")
+                                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/results?search_query=" + query)))
+                                    }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("مشاهدة شرح فيديو على يوتيوب") }
+                                    Text("تنبيه علمي مهم: هذا القسم مرجع تعريفي مساعد، وليس فتوى ولا مصدرًا نهائيًا للحكم الشرعي. قد تختلف التفاصيل والترجيحات، ويجب مراجعة المعلومات مع عالم مؤهل أو كتاب معتمد في المذهب قبل العمل بها.", color = Color(0xFF8A4B19), style = MaterialTheme.typography.bodySmall)
+                                    Text("المحتوى الحالي مختصر، ورابط الفيديو يفتح نتائج بحث للموضوع والمذهب المختارين؛ راجع هوية المحاضر ومصدره العلمي.", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
                                 }
                             }
                         }
