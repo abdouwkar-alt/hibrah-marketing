@@ -151,6 +151,7 @@ fun SalatiScreen() {
     var birthDay by remember { mutableStateOf("") }
     var birthMonth by remember { mutableStateOf("") }
     var birthYear by remember { mutableStateOf("") }
+    var pubertyAge by remember { mutableStateOf(prefs.getInt("puberty_age_hijri", 15).toString()) }
     var estimate by remember { mutableStateOf<QadaEstimate?>(null) }
     var calcError by remember { mutableStateOf("") }
     var deductOneYear by remember { mutableStateOf(false) }
@@ -255,7 +256,9 @@ fun SalatiScreen() {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
                         Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                             Text("حاسبة بداية التكليف", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-                            Text("أدخل تاريخ ميلادك الميلادي. سيحوّله التطبيق إلى هجري، ثم يضيف 15 سنة هجرية.")
+                            Text("أدخل تاريخ ميلادك، وحدد سن البلوغ الذي تريد أن يبدأ منه الحساب. التطبيق لا يفرض سنًا واحدًا على الجميع.")
+                            OutlinedTextField(value = pubertyAge, onValueChange = { pubertyAge = it.filter(Char::isDigit).take(2); pubertyAge.toIntOrNull()?.let { age -> if (age in 1..40) prefs.edit().putInt("puberty_age_hijri", age).apply() } }, label = { Text("سن البلوغ بالسنوات الهجرية (اختيارك)") }, modifier = Modifier.fillMaxWidth(), singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
+                            Text("أدخل السن الذي تراه منطبقًا على حالتك وفق ما تعلمه أو ما ثبت لديك. هذا اختيار شخصي للحساب وليس حكمًا شرعيًا من التطبيق.", color = Color(0xFF755F45), style = MaterialTheme.typography.bodySmall)
                             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 NumberField("اليوم", birthDay, { birthDay = it }, Modifier.weight(1f))
                                 NumberField("الشهر", birthMonth, { birthMonth = it }, Modifier.weight(1f))
@@ -265,7 +268,10 @@ fun SalatiScreen() {
                                 calcError = ""
                                 try {
                                     val date = LocalDate.of(birthYear.toInt(), birthMonth.toInt(), birthDay.toInt())
-                                    estimate = QadaCalculator.calculate(date, today)
+                                    val selectedAge = pubertyAge.toIntOrNull() ?: throw IllegalArgumentException("أدخل سن البلوغ بالأرقام")
+                                    require(selectedAge in 1..40) { "سن البلوغ يجب أن يكون بين 1 و40 سنة" }
+                                    prefs.edit().putInt("puberty_age_hijri", selectedAge).apply()
+                                    estimate = QadaCalculator.calculate(date, today, taklifAgeYears = selectedAge)
                                     ramadanChecks = estimate!!.ramadans.filter { prefs.getBoolean("ramadan_" + it.hijriYear, false) }.map { it.hijriYear }.toSet()
                                 } catch (e: Exception) {
                                     calcError = e.message ?: "راجع تاريخ الميلاد والبيانات المدخلة."
@@ -275,7 +281,7 @@ fun SalatiScreen() {
                             estimate?.let { result ->
                                 HorizontalDivider()
                                 Text("تاريخ الميلاد الهجري: " + QadaCalculator.hijriLabel(result.birthHijri), fontWeight = FontWeight.SemiBold)
-                                Text("بداية التكليف: " + QadaCalculator.hijriLabel(result.taklifHijri), fontWeight = FontWeight.SemiBold)
+                                Text("بداية الحساب حسب السن الذي اخترته (" + pubertyAge + " سنة هجرية): " + QadaCalculator.hijriLabel(result.taklifHijri), fontWeight = FontWeight.SemiBold)
                                 Text("الموافق ميلاديًا: " + result.taklifDate.toString())
                                 Text("أيام الحساب حتى اليوم: " + result.prayerDays)
                                 Text("إجمالي الفروض قبل الخصم: " + result.totalPrayers, color = Green, fontWeight = FontWeight.Bold)
@@ -453,61 +459,132 @@ fun SalatiScreen() {
 }
 
 @Composable
-private fun QuranReflectionScreen(prefs: android.content.SharedPreferences) {
+private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, context: android.content.Context) {
+    val today = LocalDate.now().toString()
     var currentSurah by remember { mutableStateOf(prefs.getString("quran_surah", "البقرة") ?: "البقرة") }
     var currentAyah by remember { mutableStateOf(prefs.getString("quran_ayah", "1") ?: "1") }
+    var dailyTarget by remember { mutableIntStateOf(prefs.getInt("quran_daily_target", 2)) }
+    var progressDate by remember { mutableStateOf(prefs.getString("quran_progress_date", today) ?: today) }
+    var dailyProgress by remember { mutableIntStateOf(if (progressDate == today) prefs.getInt("quran_daily_progress", 0) else 0) }
     var sessionSurah by remember { mutableStateOf("البقرة") }
     var sessionAyah by remember { mutableStateOf("") }
     var reflection by remember { mutableStateOf("") }
     var question by remember { mutableStateOf("") }
     var action by remember { mutableStateOf("") }
+    var search by remember { mutableStateOf("") }
+    var editingIndex by remember { mutableIntStateOf(-1) }
+    var deleteIndex by remember { mutableIntStateOf(-1) }
     var sessions by remember { mutableStateOf(prefs.getString("quran_sessions", "[]") ?: "[]") }
+    fun persist(array: org.json.JSONArray) {
+        sessions = array.toString()
+        prefs.edit().putString("quran_sessions", sessions).apply()
+    }
+    val saved = try { org.json.JSONArray(sessions) } catch (_: Exception) { org.json.JSONArray() }
+    if (progressDate != today) {
+        LaunchedEffect(today) {
+            progressDate = today
+            dailyProgress = 0
+            prefs.edit().putString("quran_progress_date", today).putInt("quran_daily_progress", 0).apply()
+        }
+    }
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
             Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("موضع وردك الحالي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-                OutlinedTextField(value = currentSurah, onValueChange = { currentSurah = it; prefs.edit().putString("quran_surah", it).apply() }, label = { Text("السورة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
-                OutlinedTextField(value = currentAyah, onValueChange = { currentAyah = it; prefs.edit().putString("quran_ayah", it).apply() }, label = { Text("رقم الآية أو موضع القراءة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
-                Text("حدّث موضعك بعد كل جلسة قراءة لتعود إليه بسهولة.", style = MaterialTheme.typography.bodySmall)
+                Text("ورد القرآن اليومي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                Text("هدفك: $dailyTarget صفحة — أنجزت اليوم: $dailyProgress صفحة")
+                LinearProgressIndicator(progress = { (dailyProgress.toFloat() / dailyTarget.coerceAtLeast(1)).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = Green)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedTextField(value = dailyTarget.toString(), onValueChange = { value -> value.toIntOrNull()?.takeIf { it in 1..100 }?.let { dailyTarget = it; prefs.edit().putInt("quran_daily_target", it).apply() } }, label = { Text("هدف الصفحات") }, modifier = Modifier.weight(1f), singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
+                    Button(onClick = { dailyProgress++; prefs.edit().putString("quran_progress_date", today).putInt("quran_daily_progress", dailyProgress).apply() }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("+ صفحة") }
+                }
+                Text(if (dailyProgress >= dailyTarget) "أتممت هدفك اليومي." else "التقدم يومي ويتجدد تلقائيًا مع بداية يوم جديد.", style = MaterialTheme.typography.bodySmall)
             }
         }
         Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
             Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("تسجيل جلسة تدبّر", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                Text("موضع القراءة الحالي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                OutlinedTextField(value = currentSurah, onValueChange = { currentSurah = it; prefs.edit().putString("quran_surah", it).apply() }, label = { Text("السورة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
+                OutlinedTextField(value = currentAyah, onValueChange = { currentAyah = it; prefs.edit().putString("quran_ayah", it).apply() }, label = { Text("رقم الآية أو موضع القراءة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
+            }
+        }
+        Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+            Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(if (editingIndex >= 0) "تعديل جلسة تدبّر" else "تسجيل جلسة تدبّر", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
                 OutlinedTextField(value = sessionSurah, onValueChange = { sessionSurah = it }, label = { Text("السورة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
                 OutlinedTextField(value = sessionAyah, onValueChange = { sessionAyah = it }, label = { Text("الآيات من - إلى (اختياري)") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
                 OutlinedTextField(value = reflection, onValueChange = { reflection = it }, label = { Text("ما الذي لفت انتباهك أو تدبّرته؟") }, modifier = Modifier.fillMaxWidth(), minLines = 3)
                 OutlinedTextField(value = question, onValueChange = { question = it }, label = { Text("أسئلة تحتاج إلى بحث أو مراجعة") }, modifier = Modifier.fillMaxWidth(), minLines = 2)
                 OutlinedTextField(value = action, onValueChange = { action = it }, label = { Text("كيف تريد العمل بما تدبّرته؟") }, modifier = Modifier.fillMaxWidth(), minLines = 2)
                 Button(onClick = {
-                    if (reflection.isNotBlank() || question.isNotBlank() || action.isNotBlank()) {
+                    if (sessionSurah.isNotBlank() && (reflection.isNotBlank() || question.isNotBlank() || action.isNotBlank())) {
                         val array = try { org.json.JSONArray(sessions) } catch (_: Exception) { org.json.JSONArray() }
                         val entry = org.json.JSONObject()
-                        entry.put("surah", sessionSurah); entry.put("ayah", sessionAyah)
-                        entry.put("reflection", reflection); entry.put("question", question); entry.put("action", action)
-                        entry.put("date", LocalDate.now().toString()); array.put(entry)
-                        sessions = array.toString(); prefs.edit().putString("quran_sessions", sessions).apply()
-                        currentSurah = sessionSurah; currentAyah = sessionAyah.ifBlank { currentAyah }
+                        entry.put("surah", sessionSurah.trim()); entry.put("ayah", sessionAyah.trim())
+                        entry.put("reflection", reflection.trim()); entry.put("question", question.trim()); entry.put("action", action.trim())
+                        entry.put("date", if (editingIndex >= 0) (array.optJSONObject(editingIndex)?.optString("date") ?: today) else today)
+                        if (editingIndex >= 0 && editingIndex < array.length()) array.put(editingIndex, entry) else array.put(entry)
+                        persist(array)
+                        currentSurah = sessionSurah.trim()
+                        if (sessionAyah.isNotBlank()) currentAyah = sessionAyah.trim()
                         prefs.edit().putString("quran_surah", currentSurah).putString("quran_ayah", currentAyah).apply()
-                        reflection = ""; question = ""; action = ""; sessionAyah = ""
+                        editingIndex = -1; sessionSurah = "البقرة"; sessionAyah = ""; reflection = ""; question = ""; action = ""
                     }
-                }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("حفظ جلسة التدبّر") }
+                }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text(if (editingIndex >= 0) "حفظ التعديلات" else "حفظ جلسة التدبّر") }
+                if (editingIndex >= 0) TextButton(onClick = { editingIndex = -1; sessionSurah = "البقرة"; sessionAyah = ""; reflection = ""; question = ""; action = "" }) { Text("إلغاء التعديل") }
                 Text("خواطرك وأسئلتك الشخصية ليست تفسيرًا معتمدًا؛ راجع كتب التفسير وأهل العلم عند البحث عن معنى الآية.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
             }
         }
-        Text("دفتر جلساتك السابقة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-        val saved = try { org.json.JSONArray(sessions) } catch (_: Exception) { org.json.JSONArray() }
-        for (index in saved.length() - 1 downTo 0) {
-            val entry = saved.optJSONObject(index) ?: continue
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+            Text("دفتر جلساتك السابقة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+            TextButton(onClick = {
+                val send = Intent(Intent.ACTION_SEND).apply {
+                    type = "application/json"
+                    putExtra(Intent.EXTRA_SUBJECT, "نسخة احتياطية من دفتر تدبّر القرآن")
+                    putExtra(Intent.EXTRA_TEXT, sessions)
+                }
+                context.startActivity(Intent.createChooser(send, "تصدير نسخة احتياطية"))
+            }) { Text("تصدير") }
+        }
+        OutlinedTextField(value = search, onValueChange = { search = it }, label = { Text("ابحث في السورة أو الملاحظات أو الأسئلة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
+        val matching = (0 until saved.length()).filter { index ->
+            val e = saved.optJSONObject(index) ?: return@filter false
+            val haystack = listOf("surah", "ayah", "reflection", "question", "action", "date").joinToString(" ") { e.optString(it) }
+            haystack.contains(search.trim(), ignoreCase = true)
+        }
+        if (matching.isEmpty()) Text(if (search.isBlank()) "لا توجد جلسات محفوظة حتى الآن." else "لا توجد نتائج مطابقة.")
+        matching.asReversed().forEach { index ->
+            val entry = saved.optJSONObject(index) ?: return@forEach
             Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
-                Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
                     Text(entry.optString("surah") + if (entry.optString("ayah").isNotBlank()) " — " + entry.optString("ayah") else "", color = Green, fontWeight = FontWeight.Bold)
                     Text(entry.optString("date"), style = MaterialTheme.typography.bodySmall, color = Color.Gray)
                     if (entry.optString("reflection").isNotBlank()) Text("تدبّري: " + entry.optString("reflection"))
                     if (entry.optString("question").isNotBlank()) Text("سؤال للبحث: " + entry.optString("question"))
                     if (entry.optString("action").isNotBlank()) Text("عمل: " + entry.optString("action"))
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        TextButton(onClick = {
+                            editingIndex = index
+                            sessionSurah = entry.optString("surah"); sessionAyah = entry.optString("ayah")
+                            reflection = entry.optString("reflection"); question = entry.optString("question"); action = entry.optString("action")
+                        }) { Text("تعديل") }
+                        TextButton(onClick = { deleteIndex = index }) { Text("حذف", color = Color(0xFFB3261E)) }
+                    }
                 }
             }
         }
+    }
+    if (deleteIndex >= 0) {
+        AlertDialog(
+            onDismissRequest = { deleteIndex = -1 },
+            title = { Text("حذف جلسة التدبّر؟") },
+            text = { Text("لن يمكن استعادة هذه الجلسة بعد حذفها.") },
+            confirmButton = { TextButton(onClick = {
+                val array = try { org.json.JSONArray(sessions) } catch (_: Exception) { org.json.JSONArray() }
+                if (deleteIndex in 0 until array.length()) array.remove(deleteIndex)
+                persist(array); if (editingIndex == deleteIndex) editingIndex = -1
+                deleteIndex = -1
+            }) { Text("حذف") } },
+            dismissButton = { TextButton(onClick = { deleteIndex = -1 }) { Text("إلغاء") } }
+        )
     }
 }
