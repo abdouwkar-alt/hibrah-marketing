@@ -119,7 +119,7 @@ Important limitations:
 
 ### Development builds
 
-GitHub Actions builds a debug APK for verification. The current workflow's uploaded artifacts are temporary build outputs. GitHub documents a default artifact/log retention period of 90 days (subject to repository settings):
+GitHub Actions builds a debug APK for verification. The current workflow explicitly sets uploaded APK artifact retention to 14 days (`retention-days: 14`). GitHub's general default is 90 days, but this repository overrides it. Artifacts are therefore temporary build outputs, not the permanent download channel:
 - https://docs.github.com/en/actions/how-tos/manage-workflow-runs/download-workflow-artifacts
 - https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository
 
