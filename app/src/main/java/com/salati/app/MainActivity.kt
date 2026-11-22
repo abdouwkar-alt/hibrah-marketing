@@ -136,13 +136,13 @@ fun SalatiScreen() {
     val lat = prefs.getFloat("lat", 30.0444f).toDouble()
     val lon = prefs.getFloat("lon", 31.2357f).toDouble()
     val todayTimes = remember(today, lat, lon) { PrayerTimes.forDate(today, lat, lon, ZoneId.systemDefault()) }
+    val tomorrowTimes = remember(tomorrow, lat, lon) { PrayerTimes.forDate(tomorrow, lat, lon, ZoneId.systemDefault()) }
+    val timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale("ar"))
     val nightStart = todayTimes.first { it.name == "المغرب" }.time
     val nightEnd = tomorrowTimes.first { it.name == "الفجر" }.time
     val lastThirdStart = nightStart + ((nightEnd - nightStart) * 2L / 3L)
     val nightWindow = "الثلث الأخير تقريبًا: " + Instant.ofEpochMilli(lastThirdStart).atZone(ZoneId.systemDefault()).format(timeFormatter)
-    val tomorrowTimes = remember(tomorrow, lat, lon) { PrayerTimes.forDate(tomorrow, lat, lon, ZoneId.systemDefault()) }
     val nextPrayer = (todayTimes + tomorrowTimes).firstOrNull { it.time > clockNow } ?: tomorrowTimes.first()
-    val timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale("ar"))
     val dateFormatter = DateTimeFormatter.ofPattern("EEEE، d MMMM yyyy", Locale("ar"))
     val nextDuration = ((nextPrayer.time - clockNow).coerceAtLeast(0L) / 1000L)
     val countdown = "%02d:%02d:%02d".format(nextDuration / 3600, (nextDuration % 3600) / 60, nextDuration % 60)
@@ -208,6 +208,15 @@ fun SalatiScreen() {
                                 HorizontalDivider(color = Color(0xFFD4DDCE))
                             }
                             Text("المواقيت محسوبة محليًا بطريقة تقريبية؛ راجعها مع التقويم الرسمي.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
+                        }
+                    }
+                }
+                item {
+                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                        Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Text("قيام الليل", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                            Text(nightWindow + " — وقت تقديري محسوب بين المغرب والفجر، وليس وقتًا إلزاميًا.")
+                            TextButton(onClick = { mainTab = "قيام الليل" }) { Text("معرفة سنن قيام الليل ومتابعة القراءة") }
                         }
                     }
                 }
