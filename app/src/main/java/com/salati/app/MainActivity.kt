@@ -115,11 +115,14 @@ fun SalatiScreen() {
     var qadaPrayersDone by remember { mutableIntStateOf(prefs.getInt("prayers_done", 0)) }
     var qadaFastsDone by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }
     val qadaDoneByPrayer = remember { androidx.compose.runtime.mutableStateMapOf<String, Int>().apply { PrayerNames.forEach { put(it, prefs.getInt("qada_done_" + it, 0)) } } }
+    val missedByPrayer = remember { androidx.compose.runtime.mutableStateMapOf<String, Int>().apply { PrayerNames.forEach { put(it, prefs.getInt("missed_" + it, 0)) } } }
     var missedSinceInstall by remember { mutableIntStateOf(prefs.getInt("missed_since_install", 0)) }
     var prayerBase by remember { mutableIntStateOf(prefs.getInt("prayer_base", -1)) }
     var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
     var mainTab by remember { mutableStateOf("الرئيسية") }
     var sunnahTab by remember { mutableStateOf("سنن الصلاة") }
+    var fiqhTopic by remember { mutableStateOf("أركان الصلاة") }
+    var fiqhMadhhab by remember { mutableStateOf("الحنفي") }
     var clockNow by remember { mutableLongStateOf(System.currentTimeMillis()) }
     LaunchedEffect(Unit) { while (true) { delay(30_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
@@ -150,7 +153,7 @@ fun SalatiScreen() {
     var partialFastDays by remember { mutableStateOf("0") }
     var ramadanChecks by remember { mutableStateOf(setOf<Int>()) }
 
-    val prayerRemaining = if (prayerBase >= 0) (prayerBase + missedSinceInstall - qadaPrayersDone).coerceAtLeast(0) else 0
+    val prayerRemaining = if (prayerBase >= 0) (prayerBase + missedByPrayer.values.sum() - qadaDoneByPrayer.values.sum()).coerceAtLeast(0) else 0
     val fastRemaining = if (fastBase >= 0) (fastBase - qadaFastsDone).coerceAtLeast(0) else 0
 
     Surface(Modifier.fillMaxSize(), color = Cream) {
@@ -270,6 +273,7 @@ fun SalatiScreen() {
                                 Text("أيام الحساب حتى اليوم: " + result.prayerDays)
                                 Text("إجمالي الفروض قبل الخصم: " + result.totalPrayers, color = Green, fontWeight = FontWeight.Bold)
                                 HorizontalDivider()
+                                Text("التقويم المستخدم: ضبط مصري مبدئي بإضافة يوم واحد لجميع التحويلات. هذا ضبط حسابي تقريبي وليس سجلًا رسميًا لرؤية الهلال؛ راجع التاريخ المحلي عند الحاجة.", color = Color(0xFF755F45), style = MaterialTheme.typography.bodySmall)
                                 Text("التخفيف وتقدير ما سبق أداؤه", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Checkbox(checked = deductOneYear, onCheckedChange = { deductOneYear = it })
@@ -291,7 +295,7 @@ fun SalatiScreen() {
                                 }
                                 OutlinedTextField(value = partialFastDays, onValueChange = { partialFastDays = it.filter(Char::isDigit) }, label = { Text("أيام صمتها متفرقة خارج الرمضانات الكاملة") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.fillMaxWidth())
                                 val checkedRamadanDays = result.ramadans.filter { ramadanChecks.contains(it.hijriYear) }.sumOf { it.days }
-                                val prayerDeduction = (if (deductOneYear) 1770 else 0) + (performedPrayers.toIntOrNull() ?: 0)
+                                val prayerDeduction = (if (deductOneYear) 354 * 5 else 0) + (performedPrayers.toIntOrNull() ?: 0)
                                 val newPrayerBase = (result.totalPrayers - prayerDeduction).coerceAtLeast(0).toInt()
                                 val newFastBase = (result.totalRamadanDays - checkedRamadanDays - (partialFastDays.toIntOrNull() ?: 0)).coerceAtLeast(0)
                                 Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
@@ -332,7 +336,7 @@ fun SalatiScreen() {
             } else {
                 item {
                     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        listOf("سنن الصلاة", "البيت والمسجد", "الاستيقاظ", "قبل الصلاة", "قبل النوم").forEach { tab ->
+                        listOf("سنن الصلاة", "البيت والمسجد", "الاستيقاظ", "قبل الصلاة", "قبل النوم", "القراءة في الصلاة", "فقه الوضوء والصلاة").forEach { tab ->
                             FilterChip(selected = sunnahTab == tab, onClick = { sunnahTab = tab }, label = { Text(tab) })
                         }
                     }
