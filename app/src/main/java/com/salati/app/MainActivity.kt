@@ -370,7 +370,7 @@ fun SalatiScreen() {
                     }
                 }
             } else if (mainTab == "تدبر القرآن") {
-                item { QuranReflectionScreen(prefs = prefs) }
+                item { QuranReflectionScreen(prefs = prefs, context = context) }
             } else if (mainTab == "الإعدادات") {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
