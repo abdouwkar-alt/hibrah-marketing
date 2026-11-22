@@ -127,7 +127,7 @@ fun SalatiScreen() {
     var fiqhMadhhab by remember { mutableStateOf("الحنفي") }
     var clockNow by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var notifyBefore by remember { mutableStateOf(prefs.getBoolean("notify_before", true)) }
-    var notifyAt by remember { mutableStateOf(prefs.getBoolean("notify_at", true)) }
+    var notifyAt by remember { mutableStateOf(prefs.getBoolean("notify_at", true)) }\n    var tasbeehCount by remember { mutableIntStateOf(prefs.getInt("tasbeeh_count", 0)) }
     LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
     val tomorrow = today.plusDays(1)
@@ -163,12 +163,12 @@ fun SalatiScreen() {
     Surface(Modifier.fillMaxSize(), color = Cream) {
         LazyColumn(Modifier.fillMaxSize().padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
-                Text("الصلاة جامعة", style = MaterialTheme.typography.headlineLarge, color = Green, fontWeight = FontWeight.Bold)
+                Text("الصَّلَاةُ جَامِعَةٌ", style = MaterialTheme.typography.headlineLarge, color = Green, fontWeight = FontWeight.Bold)
                 Text("﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا﴾ [النساء: 103]", color = Color(0xFF6D716A))
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "الإعدادات").forEach { tab ->
+                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "الذكر والقبلة", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
@@ -347,7 +347,7 @@ fun SalatiScreen() {
                         TextButton(onClick = { mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
                     }
                 }
-            } else if (mainTab == "الإعدادات") {
+            } else if (mainTab == "الذكر والقبلة") {\n                item {\n                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {\n                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {\n                            Text("مسبحة الاستغفار", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)\n                            Text("استغفر الله")\n                            Text(tasbeehCount.toString(), style = MaterialTheme.typography.displayMedium, color = Green, fontWeight = FontWeight.Bold)\n                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {\n                                Button(onClick = { tasbeehCount++; prefs.edit().putInt("tasbeeh_count", tasbeehCount).apply() }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("تسبيحة +1") }\n                                OutlinedButton(onClick = { tasbeehCount = 0; prefs.edit().putInt("tasbeeh_count", 0).apply() }) { Text("تصفير") }\n                            }\n                            Text("العدد محفوظ على جهازك حتى بعد إغلاق التطبيق.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF77736B))\n                        }\n                    }\n                }\n                item {\n                    val kaabaLat = Math.toRadians(21.4225)\n                    val kaabaLon = Math.toRadians(39.8262)\n                    val userLat = Math.toRadians(lat)\n                    val userLon = Math.toRadians(lon)\n                    val dLon = kaabaLon - userLon\n                    val y = kotlin.math.sin(dLon) * kotlin.math.cos(kaabaLat)\n                    val x = kotlin.math.cos(userLat) * kotlin.math.sin(kaabaLat) - kotlin.math.sin(userLat) * kotlin.math.cos(kaabaLat) * kotlin.math.cos(dLon)\n                    val bearing = (Math.toDegrees(kotlin.math.atan2(y, x)) + 360.0) % 360.0\n                    Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {\n                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {\n                            Text("اتجاه القبلة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)\n                            Text(String.format(Locale.US, "%.1f°", bearing), style = MaterialTheme.typography.displaySmall, color = Green, fontWeight = FontWeight.Bold)\n                            Text("الاتجاه محسوب من الشمال الحقيقي اعتمادًا على موقع الجهاز. حرّك الهاتف باتجاه هذه الزاوية باستخدام بوصلة الهاتف.")\n                            Text("تأكد من تفعيل الموقع، ومن معايرة بوصلة الهاتف قبل الاعتماد على الاتجاه.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))\n                        }\n                    }\n                }\n            } else if (mainTab == "الإعدادات") {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
                         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
