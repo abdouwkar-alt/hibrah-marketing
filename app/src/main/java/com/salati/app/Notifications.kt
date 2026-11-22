@@ -3,81 +3,133 @@ package com.salati.app
 import android.app.*
 import android.content.*
 import androidx.core.app.NotificationCompat
-import java.time.LocalDate
-import java.time.ZoneId
+import java.time.*
+import kotlin.math.*
 
-private fun prayerReminder(name: String): String = when (name) {
-    "الفجر" -> "قال رسول الله ﷺ: «ركعتا الفجر خير من الدنيا وما فيها». (صحيح مسلم: 725)"
-    "الظهر" -> "قال رسول الله ﷺ: «من صلى أربع ركعات قبل الظهر وأربعًا بعدها حرمه الله على النار». (الترمذي: 428، صححه الترمذي)"
-    "العصر" -> "قال رسول الله ﷺ: «من ترك صلاة العصر فقد حبط عمله». (صحيح البخاري: 553)"
-    "المغرب" -> "قال رسول الله ﷺ: «لا تزال أمتي بخير ما لم يؤخروا المغرب حتى تشتبك النجوم». (أبو داود: 418، حسنه أهل العلم)"
-    "العشاء" -> "قال رسول الله ﷺ: «ولو يعلمون ما في العتمة والصبح لأتوهما ولو حبوًا». (البخاري: 657، ومسلم: 651)"
-    else -> "قال الله تعالى: ﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا﴾ [النساء: 103]."
+private data class ReminderContent(val title: String, val body: String, val source: String)
+
+private fun contentForPrayer(name: String, slot: Int): ReminderContent {
+    val common = listOf(
+        ReminderContent("تهيأ للصلاة", "تذكّر الوضوء وإسباغه، واستعد للصلاة بسكينة.", "تذكير عملي"),
+        ReminderContent("السواك قبل الصلاة", "قال رسول الله ﷺ: «لولا أن أشق على أمتي لأمرتهم بالسواك عند كل صلاة».", "صحيح البخاري 887، صحيح مسلم 252"),
+        ReminderContent("الدعاء بين الأذان والإقامة", "أكثر من الدعاء في هذا الوقت، واسأل الله من خيري الدنيا والآخرة.", "سنن أبي داود 521؛ وجاء أصل المعنى في جامع الترمذي 212"),
+        ReminderContent("استعد للخشوع", "أقبل على الصلاة بقلب حاضر، وتدبّر ما تقرأه من القرآن والأذكار.", "تذكير تربوي")
+    )
+    val specific = when (name) {
+        "الفجر" -> listOf(
+            ReminderContent("سنة الفجر", "حافظ على ركعتي سنة الفجر؛ قال ﷺ: «ركعتا الفجر خير من الدنيا وما فيها».", "صحيح مسلم 725"),
+            ReminderContent("قراءة سنة الفجر", "ورد أن النبي ﷺ كان يقرأ في ركعتي الفجر بسورتي الكافرون والإخلاص.", "صحيح مسلم 726"),
+            ReminderContent("صلاة الفجر", "قال ﷺ: «من صلى البردين دخل الجنة». والبردان: الفجر والعصر.", "صحيح البخاري 574، صحيح مسلم 635")
+        )
+        "الظهر" -> listOf(
+            ReminderContent("سنة الظهر", "تذكّر سنة الظهر القبلية والبعدية، وتفصيل عددها وصفة أدائها بحسب المذهب.", "أحاديث الرواتب في صحيح البخاري وصحيح مسلم"),
+            ReminderContent("وقت القيلولة", "اجعل لك نصيبًا من الراحة إن تيسّر، دون تفويت الصلاة أو تأخيرها.", "تذكير تنظيمي"),
+            ReminderContent("الدعاء قبل الصلاة", "استقبل الصلاة بالتوبة والدعاء، ولا تنشغل حتى يخرج الوقت.", "تذكير تربوي")
+        )
+        "العصر" -> listOf(
+            ReminderContent("فضل صلاة العصر", "قال ﷺ: «من ترك صلاة العصر فقد حبط عمله».", "صحيح البخاري 553"),
+            ReminderContent("أربع قبل العصر", "ورد الترغيب في أربع ركعات قبل العصر: «رحم الله امرأ صلى قبل العصر أربعًا». وهي ليست من الرواتب المؤكدة.", "سنن أبي داود 1271؛ جامع الترمذي 430"),
+            ReminderContent("حافظ على العصر", "اجعل صلاة العصر في مقدمة جدولك، ولا تؤخرها حتى يضيق وقتها.", "تذكير عملي")
+        )
+        "المغرب" -> listOf(
+            ReminderContent("سنة المغرب", "تذكّر الركعتين بعد فرض المغرب، إن لم تكن هناك إقامة أو عذر.", "صحيح البخاري 1180، صحيح مسلم 729"),
+            ReminderContent("لا تؤخر المغرب", "قال ﷺ: «لا تزال أمتي بخير ما لم يؤخروا المغرب حتى تشتبك النجوم».", "سنن أبي داود 418؛ حسّنه عدد من أهل العلم"),
+            ReminderContent("أذكار المساء", "حافظ على أذكار المساء في وقتها، واقرأ ما تيسّر منها.", "تذكير بالأذكار")
+        )
+        else -> listOf(
+            ReminderContent("سنة العشاء", "تذكّر الركعتين بعد فرض العشاء، ثم صلاة الوتر.", "صحيح البخاري 1180، صحيح مسلم 729"),
+            ReminderContent("الوتر", "اجعل لك نصيبًا من الوتر؛ قال ﷺ: «اجعلوا آخر صلاتكم بالليل وترًا».", "صحيح البخاري 998، صحيح مسلم 751"),
+            ReminderContent("قيام الليل", "ولو بركعتين خفيفتين؛ خذ من الليل نصيبًا بحسب استطاعتك.", "تذكير عملي")
+        )
+    }
+    val chosen = if (slot == 0) common[0] else if (slot == 1) specific[0] else if (slot == 2) specific[1] else specific[2]
+    return chosen
 }
+
+private fun nightContent(kind: String): ReminderContent = if (kind == "قيام الليل")
+    ReminderContent("حان وقت قيام الليل", "قال رسول الله ﷺ: «أفضل الصلاة بعد الفريضة صلاة الليل». صلّ ما تيسّر لك ولو ركعتين.", "صحيح مسلم 1163")
+else
+    ReminderContent("تذكير بصلاة الوتر", "قال رسول الله ﷺ: «اجعلوا آخر صلاتكم بالليل وترًا». لا تنس الوتر إن لم تكن أوترت.", "صحيح البخاري 998، صحيح مسلم 751")
 
 object PrayerNotifications {
     const val CHANNEL = "salati_prayers"
     fun createChannel(context: Context) {
         if (android.os.Build.VERSION.SDK_INT >= 26) {
             val manager = context.getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(NotificationChannel(CHANNEL, "تنبيهات الصلاة", NotificationManager.IMPORTANCE_HIGH).apply {
-                description = "تنبيه الصلاة جماعة قبل الوقت وعند دخوله"
+            manager.createNotificationChannel(NotificationChannel(CHANNEL, "تنبيهات الصلاة والعبادات", NotificationManager.IMPORTANCE_HIGH).apply {
+                description = "تذكيرات متنوعة للصلاة والسنن والذكر وقيام الليل"
             })
         }
     }
+
     fun schedule(context: Context, lat: Double, lon: Double) {
         val prefs = context.getSharedPreferences("salati", Context.MODE_PRIVATE)
-        val notifyBefore = prefs.getBoolean("notify_before", true)
-        val notifyAt = prefs.getBoolean("notify_at", true)
-        val notificationTitle = "الصلاة جامعة"
+        val enabled = prefs.getBoolean("notify_at", true) || prefs.getBoolean("notify_before", true)
         val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val zone = ZoneId.systemDefault()
         val now = System.currentTimeMillis()
+        fun setReminder(at: Long, id: Int, body: String, tag: String) {
+            val intent = Intent(context, PrayerAlarmReceiver::class.java)
+                .putExtra("message", body).putExtra("id", id).putExtra("tag", tag)
+            val pi = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            if (!enabled || at <= now + 5_000L) {
+                alarm.cancel(pi); pi.cancel()
+            } else {
+                try {
+                    if (android.os.Build.VERSION.SDK_INT >= 31 && !alarm.canScheduleExactAlarms()) alarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
+                    else alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
+                } catch (_: SecurityException) { alarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi) }
+            }
+        }
         for (offset in 0..7) {
             val date = LocalDate.now(zone).plusDays(offset.toLong())
-            PrayerTimes.forDate(date, lat, lon, zone).forEachIndexed { index, prayer ->
-                listOf(
-                    Triple(30, notifyBefore, "باقي نصف ساعة على صلاة " + prayer.name + ". " + prayerReminder(prayer.name)),
-                    Triple(0, notifyAt, "دخل وقت صلاة " + prayer.name + ". " + prayerReminder(prayer.name))
-                ).forEach { (before, enabled, message) ->
-                    val at = prayer.time - before * 60_000L
-                    val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + before
-                    val intent = Intent(context, PrayerAlarmReceiver::class.java)
-                        .putExtra("title", notificationTitle)
-                        .putExtra("message", message).putExtra("id", id)
-                    val pi = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-                    if (!enabled || at <= now + 5_000L) {
-                        alarm.cancel(pi)
-                        pi.cancel()
-                    } else {
-                        try {
-                            if (android.os.Build.VERSION.SDK_INT >= 31 && !alarm.canScheduleExactAlarms()) {
-                                alarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
-                            } else {
-                                alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
-                            }
-                        } catch (_: SecurityException) {
-                            alarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
-                        }
-                    }
+            val prayers = PrayerTimes.forDate(date, lat, lon, zone)
+            prayers.forEachIndexed { index, prayer ->
+                // Three reminders before each prayer and one gentle follow-up after it.
+                val offsets = listOf(60, 30, 10)
+                offsets.forEachIndexed { slot, minutes ->
+                    val item = contentForPrayer(prayer.name, slot)
+                    val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + slot + 1
+                    setReminder(prayer.time - minutes * 60_000L, id, item.title + "\n" + item.body + "\nالمصدر: " + item.source, item.title)
                 }
+                val after = ReminderContent("أذكار ما بعد الصلاة", "لا تنس الاستغفار ثلاثًا، ثم: «اللهم أنت السلام ومنك السلام تباركت يا ذا الجلال والإكرام».", "صحيح مسلم 591")
+                val afterId = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + 90
+                setReminder(prayer.time + 7 * 60_000L, afterId, after.title + "\n" + after.body + "\nالمصدر: " + after.source, after.title)
+            }
+            // Night reminders: middle of the night and the final third, using Maghrib-to-Fajr interval.
+            val maghrib = prayers.first { it.name == "المغرب" }.time
+            val fajr = PrayerTimes.forDate(date.plusDays(1), lat, lon, zone).first().time
+            val nightLength = fajr - maghrib
+            val qiyamAt = maghrib + nightLength * 2 / 3
+            val witrAt = maghrib + nightLength * 5 / 6
+            val qiyam = nightContent("قيام الليل")
+            val witr = nightContent("الوتر")
+            val base = (date.toEpochDay() % 100000).toInt() * 10000 + 800
+            setReminder(qiyamAt, base + 1, qiyam.title + "\n" + qiyam.body + "\nالمصدر: " + qiyam.source, qiyam.title)
+            setReminder(witrAt, base + 2, witr.title + "\n" + witr.body + "\nالمصدر: " + witr.source, witr.title)
+            if (date.dayOfWeek == DayOfWeek.MONDAY || date.dayOfWeek == DayOfWeek.THURSDAY) {
+                val fasting = ReminderContent("تذكير بصيام " + if (date.dayOfWeek == DayOfWeek.MONDAY) "الاثنين" else "الخميس", "تذكير بسنة صيام يوم الاثنين والخميس لمن أراد واستطاع.", "صحيح مسلم 1162 في صيام الاثنين؛ وأحاديث عرض الأعمال يوم الاثنين والخميس في جامع الترمذي 747")
+                setReminder(fajr - 45 * 60_000L, base + 3, fasting.title + "\n" + fasting.body + "\nالمصدر: " + fasting.source, fasting.title)
             }
         }
     }
 }
+
 class PrayerAlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         PrayerNotifications.createChannel(context)
         val id = intent.getIntExtra("id", 1)
+        val message = intent.getStringExtra("message") ?: "تذكير بالعبادة"
         val notification = NotificationCompat.Builder(context, PrayerNotifications.CHANNEL)
-            .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
-            .setContentTitle("الصلاة جامعة")
-            .setContentText(intent.getStringExtra("message") ?: "الصلاة جماعة")
-            .setStyle(NotificationCompat.BigTextStyle().bigText(intent.getStringExtra("message") ?: "الصلاة جماعة"))
+            .setSmallIcon(R.drawable.ic_notification_logo)
+            .setContentTitle("الصَّلَاةُ جَامِعَةٌ")
+            .setContentText(message.substringBefore('\n'))
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .setPriority(NotificationCompat.PRIORITY_HIGH).setAutoCancel(true).build()
         (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).notify(id, notification)
     }
 }
+
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val p = context.getSharedPreferences("salati", Context.MODE_PRIVATE)
