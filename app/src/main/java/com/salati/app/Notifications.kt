@@ -6,6 +6,15 @@ import androidx.core.app.NotificationCompat
 import java.time.LocalDate
 import java.time.ZoneId
 
+private fun prayerReminder(name: String): String = when (name) {
+    "الفجر" -> "قال رسول الله ﷺ: «ركعتا الفجر خير من الدنيا وما فيها». (صحيح مسلم: 725)"
+    "الظهر" -> "قال رسول الله ﷺ: «من صلى أربع ركعات قبل الظهر وأربعًا بعدها حرمه الله على النار». (الترمذي: 428، صححه الترمذي)"
+    "العصر" -> "قال رسول الله ﷺ: «من ترك صلاة العصر فقد حبط عمله». (صحيح البخاري: 553)"
+    "المغرب" -> "قال رسول الله ﷺ: «لا تزال أمتي بخير ما لم يؤخروا المغرب حتى تشتبك النجوم». (أبو داود: 418، حسنه أهل العلم)"
+    "العشاء" -> "قال رسول الله ﷺ: «ولو يعلمون ما في العتمة والصبح لأتوهما ولو حبوًا». (البخاري: 657، ومسلم: 651)"
+    else -> "قال الله تعالى: ﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا﴾ [النساء: 103]."
+}
+
 object PrayerNotifications {
     const val CHANNEL = "salati_prayers"
     fun createChannel(context: Context) {
@@ -20,7 +29,7 @@ object PrayerNotifications {
         val prefs = context.getSharedPreferences("salati", Context.MODE_PRIVATE)
         val notifyBefore = prefs.getBoolean("notify_before", true)
         val notifyAt = prefs.getBoolean("notify_at", true)
-        val notificationTitle = prefs.getString("notification_title", "الصلاة جامعة") ?: "الصلاة جامعة"
+        val notificationTitle = "الصلاة جامعة"
         val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val zone = ZoneId.systemDefault()
         val now = System.currentTimeMillis()
@@ -28,8 +37,8 @@ object PrayerNotifications {
             val date = LocalDate.now(zone).plusDays(offset.toLong())
             PrayerTimes.forDate(date, lat, lon, zone).forEachIndexed { index, prayer ->
                 listOf(
-                    Triple(30, notifyBefore, "باقي نصف ساعة على صلاة " + prayer.name + ". استعد للصلاة جماعة."),
-                    Triple(0, notifyAt, "دخل وقت صلاة " + prayer.name + ". الصلاة جماعة.")
+                    Triple(30, notifyBefore, "باقي نصف ساعة على صلاة " + prayer.name + ". " + prayerReminder(prayer.name)),
+                    Triple(0, notifyAt, "دخل وقت صلاة " + prayer.name + ". " + prayerReminder(prayer.name))
                 ).forEach { (before, enabled, message) ->
                     val at = prayer.time - before * 60_000L
                     val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + before
