@@ -121,7 +121,7 @@ fun SalatiScreen() {
     var missedSinceInstall by remember { mutableIntStateOf(prefs.getInt("missed_since_install", 0)) }
     var prayerBase by remember { mutableIntStateOf(prefs.getInt("prayer_base", -1)) }
     var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
-    var mainTab by remember { mutableStateOf("الرئيسية") }
+    var mainTab by remember { mutableStateOf("الصلاة") }
     var sunnahTab by remember { mutableStateOf("سنن الصلاة") }
     var wuduFiqhTopic by remember { mutableStateOf("أركان الوضوء") }
     var prayerFiqhTopic by remember { mutableStateOf("شروط الصلاة") }
@@ -171,13 +171,13 @@ fun SalatiScreen() {
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "فقه الوضوء", "فقه الصلاة", "الذكر", "تدبر القرآن", "الإعدادات").forEach { tab ->
+                    listOf("الصلاة", "قيام الليل", "الأذكار", "الأدعية", "الحاسبة", "القضاء", "السنن", "فقه الوضوء", "فقه الصلاة", "تدبر القرآن", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
             }
 
-            if (mainTab == "الرئيسية") {
+            if (mainTab == "الصلاة") {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Green)) {
                         Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -397,21 +397,12 @@ fun SalatiScreen() {
                         }
                     }
                 }
-            } else if (mainTab == "الذكر") {
-                item {
-                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
-                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                            Text("مسبحة الاستغفار", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-                            Text("استغفر الله")
-                            Text(tasbeehCount.toString(), style = MaterialTheme.typography.displayMedium, color = Green, fontWeight = FontWeight.Bold)
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Button(onClick = { tasbeehCount++; prefs.edit().putInt("tasbeeh_count", tasbeehCount).apply() }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("تسبيحة +1") }
-                                OutlinedButton(onClick = { tasbeehCount = 0; prefs.edit().putInt("tasbeeh_count", 0).apply() }) { Text("تصفير") }
-                            }
-                            Text("العدد محفوظ على جهازك حتى بعد إغلاق التطبيق.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF77736B))
-                        }
-                    }
-                }
+            } else if (mainTab == "قيام الليل") {
+                item { QiyamTrackerScreen(prefs = prefs) }
+            } else if (mainTab == "الأذكار") {
+                item { AuthenticDhikrScreen(prefs = prefs) }
+            } else if (mainTab == "الأدعية") {
+                item { DuaLibraryScreen() }
             } else if (mainTab == "تدبر القرآن") {
                 item { QuranReflectionScreen(prefs = prefs, context = context) }
             } else if (mainTab == "الإعدادات") {
