@@ -128,7 +128,6 @@ fun SalatiScreen() {
     var clockNow by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var notifyBefore by remember { mutableStateOf(prefs.getBoolean("notify_before", true)) }
     var notifyAt by remember { mutableStateOf(prefs.getBoolean("notify_at", true)) }
-    var notificationTitle by remember { mutableStateOf(prefs.getString("notification_title", "الصلاة جامعة") ?: "الصلاة جامعة") }
     LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
     val tomorrow = today.plusDays(1)
@@ -164,8 +163,8 @@ fun SalatiScreen() {
     Surface(Modifier.fillMaxSize(), color = Cream) {
         LazyColumn(Modifier.fillMaxSize().padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
-                Text("صَلَاتِي", style = MaterialTheme.typography.headlineLarge, color = Green, fontWeight = FontWeight.Bold)
-                Text("حساب الفوائت ومتابعة الصلاة يومًا بيوم", color = Color(0xFF6D716A))
+                Text("الصلاة جامعة", style = MaterialTheme.typography.headlineLarge, color = Green, fontWeight = FontWeight.Bold)
+                Text("﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا﴾ [النساء: 103]", color = Color(0xFF6D716A))
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -370,12 +369,7 @@ fun SalatiScreen() {
                                 })
                                 Text("عند دخول وقت الصلاة")
                             }
-                            OutlinedTextField(value = notificationTitle, onValueChange = {
-                                notificationTitle = it
-                                prefs.edit().putString("notification_title", it).apply()
-                                PrayerNotifications.schedule(context, lat, lon)
-                            }, label = { Text("عنوان الإشعار") }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                            Text("العنوان الافتراضي: الصلاة جامعة. لا يصدر التطبيق أذانًا صوتيًا.", color = Color(0xFF6D716A))
+                                            Text("عنوان الإشعار ثابت: الصلاة جامعة. ويظهر تحته حديث أو آية مرتبطة بالصلاة. لا يصدر التطبيق أذانًا صوتيًا.", color = Color(0xFF6D716A))
                         }
                     }
                 }
