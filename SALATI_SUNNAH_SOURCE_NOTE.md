@@ -1,0 +1,1 @@
+Home-entry dhikr was revised to avoid presenting the Abu Dawud 5096 wording as unequivocally authentic; the app now gives the general authentic instruction to remember Allah on entering (Sahih Muslim 2018) and greet household members (Quran 24:61).
