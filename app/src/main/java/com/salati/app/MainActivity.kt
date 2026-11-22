@@ -123,7 +123,8 @@ fun SalatiScreen() {
     var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
     var mainTab by remember { mutableStateOf("الرئيسية") }
     var sunnahTab by remember { mutableStateOf("سنن الصلاة") }
-    var fiqhTopic by remember { mutableStateOf("أركان الصلاة") }
+    var wuduFiqhTopic by remember { mutableStateOf("أركان الوضوء") }
+    var prayerFiqhTopic by remember { mutableStateOf("شروط الصلاة") }
     var fiqhMadhhab by remember { mutableStateOf("الحنفي") }
     var clockNow by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var notifyBefore by remember { mutableStateOf(prefs.getBoolean("notify_before", true)) }
@@ -170,7 +171,7 @@ fun SalatiScreen() {
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "الذكر", "تدبر القرآن", "الإعدادات").forEach { tab ->
+                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "فقه الوضوء", "فقه الصلاة", "الذكر", "تدبر القرآن", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
@@ -354,6 +355,48 @@ fun SalatiScreen() {
                         TextButton(onClick = { mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
                     }
                 }
+            } else if (mainTab == "فقه الوضوء" || mainTab == "فقه الصلاة") {
+                item {
+                    val isWuduSection = mainTab == "فقه الوضوء"
+                    val domainTopics = if (isWuduSection) {
+                        listOf("أركان الوضوء", "سنن الوضوء", "نواقض الوضوء")
+                    } else {
+                        listOf("شروط الصلاة", "أركان الصلاة", "واجبات الصلاة", "سنن الصلاة", "مبطلات الصلاة")
+                    }
+                    val selectedTopic = if (isWuduSection) wuduFiqhTopic else prayerFiqhTopic
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Text(if (isWuduSection) "فقه الوضوء" else "فقه الصلاة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                        Text("اختر الباب الفقهي ثم المذهب لعرض خلاصة الأحكام.", color = Green)
+                        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            domainTopics.forEach { topic ->
+                                FilterChip(
+                                    selected = selectedTopic == topic,
+                                    onClick = { if (isWuduSection) wuduFiqhTopic = topic else prayerFiqhTopic = topic },
+                                    label = { Text(topic) }
+                                )
+                            }
+                        }
+                        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            listOf("الحنفي", "المالكي", "الشافعي", "الحنبلي").forEach { madhhab ->
+                                FilterChip(selected = fiqhMadhhab == madhhab, onClick = { fiqhMadhhab = madhhab }, label = { Text(madhhab) })
+                            }
+                        }
+                        val entry = FiqhGuide.get(selectedTopic, fiqhMadhhab)
+                        Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                            Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Text(selectedTopic + " – المذهب " + fiqhMadhhab, style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                                Text(entry.summary)
+                                Text("المراجع: " + entry.source, color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                                Button(onClick = {
+                                    val query = Uri.encode(selectedTopic + " " + fiqhMadhhab + " شرح تعليمي")
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/results?search_query=" + query)))
+                                }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("مشاهدة شرح فيديو على يوتيوب") }
+                                Text("تنبيه علمي مهم: هذا القسم مرجع تعريفي مساعد، وليس فتوى ولا مصدرًا نهائيًا للحكم الشرعي. قد تختلف التفاصيل والترجيحات، ويجب مراجعة المعلومات مع عالم مؤهل أو كتاب معتمد في المذهب قبل العمل بها.", color = Color(0xFF8A4B19), style = MaterialTheme.typography.bodySmall)
+                                Text("المحتوى الحالي مختصر، ورابط الفيديو يفتح نتائج بحث للموضوع والمذهب المختارين؛ راجع هوية المحاضر ومصدره العلمي.", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                    }
+                }
             } else if (mainTab == "الذكر") {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
@@ -400,7 +443,7 @@ fun SalatiScreen() {
             } else {
                 item {
                     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        listOf("سنن الصلاة", "البيت والمسجد", "الاستيقاظ", "قبل الصلاة", "قبل النوم", "القراءة في الصلاة", "فقه الوضوء والصلاة").forEach { tab ->
+                        listOf("سنن الصلاة", "البيت والمسجد", "الاستيقاظ", "قبل الصلاة", "قبل النوم", "القراءة في الصلاة").forEach { tab ->
                             FilterChip(selected = sunnahTab == tab, onClick = { sunnahTab = tab }, label = { Text(tab) })
                         }
                     }
@@ -424,31 +467,6 @@ fun SalatiScreen() {
                             SunnahItem("الظهر والعصر", "هدي القراءة", "القراءة سرًا؛ وكان يطيل في الأوليين من الظهر، ويقرأ في العصر أقصر من الظهر.", "صحيح البخاري 759؛ صحيح مسلم 451"),
                             SunnahItem("المغرب والعشاء", "هدي القراءة", "يجهر في الأوليين؛ ووردت قراءات متفاوتة الطول، ولا تلزم سورة بعينها لكل صلاة.", "صحيح البخاري 763، 769")
                         ))
-                    }
-                    "فقه الوضوء والصلاة" -> item {
-                        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                            Text("اختر الموضوع ثم المذهب لعرض خلاصة الأحكام.", color = Green)
-                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                FiqhGuide.topics.forEach { topic -> FilterChip(selected = fiqhTopic == topic, onClick = { fiqhTopic = topic }, label = { Text(topic) }) }
-                            }
-                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                listOf("الحنفي", "المالكي", "الشافعي", "الحنبلي").forEach { madhhab -> FilterChip(selected = fiqhMadhhab == madhhab, onClick = { fiqhMadhhab = madhhab }, label = { Text(madhhab) }) }
-                            }
-                            val entry = FiqhGuide.get(fiqhTopic, fiqhMadhhab)
-                            Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
-                                Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    Text(fiqhTopic + " – المذهب " + fiqhMadhhab, style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
-                                    Text(entry.summary)
-                                    Text("المراجع: " + entry.source, color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
-                                    Button(onClick = {
-                                        val query = Uri.encode(fiqhTopic + " " + fiqhMadhhab + " شرح تعليمي")
-                                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/results?search_query=" + query)))
-                                    }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("مشاهدة شرح فيديو على يوتيوب") }
-                                    Text("تنبيه علمي مهم: هذا القسم مرجع تعريفي مساعد، وليس فتوى ولا مصدرًا نهائيًا للحكم الشرعي. قد تختلف التفاصيل والترجيحات، ويجب مراجعة المعلومات مع عالم مؤهل أو كتاب معتمد في المذهب قبل العمل بها.", color = Color(0xFF8A4B19), style = MaterialTheme.typography.bodySmall)
-                                    Text("المحتوى الحالي مختصر، ورابط الفيديو يفتح نتائج بحث للموضوع والمذهب المختارين؛ راجع هوية المحاضر ومصدره العلمي.", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
-                                }
-                            }
-                        }
                     }
                     else -> item { GuideCard("أذكار النوم", SunnahGuide.sleep) }
                 }
