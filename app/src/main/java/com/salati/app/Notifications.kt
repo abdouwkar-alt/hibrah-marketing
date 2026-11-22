@@ -64,7 +64,8 @@ object PrayerNotifications {
 
     fun schedule(context: Context, lat: Double, lon: Double) {
         val prefs = context.getSharedPreferences("salati", Context.MODE_PRIVATE)
-        val notifyBefore = prefs.getBoolean("notify_before", true)\n        val notifyAt = prefs.getBoolean("notify_at", true)
+        val notifyBefore = prefs.getBoolean("notify_before", true)
+        val notifyAt = prefs.getBoolean("notify_at", true)
         val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val zone = ZoneId.systemDefault()
         val now = System.currentTimeMillis()
