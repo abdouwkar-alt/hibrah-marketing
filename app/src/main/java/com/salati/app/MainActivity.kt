@@ -8,6 +8,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateMap
@@ -15,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
@@ -25,10 +29,11 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-private val Green = Color(0xFF24483D)
+private val Green = Color(0xFF164B3A)
 private val Cream = Color(0xFFF6F2E9)
 private val PaleGreen = Color(0xFFE5EBDD)
 private val PrayerNames = listOf("الفجر", "الظهر", "العصر", "المغرب", "العشاء")
+private val PrayerStatuses = listOf("لم أسجل بعد", "في الوقت جماعة", "في الوقت منفردًا", "بعد الوقت", "لم أصلِّ")
 
 class MainActivity : ComponentActivity() {
     private val permissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { getLocationAndSchedule() }
@@ -50,8 +55,8 @@ class MainActivity : ComponentActivity() {
         val coarse = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
         if (!fine && !coarse) return
         try {
-            val client = LocationServices.getFusedLocationProviderClient(this)
-            client.getCurrentLocation(Priority.PRIORITY_BALANCED_POWER_ACCURACY, CancellationTokenSource().token)
+            LocationServices.getFusedLocationProviderClient(this)
+                .getCurrentLocation(Priority.PRIORITY_BALANCED_POWER_ACCURACY, CancellationTokenSource().token)
                 .addOnSuccessListener { loc ->
                     val prefs = getSharedPreferences("salati", MODE_PRIVATE)
                     val lat = loc?.latitude ?: prefs.getFloat("lat", 30.0444f).toDouble()
@@ -71,8 +76,8 @@ private fun GuideCard(title: String, items: List<SunnahItem>) {
             items.forEach { item ->
                 Text(item.title, fontWeight = FontWeight.SemiBold)
                 Text(item.category, color = Color(0xFF56715F), style = MaterialTheme.typography.labelMedium)
-                Text(item.detail)
-                Text("الدليل: ${item.evidence}", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                if (item.detail.isNotBlank()) Text(item.detail)
+                if (item.evidence.isNotBlank()) Text("الدليل: " + item.evidence, color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
                 HorizontalDivider(color = Color(0xFFECE8DE))
             }
         }
@@ -80,19 +85,21 @@ private fun GuideCard(title: String, items: List<SunnahItem>) {
 }
 
 @Composable
-private fun CounterCard(
-    title: String,
-    remaining: Int,
-    unit: String,
-    actionLabel: String,
-    onAdd: () -> Unit,
-    onUndo: () -> Unit
-) {
+private fun NumberField(label: String, value: String, onValue: (String) -> Unit, modifier: Modifier = Modifier) {
+    OutlinedTextField(
+        value = value, onValueChange = { onValue(it.filter(Char::isDigit).take(4)) },
+        label = { Text(label) }, modifier = modifier,
+        singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+    )
+}
+
+@Composable
+private fun CounterCard(title: String, remaining: Int, unit: String, actionLabel: String, onAdd: () -> Unit, onUndo: () -> Unit) {
     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(title, style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
             Text(remaining.toString(), style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-            Text("$unit متبقية")
+            Text(unit + " متبقية")
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                 Button(onClick = onAdd, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text(actionLabel) }
                 OutlinedButton(onClick = onUndo) { Text("تراجع") }
@@ -105,17 +112,15 @@ private fun CounterCard(
 fun SalatiScreen() {
     val context = androidx.compose.ui.platform.LocalContext.current
     val prefs = remember { context.getSharedPreferences("salati", 0) }
-    var qadaPrayers by remember { mutableIntStateOf(prefs.getInt("prayers_done", 0)) }
-    var qadaFasts by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }
+    var qadaPrayersDone by remember { mutableIntStateOf(prefs.getInt("prayers_done", 0)) }
+    var qadaFastsDone by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }
+    var missedSinceInstall by remember { mutableIntStateOf(prefs.getInt("missed_since_install", 0)) }
+    var prayerBase by remember { mutableIntStateOf(prefs.getInt("prayer_base", -1)) }
+    var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
     var mainTab by remember { mutableStateOf("الرئيسية") }
     var sunnahTab by remember { mutableStateOf("سنن الصلاة") }
     var clockNow by remember { mutableLongStateOf(System.currentTimeMillis()) }
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(30_000L)
-            clockNow = System.currentTimeMillis()
-        }
-    }
+    LaunchedEffect(Unit) { while (true) { delay(30_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
     val tomorrow = today.plusDays(1)
     val lat = prefs.getFloat("lat", 30.0444f).toDouble()
@@ -128,117 +133,220 @@ fun SalatiScreen() {
     val nextDuration = ((nextPrayer.time - clockNow).coerceAtLeast(0L) / 1000L)
     val countdown = "%02d:%02d:%02d".format(nextDuration / 3600, (nextDuration % 3600) / 60, nextDuration % 60)
 
-    val dailyStatus: SnapshotStateMap<String, Boolean> = remember(today) {
-        androidx.compose.runtime.mutableStateMapOf<String, Boolean>().apply {
-            PrayerNames.forEach { name -> put(name, prefs.getBoolean("daily_${today}_$name", false)) }
+    val dailyStatus: SnapshotStateMap<String, String> = remember(today) {
+        androidx.compose.runtime.mutableStateMapOf<String, String>().apply {
+            PrayerNames.forEach { name -> put(name, prefs.getString("status_" + today + "_" + name, "لم أسجل بعد") ?: "لم أسجل بعد") }
         }
     }
 
+    var birthDay by remember { mutableStateOf("") }
+    var birthMonth by remember { mutableStateOf("") }
+    var birthYear by remember { mutableStateOf("") }
+    var estimate by remember { mutableStateOf<QadaEstimate?>(null) }
+    var calcError by remember { mutableStateOf("") }
+    var deductOneYear by remember { mutableStateOf(false) }
+    var performedPrayers by remember { mutableStateOf("0") }
+    var partialFastDays by remember { mutableStateOf("0") }
+    var ramadanChecks by remember { mutableStateOf(setOf<Int>()) }
+
+    val prayerRemaining = if (prayerBase >= 0) (prayerBase + missedSinceInstall - qadaPrayersDone).coerceAtLeast(0) else 0
+    val fastRemaining = if (fastBase >= 0) (fastBase - qadaFastsDone).coerceAtLeast(0) else 0
+
     Surface(Modifier.fillMaxSize(), color = Cream) {
-        LazyColumn(Modifier.fillMaxSize().padding(horizontal = 16.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        LazyColumn(Modifier.fillMaxSize().padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
                 Text("صَلَاتِي", style = MaterialTheme.typography.headlineLarge, color = Green, fontWeight = FontWeight.Bold)
-                Text("رفيقك لمتابعة الصلاة والقضاء", color = Color(0xFF6D716A))
+                Text("حساب الفوائت ومتابعة الصلاة يومًا بيوم", color = Color(0xFF6D716A))
             }
             item {
-                SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-                    listOf("الرئيسية", "السنن والأذكار").forEachIndexed { index, tab ->
-                        SegmentedButton(mainTab == tab, onClick = { mainTab = tab }, shape = SegmentedButtonDefaults.itemShape(index, 2)) { Text(tab) }
+                Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن").forEach { tab ->
+                        FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
             }
+
             if (mainTab == "الرئيسية") {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Green)) {
-                        Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(7.dp)) {
+                        Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text("الصلاة القادمة", color = Color.White.copy(alpha = 0.85f))
                             Text(nextPrayer.name, color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                             Text(Instant.ofEpochMilli(nextPrayer.time).atZone(ZoneId.systemDefault()).format(timeFormatter), color = Color.White)
-                            Text("متبقي $countdown", color = Color.White, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                            Text("متبقي " + countdown, color = Color.White, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
-                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text("مواقيت الصلاة اليوم", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, color = Green)
                             Text(today.format(dateFormatter), color = Color(0xFF6D716A))
                             todayTimes.forEach { prayer ->
-                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                                     Text(prayer.name, fontWeight = FontWeight.SemiBold)
-                                    Text(Instant.ofEpochMilli(prayer.time).atZone(ZoneId.systemDefault()).format(timeFormatter), fontWeight = FontWeight.Medium)
+                                    Text(Instant.ofEpochMilli(prayer.time).atZone(ZoneId.systemDefault()).format(timeFormatter))
                                 }
                                 HorizontalDivider(color = Color(0xFFD4DDCE))
                             }
-                            Text("الموقع: ${"%.3f".format(lat)}, ${"%.3f".format(lon)}", style = MaterialTheme.typography.bodySmall)
-                            Text("المواقيت محسوبة محليًا بطريقة تقريبية؛ يُرجى مراجعتها مع التقويم الرسمي لمدينتك.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
+                            Text("المواقيت محسوبة محليًا بطريقة تقريبية؛ راجعها مع التقويم الرسمي.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
                         }
                     }
                 }
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
                         Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Text("متابعة فروض اليوم", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-                            Text("علّم الصلاة بعد أدائها. يتم حفظ تسجيل اليوم على جهازك.")
+                            Text("تسجيل صلوات اليوم", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                            Text("حدد حالة كل صلاة. اختيار «لم أصلِّ» يضيفها إلى رصيد الفوائت.")
                             PrayerNames.forEach { name ->
-                                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                                    Checkbox(
-                                        checked = dailyStatus[name] == true,
-                                        onCheckedChange = { checked ->
-                                            dailyStatus[name] = checked
-                                            prefs.edit().putBoolean("daily_${today}_$name", checked).apply()
+                                var expanded by remember(today, name) { mutableStateOf(false) }
+                                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                                    Text(name, fontWeight = FontWeight.SemiBold)
+                                    Box {
+                                        TextButton(onClick = { expanded = true }) { Text(dailyStatus[name] ?: "لم أسجل بعد") }
+                                        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                                            PrayerStatuses.forEach { status ->
+                                                DropdownMenuItem(text = { Text(status) }, onClick = {
+                                                    val old = dailyStatus[name] ?: "لم أسجل بعد"
+                                                    dailyStatus[name] = status
+                                                    prefs.edit().putString("status_" + today + "_" + name, status).apply()
+                                                    if (old != "لم أصلِّ" && status == "لم أصلِّ") {
+                                                        missedSinceInstall++
+                                                        prefs.edit().putInt("missed_since_install", missedSinceInstall).apply()
+                                                    } else if (old == "لم أصلِّ" && status != "لم أصلِّ") {
+                                                        missedSinceInstall = (missedSinceInstall - 1).coerceAtLeast(0)
+                                                        prefs.edit().putInt("missed_since_install", missedSinceInstall).apply()
+                                                    }
+                                                    expanded = false
+                                                })
+                                            }
                                         }
-                                    )
-                                    Text(name, fontWeight = FontWeight.Medium)
+                                    }
                                 }
+                                HorizontalDivider(color = Color(0xFFECE8DE))
                             }
-                            Text("${dailyStatus.values.count { it }} من 5 صلوات مسجلة اليوم", color = Green, fontWeight = FontWeight.SemiBold)
+                            Text("الفوائت المسجلة منذ استخدام التطبيق: " + missedSinceInstall + " فرض", color = Green, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }
                 item {
-                    Text("القضاء", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                        Column(Modifier.fillMaxWidth().padding(14.dp)) {
+                            Text("رصيدك الحالي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                            Text(if (prayerBase < 0) "ابدأ من الحاسبة لتحديد رصيدك." else "قضاء الصلاة: " + prayerRemaining + " فرض")
+                            Text(if (fastBase < 0) "لم يتم حساب قضاء الصيام بعد." else "قضاء الصيام: " + fastRemaining + " يوم")
+                            TextButton(onClick = { mainTab = "الحاسبة" }) { Text("ابدأ حساب الفوائت") }
+                        }
+                    }
                 }
+            } else if (mainTab == "الحاسبة") {
                 item {
-                    CounterCard(
-                        title = "قضاء الصلوات",
-                        remaining = (23115 - qadaPrayers).coerceAtLeast(0),
-                        unit = "فرض",
-                        actionLabel = "سجّل فرضًا قضيته",
-                        onAdd = { qadaPrayers++; prefs.edit().putInt("prayers_done", qadaPrayers).apply() },
-                        onUndo = { if (qadaPrayers > 0) { qadaPrayers--; prefs.edit().putInt("prayers_done", qadaPrayers).apply() } }
-                    )
+                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                        Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text("حاسبة بداية التكليف", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                            Text("أدخل تاريخ ميلادك الميلادي. سيحوّله التطبيق إلى هجري، ثم يضيف 15 سنة هجرية.")
+                            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                NumberField("اليوم", birthDay, { birthDay = it }, Modifier.weight(1f))
+                                NumberField("الشهر", birthMonth, { birthMonth = it }, Modifier.weight(1f))
+                                NumberField("السنة", birthYear, { birthYear = it }, Modifier.weight(1.4f))
+                            }
+                            Button(onClick = {
+                                calcError = ""
+                                try {
+                                    val date = LocalDate.of(birthYear.toInt(), birthMonth.toInt(), birthDay.toInt())
+                                    estimate = QadaCalculator.calculate(date, today)
+                                    ramadanChecks = estimate!!.ramadans.filter { prefs.getBoolean("ramadan_" + it.hijriYear, false) }.map { it.hijriYear }.toSet()
+                                } catch (e: Exception) {
+                                    calcError = e.message ?: "راجع تاريخ الميلاد والبيانات المدخلة."
+                                }
+                            }, colors = ButtonDefaults.buttonColors(containerColor = Green), modifier = Modifier.fillMaxWidth()) { Text("احسب بداية التكليف") }
+                            if (calcError.isNotBlank()) Text(calcError, color = Color(0xFFB3261E))
+                            estimate?.let { result ->
+                                HorizontalDivider()
+                                Text("تاريخ الميلاد الهجري: " + QadaCalculator.hijriLabel(result.birthHijri), fontWeight = FontWeight.SemiBold)
+                                Text("بداية التكليف: " + QadaCalculator.hijriLabel(result.taklifHijri), fontWeight = FontWeight.SemiBold)
+                                Text("الموافق ميلاديًا: " + result.taklifDate.toString())
+                                Text("أيام الحساب حتى اليوم: " + result.prayerDays)
+                                Text("إجمالي الفروض قبل الخصم: " + result.totalPrayers, color = Green, fontWeight = FontWeight.Bold)
+                                HorizontalDivider()
+                                Text("التخفيف وتقدير ما سبق أداؤه", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Checkbox(checked = deductOneYear, onCheckedChange = { deductOneYear = it })
+                                    Text("خصم سنة هجرية تقديرية من الصلوات (1770 فرضًا)")
+                                }
+                                OutlinedTextField(value = performedPrayers, onValueChange = { performedPrayers = it.filter(Char::isDigit) }, label = { Text("صلوات سابقة تتذكر أنك أديتها") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.fillMaxWidth())
+                                HorizontalDivider()
+                                Text("رمضانات الفترة المحسوبة", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                                Text("علّم كل رمضان صمته كاملًا. الأيام الجزئية أدخلها في الحقل التالي.")
+                                result.ramadans.forEach { period ->
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        val checked = ramadanChecks.contains(period.hijriYear)
+                                        Checkbox(checked = checked, onCheckedChange = { on ->
+                                            ramadanChecks = if (on) ramadanChecks + period.hijriYear else ramadanChecks - period.hijriYear
+                                            prefs.edit().putBoolean("ramadan_" + period.hijriYear, on).apply()
+                                        })
+                                        Text("رمضان " + period.hijriYear + " هـ (" + period.days + " يوم)")
+                                    }
+                                }
+                                OutlinedTextField(value = partialFastDays, onValueChange = { partialFastDays = it.filter(Char::isDigit) }, label = { Text("أيام صمتها متفرقة خارج الرمضانات الكاملة") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.fillMaxWidth())
+                                val checkedRamadanDays = result.ramadans.filter { ramadanChecks.contains(it.hijriYear) }.sumOf { it.days }
+                                val prayerDeduction = (if (deductOneYear) 1770 else 0) + (performedPrayers.toIntOrNull() ?: 0)
+                                val newPrayerBase = (result.totalPrayers - prayerDeduction).coerceAtLeast(0).toInt()
+                                val newFastBase = (result.totalRamadanDays - checkedRamadanDays - (partialFastDays.toIntOrNull() ?: 0)).coerceAtLeast(0)
+                                Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
+                                    Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                                        Text("النتيجة التقديرية", fontWeight = FontWeight.Bold, color = Green)
+                                        Text("قضاء الصلوات: " + newPrayerBase + " فرض")
+                                        Text("إجمالي أيام رمضان: " + result.totalRamadanDays)
+                                        Text("أيام الصيام المتبقية: " + newFastBase + " يوم")
+                                    }
+                                }
+                                Button(onClick = {
+                                    prayerBase = newPrayerBase
+                                    fastBase = newFastBase
+                                    qadaPrayersDone = 0
+                                    qadaFastsDone = 0
+                                    prefs.edit().putInt("prayer_base", prayerBase).putInt("fast_base", fastBase).putInt("prayers_done", 0).putInt("fasts_done", 0).apply()
+                                    mainTab = "القضاء"
+                                }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("اعتماد النتيجة وبدء المتابعة") }
+                            }
+                        }
+                    }
                 }
+            } else if (mainTab == "القضاء") {
                 item {
-                    CounterCard(
-                        title = "قضاء الصيام",
-                        remaining = (350 - qadaFasts).coerceAtLeast(0),
-                        unit = "يوم",
-                        actionLabel = "سجّل يوم صيام قضيته",
-                        onAdd = { qadaFasts++; prefs.edit().putInt("fasts_done", qadaFasts).apply() },
-                        onUndo = { if (qadaFasts > 0) { qadaFasts--; prefs.edit().putInt("fasts_done", qadaFasts).apply() } }
-                    )
+                    if (prayerBase < 0 || fastBase < 0) {
+                        Card { Column(Modifier.padding(16.dp)) { Text("لم يتم إعداد رصيد القضاء بعد."); Button(onClick = { mainTab = "الحاسبة" }) { Text("افتح الحاسبة") } } }
+                    } else {
+                        CounterCard("قضاء الصلوات", prayerRemaining, "فرض", "سجّل فرضًا قضيته",
+                            onAdd = { qadaPrayersDone++; prefs.edit().putInt("prayers_done", qadaPrayersDone).apply() },
+                            onUndo = { if (qadaPrayersDone > 0) { qadaPrayersDone--; prefs.edit().putInt("prayers_done", qadaPrayersDone).apply() } })
+                        CounterCard("قضاء الصيام", fastRemaining, "يوم", "سجّل يوم صيام قضيته",
+                            onAdd = { qadaFastsDone++; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() },
+                            onUndo = { if (qadaFastsDone > 0) { qadaFastsDone--; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() } })
+                        Text("الرصيد = الفوائت المقدرة + ما تسجله من صلوات فائتة يوميًا - ما قضيته.")
+                        TextButton(onClick = { mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
+                    }
                 }
             } else {
                 item {
-                    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-                        listOf("سنن الصلاة", "البيت والمسجد", "قبل النوم").forEachIndexed { index, tab ->
-                            SegmentedButton(sunnahTab == tab, onClick = { sunnahTab = tab }, shape = SegmentedButtonDefaults.itemShape(index, 3)) { Text(tab) }
+                    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        listOf("سنن الصلاة", "البيت والمسجد", "قبل النوم").forEach { tab ->
+                            FilterChip(selected = sunnahTab == tab, onClick = { sunnahTab = tab }, label = { Text(tab) })
                         }
                     }
                 }
                 when (sunnahTab) {
-                    "سنن الصلاة" -> {
-                        item { GuideCard("السنن الرواتب والأذكار بعد الصلاة", PrayerNames.flatMap { name -> listOf(SunnahItem(name, "سنن الصلاة", "", "")) + (SunnahGuide.prayerItems[name] ?: emptyList()) } + SunnahGuide.afterPrayer) }
+                    "سنن الصلاة" -> item {
+                        GuideCard("السنن الرواتب والأذكار بعد الصلاة", PrayerNames.flatMap { name ->
+                            listOf(SunnahItem(name, "سنن الصلاة", "", "")) + (SunnahGuide.prayerItems[name] ?: emptyList())
+                        } + SunnahGuide.afterPrayer)
                     }
                     "البيت والمسجد" -> {
                         item { GuideCard("أذكار وآداب البيت", SunnahGuide.home) }
                         item { GuideCard("أذكار وآداب المسجد", SunnahGuide.mosque) }
                     }
                     else -> item { GuideCard("أذكار النوم", SunnahGuide.sleep) }
-                }
-                item {
-                    Text("تختلف بعض تفاصيل السنن الرواتب وتصنيفها بين المذاهب. يعرض التطبيق المشهور في المنهج الحنفي المصري، ولا يُعدّ فتوى.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
                 }
             }
             item { Spacer(Modifier.height(12.dp)) }
