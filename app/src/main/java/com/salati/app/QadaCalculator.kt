@@ -42,7 +42,10 @@ object QadaCalculator {
             val until = if (nextMonth.isAfter(today.plusDays(1))) today.plusDays(1) else nextMonth
             if (from.isBefore(until)) periods.add(RamadanPeriod(year, from, until))
         }
-        return QadaEstimate(birthHijri, taklifHijri, taklifDate, prayerDays, totalPrayers, periods, periods.sumOf { it.days })
+        val nextHijriYear = taklifHijri.plus(1, ChronoUnit.YEARS) as HijrahDate
+        val nextHijriYearDate = LocalDate.ofEpochDay(nextHijriYear.toEpochDay() - egyptAdjustmentDays)
+        val oneHijriYearDays = ChronoUnit.DAYS.between(taklifDate, nextHijriYearDate).toInt()
+        return QadaEstimate(birthHijri, taklifHijri, taklifDate, prayerDays, totalPrayers, periods, periods.sumOf { it.days }, oneHijriYearDays)
     }
 
     fun hijriLabel(date: HijrahDate): String {
