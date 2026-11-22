@@ -17,21 +17,25 @@ object PrayerNotifications {
         }
     }
     fun schedule(context: Context, lat: Double, lon: Double) {
+        val prefs = context.getSharedPreferences("salati", Context.MODE_PRIVATE)
+        val notifyBefore = prefs.getBoolean("notify_before", true)
+        val notifyAt = prefs.getBoolean("notify_at", true)
+        val notificationTitle = prefs.getString("notification_title", "الصلاة جامعة") ?: "الصلاة جامعة"
         val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val zone = ZoneId.systemDefault()
         val now = System.currentTimeMillis()
         for (offset in 0..7) {
             val date = LocalDate.now(zone).plusDays(offset.toLong())
             PrayerTimes.forDate(date, lat, lon, zone).forEachIndexed { index, prayer ->
-                listOf(
-                    30 to ("باقي نصف ساعة على صلاة " + prayer.name + ". استعد للصلاة جماعة."),
-                    0 to ("دخل وقت صلاة " + prayer.name + ". الصلاة جماعة.")
-                ).forEach { (before, message) ->
+                buildList {
+                    if (notifyBefore) add(30 to ("باقي نصف ساعة على صلاة " + prayer.name + ". استعد للصلاة جماعة."))
+                    if (notifyAt) add(0 to ("دخل وقت صلاة " + prayer.name + ". الصلاة جماعة."))
+                }.forEach { (before, message) ->
                     val at = prayer.time - before * 60_000L
                     if (at > now + 5_000L) {
                         val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + before
                         val intent = Intent(context, PrayerAlarmReceiver::class.java)
-                            .putExtra("title", "الصلاة جماعة")
+                            .putExtra("title", notificationTitle)
                             .putExtra("message", message).putExtra("id", id)
                         val pi = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
                         try {
