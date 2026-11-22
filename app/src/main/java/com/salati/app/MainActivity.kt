@@ -175,7 +175,7 @@ fun SalatiScreen() {
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الصلاة", "قيام الليل", "الأذكار", "الأدعية", "الحاسبة", "القضاء", "السنن", "فقه الوضوء", "فقه الصلاة", "تدبر القرآن", "الإعدادات").forEach { tab ->
+                    listOf("الصلاة", "الأذكار", "الأدعية", "الحاسبة", "السنن العملية", "فقه الوضوء", "فقه الصلاة", "تدبر القرآن", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
@@ -264,7 +264,7 @@ fun SalatiScreen() {
                             Text("رصيدك الحالي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
                             Text(if (prayerBase < 0) "ابدأ من الحاسبة لتحديد رصيدك." else "قضاء الصلاة: " + prayerRemaining + " فرض")
                             Text(if (fastBase < 0) "لم يتم حساب قضاء الصيام بعد." else "قضاء الصيام: " + fastRemaining + " يوم")
-                            TextButton(onClick = { mainTab = "الحاسبة" }) { Text("ابدأ حساب الفوائت") }
+                            TextButton(onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }) { Text("ابدأ حساب الفوائت") }
                         }
                     }
                 }
@@ -345,10 +345,7 @@ fun SalatiScreen() {
                                 Button(onClick = {
                                     prayerBase = newPrayerBase
                                     fastBase = newFastBase
-                                    qadaPrayersDone = 0
-                                    qadaFastsDone = 0
-                                    PrayerNames.forEach { qadaDoneByPrayer[it] = 0; prefs.edit().putInt("qada_done_" + it, 0).apply() }
-                                    prefs.edit().putInt("prayer_base", prayerBase).putInt("fast_base", fastBase).putInt("prayers_done", 0).putInt("fasts_done", 0).apply()
+                                    prefs.edit().putInt("prayer_base", prayerBase).putInt("fast_base", fastBase).apply()
                                     mainTab = "القضاء"
                                 }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("اعتماد النتيجة وبدء المتابعة") }
                             }
