@@ -1,0 +1,232 @@
+package com.salati.app
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import android.content.SharedPreferences
+import java.time.LocalDate
+
+private val WorshipGreen = Color(0xFF164B3A)
+private val WorshipPale = Color(0xFFE5EBDD)
+
+@Composable
+fun QiyamTrackerScreen(prefs: SharedPreferences) {
+    val today = LocalDate.now().toString()
+    var savedDate by remember { mutableStateOf(prefs.getString("qiyam_date", today) ?: today) }
+    var verses by remember { mutableIntStateOf(if (savedDate == today) prefs.getInt("qiyam_verses", 0) else 0) }
+    var entered by remember { mutableStateOf("10") }
+
+    LaunchedEffect(today) {
+        if (savedDate != today) {
+            savedDate = today
+            verses = 0
+            prefs.edit().putString("qiyam_date", today).putInt("qiyam_verses", 0).apply()
+        }
+    }
+
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Card(colors = CardDefaults.cardColors(containerColor = WorshipGreen)) {
+            Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(7.dp)) {
+                Text("قيام الليل", color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                Text("سجّل عدد الآيات التي قرأتها في صلاة الليل اليوم.", color = Color.White.copy(alpha = 0.9f))
+                Text(verses.toString() + " آية", color = Color.White, style = MaterialTheme.typography.displayMedium, fontWeight = FontWeight.Bold)
+                Text("التسجيل يومي، ويبدأ من جديد مع بداية يوم جديد.", color = Color.White.copy(alpha = 0.85f), style = MaterialTheme.typography.bodySmall)
+            }
+        }
+        Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+            Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
+                Text("أضف ما قرأته", color = WorshipGreen, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
+                OutlinedTextField(
+                    value = entered,
+                    onValueChange = { entered = it.filter(Char::isDigit).take(4) },
+                    label = { Text("عدد الآيات") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                Button(
+                    onClick = {
+                        val amount = entered.toIntOrNull()
+                        if (amount != null && amount > 0 && amount <= 1000) {
+                            verses += amount
+                            prefs.edit().putString("qiyam_date", today).putInt("qiyam_verses", verses).apply()
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = WorshipGreen)
+                ) { Text("تسجيل القراءة") }
+                TextButton(onClick = {
+                    verses = 0
+                    prefs.edit().putString("qiyam_date", today).putInt("qiyam_verses", 0).apply()
+                }) { Text("إعادة ضبط تسجيل اليوم") }
+            }
+        }
+        listOf(
+            Triple(10, "لم يُكتب من الغافلين", "بلوغ عشر آيات"),
+            Triple(100, "كُتب من القانتين", "بلوغ مئة آية"),
+            Triple(1000, "كُتب من المقنطرين", "بلوغ ألف آية")
+        ).forEach { (goal, reward, label) ->
+            val reached = verses >= goal
+            Card(colors = CardDefaults.cardColors(containerColor = if (reached) WorshipPale else Color.White)) {
+                Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                    Text(label, color = WorshipGreen, fontWeight = FontWeight.Bold)
+                    Text(reward, fontWeight = FontWeight.SemiBold)
+                    LinearProgressIndicator(
+                        progress = { (verses.toFloat() / goal.toFloat()).coerceIn(0f, 1f) },
+                        modifier = Modifier.fillMaxWidth(),
+                        color = WorshipGreen
+                    )
+                    Text(if (reached) "تم بلوغ هذا المستوى اليوم." else "المتبقي: " + (goal - verses) + " آية")
+                }
+            }
+        }
+        Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+            Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(7.dp)) {
+                Text("فضل قيام الليل بالقرآن", color = WorshipGreen, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+                Text("قال رسول الله ﷺ: «مَنْ قَامَ بِعَشْرِ آيَاتٍ لَمْ يُكْتَبْ مِنَ الْغَافِلِينَ، وَمَنْ قَامَ بِمِائَةِ آيَةٍ كُتِبَ مِنَ الْقَانِتِينَ، وَمَنْ قَامَ بِأَلْفِ آيَةٍ كُتِبَ مِنَ الْمُقَنْطِرِينَ».")
+                Text("سنن أبي داود (1398)، وصححه الألباني.", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                Text("المستويات مرتبطة بما يُقرأ في صلاة الليل، والتطبيق أداة للتذكير والتسجيل لا للحكم على قبول العمل.", color = Color(0xFF755F45), style = MaterialTheme.typography.bodySmall)
+            }
+        }
+    }
+}
+
+@Composable
+fun AuthenticDhikrScreen(prefs: SharedPreferences) {
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Text("أذكار ثابتة بأعدادها الواردة", color = WorshipGreen, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
+        Text("لكل ذكر عدّاد مستقل. الأعداد المعروضة مرتبطة بالرواية المذكورة أسفل الذكر.")
+        DhikrCounterCard(
+            prefs = prefs,
+            keyName = "dhikr_istighfar_100",
+            title = "الاستغفار",
+            phrase = "أستغفر الله",
+            target = 100,
+            occasion = "مائة مرة في اليوم",
+            source = "صحيح مسلم (2702)"
+        )
+        DhikrCounterCard(
+            prefs = prefs,
+            keyName = "dhikr_subhan_100",
+            title = "التسبيح والتحميد",
+            phrase = "سُبْحَانَ اللهِ وَبِحَمْدِهِ",
+            target = 100,
+            occasion = "مائة مرة في اليوم",
+            source = "صحيح البخاري (6405)"
+        )
+        Text("أذكار دبر الصلاة المفروضة", color = WorshipGreen, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
+        Text("هذه العدادات لجلسة واحدة بعد الصلاة؛ أعد ضبطها بعد كل صلاة.")
+        DhikrCounterCard(prefs, "dhikr_subhan_33", "التسبيح", "سُبْحَانَ اللهِ", 33, "ثلاث وثلاثون مرة بعد كل صلاة مكتوبة", "صحيح مسلم (596)")
+        DhikrCounterCard(prefs, "dhikr_alhamd_33", "التحميد", "الْحَمْدُ لِلَّهِ", 33, "ثلاث وثلاثون مرة بعد كل صلاة مكتوبة", "صحيح مسلم (596)")
+        DhikrCounterCard(prefs, "dhikr_akbar_34", "التكبير", "اللهُ أَكْبَرُ", 34, "أربع وثلاثون مرة بعد كل صلاة مكتوبة", "صحيح مسلم (596)")
+        Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+            Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                Text("الذكر المفتوح", color = WorshipGreen, fontWeight = FontWeight.Bold)
+                Text("يمكنك ذكر الله بأي صيغة مشروعة دون التقيد بعدد. لا ينسب التطبيق عددًا محددًا إلى ذكر إلا إذا ورد به دليل.")
+            }
+        }
+    }
+}
+
+@Composable
+private fun DhikrCounterCard(
+    prefs: SharedPreferences,
+    keyName: String,
+    title: String,
+    phrase: String,
+    target: Int,
+    occasion: String,
+    source: String
+) {
+    var count by remember(keyName) { mutableIntStateOf(prefs.getInt(keyName, 0).coerceAtLeast(0)) }
+    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(title, color = WorshipGreen, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+            Text(phrase, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+            Text(count.toString() + " / " + target, color = WorshipGreen, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+            LinearProgressIndicator(
+                progress = { (count.toFloat() / target.toFloat()).coerceIn(0f, 1f) },
+                modifier = Modifier.fillMaxWidth(),
+                color = WorshipGreen
+            )
+            Text(occasion, style = MaterialTheme.typography.bodySmall)
+            Text("الدليل: $source", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(onClick = {
+                    count++
+                    prefs.edit().putInt(keyName, count).apply()
+                }, colors = ButtonDefaults.buttonColors(containerColor = WorshipGreen)) { Text("+1") }
+                OutlinedButton(onClick = {
+                    if (count > 0) {
+                        count--
+                        prefs.edit().putInt(keyName, count).apply()
+                    }
+                }) { Text("تراجع") }
+                TextButton(onClick = {
+                    count = 0
+                    prefs.edit().putInt(keyName, 0).apply()
+                }) { Text("تصفير") }
+            }
+            if (count >= target) Text("اكتمل العدد المحدد.", color = WorshipGreen, fontWeight = FontWeight.SemiBold)
+        }
+    }
+}
+
+@Composable
+fun DuaLibraryScreen() {
+    var selected by remember { mutableStateOf("أدعية نبوية") }
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FilterChip(selected = selected == "أدعية نبوية", onClick = { selected = "أدعية نبوية" }, label = { Text("أدعية نبوية") })
+            FilterChip(selected = selected == "أدعية القرآن", onClick = { selected = "أدعية القرآن" }, label = { Text("أدعية القرآن") })
+        }
+        if (selected == "أدعية نبوية") {
+            DuaCard(
+                "دعاء للاستعانة على العبادة",
+                "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
+                "سنن أبي داود (1522)، وصححه الألباني."
+            )
+            DuaCard(
+                "دعاء طلب الهداية والعفاف",
+                "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",
+                "صحيح مسلم (2721)."
+            )
+            Text("هذه مجموعة أولية من الأدعية الثابتة، وستُضاف إليها أدعية أخرى بعد مراجعة نصوصها وتخريجها.", color = Color(0xFF755F45), style = MaterialTheme.typography.bodySmall)
+        } else {
+            DuaCard(
+                "دعاء خيري الدنيا والآخرة",
+                "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+                "سورة البقرة، الآية 201."
+            )
+            DuaCard(
+                "دعاء الثبات",
+                "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً إِنَّكَ أَنْتَ الْوَهَّابُ",
+                "سورة آل عمران، الآية 8."
+            )
+            DuaCard(
+                "دعاء الاعتراف بالظلم وطلب المغفرة",
+                "رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ",
+                "سورة الأعراف، الآية 23."
+            )
+            DuaCard(
+                "دعاء طلب الصبر والثبات",
+                "رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ",
+                "سورة البقرة، الآية 250."
+            )
+        }
+    }
+}
+
+@Composable
+private fun DuaCard(title: String, dua: String, source: String) {
+    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(title, color = WorshipGreen, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+            Text(dua, style = MaterialTheme.typography.titleLarge)
+            Text(source, color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+        }
+    }
+}
