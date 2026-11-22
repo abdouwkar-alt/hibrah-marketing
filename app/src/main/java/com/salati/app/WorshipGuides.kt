@@ -175,57 +175,83 @@ private fun DhikrCounterCard(
     }
 }
 
+private data class DuaEntry(val title: String, val dua: String, val matn: String, val source: String)
+
 @Composable
 fun DuaLibraryScreen() {
     var selected by remember { mutableStateOf("أدعية نبوية") }
+    var propheticStart by remember { mutableIntStateOf(0) }
+    var quranStart by remember { mutableIntStateOf(0) }
+    val prophetic = listOf(
+        DuaEntry(
+            "دعاء للاستعانة على العبادة",
+            "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
+            "عن معاذ بن جبل رضي الله عنه أن رسول الله ﷺ أخذ بيده وقال: «يا معاذ، والله إني لأحبك»، فقال: «أوصيك يا معاذ، لا تدعن في دبر كل صلاة أن تقول: اللهم أعني على ذكرك وشكرك وحسن عبادتك».",
+            "سنن أبي داود (1522)، وصححه الألباني."
+        ),
+        DuaEntry(
+            "دعاء طلب الهداية والعفاف",
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",
+            "عن عبد الله بن مسعود رضي الله عنه أن النبي ﷺ كان يقول: «اللهم إني أسألك الهدى والتقى والعفاف والغنى».",
+            "صحيح مسلم (2721)."
+        ),
+        DuaEntry(
+            "دعاء جامع بالمغفرة والرحمة والهداية والعافية والرزق",
+            "اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَاهْدِنِي، وَعَافِنِي، وَارْزُقْنِي",
+            "عن طارق بن أشيم رضي الله عنه: أن الرجل إذا أسلم علّمه النبي ﷺ الصلاة، ثم أمره أن يدعو بهذه الكلمات: «اللهم اغفر لي، وارحمني، واهدني، وعافني، وارزقني».",
+            "صحيح مسلم (2697) — حديث صحيح."
+        ),
+        DuaEntry(
+            "دعاء الاستعاذة من الهم والحزن والدين",
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ",
+            "عن أنس رضي الله عنه قال: كان النبي ﷺ يقول: «اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل، والجبن والبخل، وضلع الدين وغلبة الرجال».",
+            "صحيح البخاري (6369)، وله رواية في صحيح مسلم (2706)."
+        )
+    )
+    val quranic = listOf(
+        DuaEntry("دعاء خيري الدنيا والآخرة", "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", "", "سورة البقرة، الآية 201."),
+        DuaEntry("دعاء الثبات", "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً إِنَّكَ أَنْتَ الْوَهَّابُ", "", "سورة آل عمران، الآية 8."),
+        DuaEntry("دعاء الاعتراف بالظلم وطلب المغفرة", "رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ", "", "سورة الأعراف، الآية 23."),
+        DuaEntry("دعاء طلب الصبر والثبات", "رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ", "", "سورة البقرة، الآية 250.")
+    )
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FilterChip(selected = selected == "أدعية نبوية", onClick = { selected = "أدعية نبوية" }, label = { Text("أدعية نبوية") })
             FilterChip(selected = selected == "أدعية القرآن", onClick = { selected = "أدعية القرآن" }, label = { Text("أدعية القرآن") })
         }
-        if (selected == "أدعية نبوية") {
-            DuaCard(
-                "دعاء للاستعانة على العبادة",
-                "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
-                "سنن أبي داود (1522)، وصححه الألباني."
-            )
-            DuaCard(
-                "دعاء طلب الهداية والعفاف",
-                "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",
-                "صحيح مسلم (2721)."
-            )
-            Text("هذه مجموعة أولية من الأدعية الثابتة، وستُضاف إليها أدعية أخرى بعد مراجعة نصوصها وتخريجها.", color = Color(0xFF755F45), style = MaterialTheme.typography.bodySmall)
-        } else {
-            DuaCard(
-                "دعاء خيري الدنيا والآخرة",
-                "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
-                "سورة البقرة، الآية 201."
-            )
-            DuaCard(
-                "دعاء الثبات",
-                "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً إِنَّكَ أَنْتَ الْوَهَّابُ",
-                "سورة آل عمران، الآية 8."
-            )
-            DuaCard(
-                "دعاء الاعتراف بالظلم وطلب المغفرة",
-                "رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ",
-                "سورة الأعراف، الآية 23."
-            )
-            DuaCard(
-                "دعاء طلب الصبر والثبات",
-                "رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ",
-                "سورة البقرة، الآية 250."
-            )
+        val entries = if (selected == "أدعية نبوية") prophetic else quranic
+        val startIndex = if (selected == "أدعية نبوية") propheticStart else quranStart
+        entries.drop(startIndex).take(2).forEach { entry ->
+            DuaCard(entry.title, entry.dua, entry.source, entry.matn)
+        }
+        OutlinedButton(
+            onClick = {
+                if (selected == "أدعية نبوية") propheticStart = (propheticStart + 2) % prophetic.size
+                else quranStart = (quranStart + 2) % quranic.size
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) { Text("عرض دعاءين آخرين") }
+        Card(colors = CardDefaults.cardColors(containerColor = WorshipPale)) {
+            Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                Text("التعلّم على مهل", color = WorshipGreen, fontWeight = FontWeight.Bold)
+                Text("يمكنك أن تكتفي بتعلّم دعاء واحد هذا الأسبوع؛ القليل الذي تداوم عليه خير من الكثير الذي تنقطع عنه.")
+                Text("قال رسول الله ﷺ: «أحب الأعمال إلى الله أدومها وإن قل».", style = MaterialTheme.typography.bodySmall)
+                Text("صحيح مسلم (783)، وصحيح البخاري (6464) بلفظ أطول.", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+            }
         }
     }
 }
 
 @Composable
-private fun DuaCard(title: String, dua: String, source: String) {
+private fun DuaCard(title: String, dua: String, source: String, matn: String = "") {
     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(title, color = WorshipGreen, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
-            Text(dua, style = MaterialTheme.typography.titleLarge)
+            Text(dua, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+            if (matn.isNotBlank()) {
+                Text("نص الحديث", color = WorshipGreen, fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.labelLarge)
+                Text(matn, style = MaterialTheme.typography.bodyMedium)
+            }
             Text(source, color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
         }
     }
