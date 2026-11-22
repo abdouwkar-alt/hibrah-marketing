@@ -12,17 +12,9 @@ object PrayerNotifications {
         if (android.os.Build.VERSION.SDK_INT >= 26) {
             val manager = context.getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(NotificationChannel(CHANNEL, "تنبيهات الصلاة", NotificationManager.IMPORTANCE_HIGH).apply {
-                description = "تذكير قبل الصلاة وعند دخول وقتها"
+                description = "تنبيه الصلاة جماعة قبل الوقت وعند دخوله"
             })
         }
-    }
-    private fun reminder(name: String): String = when (name) {
-        "الفجر" -> "قبل الفجر: ركعتا سنة الفجر المؤكدة."
-        "الظهر" -> "قبل الظهر: أربع ركعات راتبة مؤكدة."
-        "العصر" -> "قبل العصر: لا توجد راتبة مؤكدة؛ توجد نافلة غير مؤكدة."
-        "المغرب" -> "تذكير بالمغرب؛ الراتبة المؤكدة ركعتان بعد الفرض."
-        "العشاء" -> "تذكير بالعشاء؛ الراتبة المؤكدة ركعتان بعد الفرض."
-        else -> "تذكير بالصلاة."
     }
     fun schedule(context: Context, lat: Double, lon: Double) {
         val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -31,12 +23,15 @@ object PrayerNotifications {
         for (offset in 0..7) {
             val date = LocalDate.now(zone).plusDays(offset.toLong())
             PrayerTimes.forDate(date, lat, lon, zone).forEachIndexed { index, prayer ->
-                listOf(30 to reminder(prayer.name), 0 to "دخل وقت صلاة ${prayer.name}.").forEach { (before, message) ->
+                listOf(
+                    30 to ("باقي نصف ساعة على صلاة " + prayer.name + ". استعد للصلاة جماعة."),
+                    0 to ("دخل وقت صلاة " + prayer.name + ". الصلاة جماعة.")
+                ).forEach { (before, message) ->
                     val at = prayer.time - before * 60_000L
                     if (at > now + 5_000L) {
                         val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + before
                         val intent = Intent(context, PrayerAlarmReceiver::class.java)
-                            .putExtra("title", if (before == 0) "حان وقت الصلاة" else "تذكير قبل الصلاة")
+                            .putExtra("title", "الصلاة جماعة")
                             .putExtra("message", message).putExtra("id", id)
                         val pi = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
                         try {
@@ -60,9 +55,9 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         val id = intent.getIntExtra("id", 1)
         val notification = NotificationCompat.Builder(context, PrayerNotifications.CHANNEL)
             .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
-            .setContentTitle(intent.getStringExtra("title") ?: "صلاتي")
-            .setContentText(intent.getStringExtra("message") ?: "حان وقت الصلاة")
-            .setStyle(NotificationCompat.BigTextStyle().bigText(intent.getStringExtra("message") ?: "حان وقت الصلاة"))
+            .setContentTitle(intent.getStringExtra("title") ?: "الصلاة جماعة")
+            .setContentText(intent.getStringExtra("message") ?: "الصلاة جماعة")
+            .setStyle(NotificationCompat.BigTextStyle().bigText(intent.getStringExtra("message") ?: "الصلاة جماعة"))
             .setPriority(NotificationCompat.PRIORITY_HIGH).setAutoCancel(true).build()
         (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).notify(id, notification)
     }
