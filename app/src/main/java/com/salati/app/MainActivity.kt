@@ -323,9 +323,16 @@ fun SalatiScreen() {
                     if (prayerBase < 0 || fastBase < 0) {
                         Card { Column(Modifier.padding(16.dp)) { Text("لم يتم إعداد رصيد القضاء بعد."); Button(onClick = { mainTab = "الحاسبة" }) { Text("افتح الحاسبة") } } }
                     } else {
-                        CounterCard("قضاء الصلوات", prayerRemaining, "فرض", "سجّل فرضًا قضيته",
-                            onAdd = { qadaPrayersDone++; prefs.edit().putInt("prayers_done", qadaPrayersDone).apply() },
-                            onUndo = { if (qadaPrayersDone > 0) { qadaPrayersDone--; prefs.edit().putInt("prayers_done", qadaPrayersDone).apply() } })
+                        Text("قضاء كل صلاة على حدة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                        PrayerNames.forEachIndexed { index, prayer ->
+                            val baseForPrayer = (prayerBase / 5) + if (index < prayerBase % 5) 1 else 0
+                            val missed = missedByPrayer[prayer] ?: 0
+                            val done = qadaDoneByPrayer[prayer] ?: 0
+                            val remaining = (baseForPrayer + missed - done).coerceAtLeast(0)
+                            CounterCard("قضاء " + prayer, remaining, "فرض", "سجّلت قضاء " + prayer,
+                                onAdd = { qadaDoneByPrayer[prayer] = done + 1; qadaPrayersDone = qadaDoneByPrayer.values.sum(); prefs.edit().putInt("qada_done_" + prayer, done + 1).putInt("prayers_done", qadaPrayersDone).apply() },
+                                onUndo = { if (done > 0) { qadaDoneByPrayer[prayer] = done - 1; qadaPrayersDone = qadaDoneByPrayer.values.sum(); prefs.edit().putInt("qada_done_" + prayer, done - 1).putInt("prayers_done", qadaPrayersDone).apply() } })
+                        }
                         CounterCard("قضاء الصيام", fastRemaining, "يوم", "سجّل يوم صيام قضيته",
                             onAdd = { qadaFastsDone++; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() },
                             onUndo = { if (qadaFastsDone > 0) { qadaFastsDone--; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() } })
@@ -350,6 +357,35 @@ fun SalatiScreen() {
                     "البيت والمسجد" -> {
                         item { GuideCard("أذكار وآداب البيت", SunnahGuide.home) }
                         item { GuideCard("أذكار وآداب المسجد", SunnahGuide.mosque) }
+                    }
+                    "الاستيقاظ" -> item { GuideCard("سنن وأذكار الاستيقاظ", SunnahGuide.waking) }
+                    "قبل الصلاة" -> item { GuideCard("سنن وآداب قبل الصلاة", SunnahGuide.beforePrayer) }
+                    "القراءة في الصلاة" -> item {
+                        GuideCard("ماذا أقرأ في الصلاة؟", listOf(
+                            SunnahItem("سنة الفجر", "وردت سنة مخصوصة", "في الركعة الأولى بعد الفاتحة: سورة الكافرون، وفي الثانية: سورة الإخلاص.", "صحيح مسلم 726"),
+                            SunnahItem("الفجر المفروضة", "هدي القراءة", "كان النبي ﷺ يطيل القراءة في الفجر، ووردت القراءة بطوال المفصل.", "صحيح مسلم 461"),
+                            SunnahItem("الظهر والعصر", "هدي القراءة", "القراءة سرًا؛ وكان يطيل في الأوليين من الظهر، ويقرأ في العصر أقصر من الظهر.", "صحيح البخاري 759؛ صحيح مسلم 451"),
+                            SunnahItem("المغرب والعشاء", "هدي القراءة", "يجهر في الأوليين؛ ووردت قراءات متفاوتة الطول، ولا تلزم سورة بعينها لكل صلاة.", "صحيح البخاري 763، 769")
+                        ))
+                    }
+                    "فقه الوضوء والصلاة" -> item {
+                        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text("اختر الموضوع ثم المذهب لعرض خلاصة الأحكام.", color = Green)
+                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                FiqhGuide.topics.forEach { topic -> FilterChip(selected = fiqhTopic == topic, onClick = { fiqhTopic = topic }, label = { Text(topic) }) }
+                            }
+                            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                listOf("الحنفي", "المالكي", "الشافعي", "الحنبلي").forEach { madhhab -> FilterChip(selected = fiqhMadhhab == madhhab, onClick = { fiqhMadhhab = madhhab }, label = { Text(madhhab) }) }
+                            }
+                            val entry = FiqhGuide.get(fiqhTopic, fiqhMadhhab)
+                            Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                                Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    Text(fiqhTopic + " – المذهب " + fiqhMadhhab, style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                                    Text(entry.summary)
+                                    Text("المراجع: " + entry.source, color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                                }
+                            }
+                        }
                     }
                     else -> item { GuideCard("أذكار النوم", SunnahGuide.sleep) }
                 }
