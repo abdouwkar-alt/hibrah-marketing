@@ -501,6 +501,7 @@ private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, cont
     var currentSurah by remember { mutableStateOf(prefs.getString("quran_surah", "البقرة") ?: "البقرة") }
     var currentAyah by remember { mutableStateOf(prefs.getString("quran_ayah", "1") ?: "1") }
     var dailyTarget by remember { mutableIntStateOf(prefs.getInt("quran_daily_target", 2)) }
+    var quranSection by remember { mutableStateOf("المصحف") }
     var progressDate by remember { mutableStateOf(prefs.getString("quran_progress_date", today) ?: today) }
     var dailyProgress by remember { mutableIntStateOf(if (progressDate == today) prefs.getInt("quran_daily_progress", 0) else 0) }
     var sessionSurah by remember { mutableStateOf("البقرة") }
@@ -525,15 +526,29 @@ private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, cont
         }
     }
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        QuranReaderSection(prefs = prefs, context = context) { surahNumber, surahName, ayahNumber ->
-            currentSurah = surahName
-            currentAyah = ayahNumber.toString()
-            sessionSurah = surahName
-            sessionAyah = ayahNumber.toString()
-            prefs.edit().putInt("quran_surah_number", surahNumber)
-                .putString("quran_surah", surahName)
-                .putString("quran_ayah", ayahNumber.toString()).apply()
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FilterChip(
+                selected = quranSection == "المصحف",
+                onClick = { quranSection = "المصحف" },
+                label = { Text("المصحف") }
+            )
+            FilterChip(
+                selected = quranSection == "دفتر التدبّر",
+                onClick = { quranSection = "دفتر التدبّر" },
+                label = { Text("دفتر التدبّر") }
+            )
         }
+        if (quranSection == "المصحف") {
+            QuranReaderSection(prefs = prefs, context = context) { surahNumber, surahName, ayahNumber ->
+                currentSurah = surahName
+                currentAyah = ayahNumber.toString()
+                sessionSurah = surahName
+                sessionAyah = ayahNumber.toString()
+                prefs.edit().putInt("quran_surah_number", surahNumber)
+                    .putString("quran_surah", surahName)
+                    .putString("quran_ayah", ayahNumber.toString()).apply()
+            }
+        } else {
         Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
             Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text("ورد القرآن اليومي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
@@ -617,6 +632,7 @@ private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, cont
                     }
                 }
             }
+        }
         }
     }
     if (deleteIndex >= 0) {
