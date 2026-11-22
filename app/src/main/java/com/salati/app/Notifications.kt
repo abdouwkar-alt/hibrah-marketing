@@ -90,11 +90,11 @@ object PrayerNotifications {
                 offsets.forEachIndexed { slot, minutes ->
                     val item = contentForPrayer(prayer.name, slot)
                     val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + slot + 1
-                    setReminder(prayer.time - minutes * 60_000L, id, item.title + "\n" + item.body + "\nالمصدر: " + item.source, item.title)
+                    setReminder(prayer.time - minutes * 60_000L, id, item.title + "\n" + item.body + "\nالمصدر: " + item.source, item.title, notifyBefore)
                 }
                 val after = ReminderContent("أذكار ما بعد الصلاة", "لا تنس الاستغفار ثلاثًا، ثم: «اللهم أنت السلام ومنك السلام تباركت يا ذا الجلال والإكرام».", "صحيح مسلم 591")
                 val afterId = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + 90
-                setReminder(prayer.time + 7 * 60_000L, afterId, after.title + "\n" + after.body + "\nالمصدر: " + after.source, after.title)
+                setReminder(prayer.time + 7 * 60_000L, afterId, after.title + "\n" + after.body + "\nالمصدر: " + after.source, after.title, notifyAt)
             }
             // Night reminders: middle of the night and the final third, using Maghrib-to-Fajr interval.
             val maghrib = prayers.first { it.name == "المغرب" }.time
@@ -105,11 +105,11 @@ object PrayerNotifications {
             val qiyam = nightContent("قيام الليل")
             val witr = nightContent("الوتر")
             val base = (date.toEpochDay() % 100000).toInt() * 10000 + 800
-            setReminder(qiyamAt, base + 1, qiyam.title + "\n" + qiyam.body + "\nالمصدر: " + qiyam.source, qiyam.title)
-            setReminder(witrAt, base + 2, witr.title + "\n" + witr.body + "\nالمصدر: " + witr.source, witr.title)
+            setReminder(qiyamAt, base + 1, qiyam.title + "\n" + qiyam.body + "\nالمصدر: " + qiyam.source, qiyam.title, notifyAt)
+            setReminder(witrAt, base + 2, witr.title + "\n" + witr.body + "\nالمصدر: " + witr.source, witr.title, notifyAt)
             if (date.dayOfWeek == DayOfWeek.MONDAY || date.dayOfWeek == DayOfWeek.THURSDAY) {
                 val fasting = ReminderContent("تذكير بصيام " + if (date.dayOfWeek == DayOfWeek.MONDAY) "الاثنين" else "الخميس", "تذكير بسنة صيام يوم الاثنين والخميس لمن أراد واستطاع.", "صحيح مسلم 1162 في صيام الاثنين؛ وأحاديث عرض الأعمال يوم الاثنين والخميس في جامع الترمذي 747")
-                setReminder(fajr - 45 * 60_000L, base + 3, fasting.title + "\n" + fasting.body + "\nالمصدر: " + fasting.source, fasting.title)
+                setReminder(fajr - 45 * 60_000L, base + 3, fasting.title + "\n" + fasting.body + "\nالمصدر: " + fasting.source, fasting.title, notifyBefore)
             }
         }
     }
