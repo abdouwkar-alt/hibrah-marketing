@@ -393,7 +393,7 @@ fun SalatiScreen() {
                                     prefs.edit().putBoolean("notify_before", value).apply()
                                     PrayerNotifications.schedule(context, lat, lon)
                                 })
-                                Text("قبل الصلاة بنصف ساعة")
+                                Text("تذكيرات متنوعة قبل الصلاة: قبلها بساعة ونصف ساعة و10 دقائق")
                             }
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Checkbox(checked = notifyAt, onCheckedChange = { value ->
@@ -401,7 +401,7 @@ fun SalatiScreen() {
                                     prefs.edit().putBoolean("notify_at", value).apply()
                                     PrayerNotifications.schedule(context, lat, lon)
                                 })
-                                Text("عند دخول وقت الصلاة")
+                                Text("أذكار بعد الصلاة وقيام الليل والوتر")
                             }
                                             Text("عنوان الإشعار ثابت: الصلاة جامعة. ويظهر تحته حديث أو آية مرتبطة بالصلاة. لا يصدر التطبيق أذانًا صوتيًا.", color = Color(0xFF6D716A))
                         }
