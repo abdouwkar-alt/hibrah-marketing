@@ -1,6 +1,6 @@
 # App UX Revision — 2026-11-22
 
-Status: Approved direction / pending implementation review by founder.
+Status: Implementation in progress; final release is pending Quran reflection and settings review.
 Branch: `salati-app`
 
 ## 1. Combine Qada with the Calculator
@@ -71,3 +71,22 @@ The worship app must not feel like an information dump. Prioritize calmness, pro
 - Tapping `قيام الليل` should open a focused page containing the established Sunnahs and practices of night prayer, with the supporting hadith texts/references and authenticity grading.
 - Retain the existing `قيام الليل` tracker screen and its progress functionality; the new entry should provide access to the night-prayer guidance without removing the tracker.
 - Keep the home screen calm and uncluttered: use a subtle divider and concise links rather than adding large blocks of text under every prayer.
+
+
+## 8. Implementation Tracking — 2026-11-22
+
+- [x] Remove the standalone top-level qada destination and place its tracking view inside the calculator.
+- [x] Preserve saved qada counters when a new estimate is adopted; do not zero existing progress.
+- [x] Rename the daily-life Sunnah area to `السنن العملية` and separate it from `سنن الصلاة`.
+- [x] Add prayer-specific entry links from the prayer times list.
+- [x] Add a night-prayer entry directly beneath Isha, with a calculated estimate for the last third of the night.
+- [x] Keep the existing night-prayer tracker and add a separate Sunnah guide.
+- [x] Expand the prophetic dua library with verified narrations and show two entries at a time.
+- [x] Show Quranic duas two at a time and add a next-pair action.
+- [x] Add the gentle one-dua-per-week learning note.
+- [ ] Confirm successful build for the latest commit and review the APK.
+- [ ] Review and revise the Quran reflection section with the founder.
+- [ ] Review and revise the Settings section with the founder.
+- [ ] Run final regression checks and publish the final APK only after the above are complete.
+
+This tracking list records source changes, not device-level testing. The final APK has not yet been approved for distribution.
