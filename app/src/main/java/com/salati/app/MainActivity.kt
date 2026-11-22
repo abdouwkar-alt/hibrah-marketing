@@ -169,7 +169,7 @@ fun SalatiScreen() {
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "الذكر والقبلة", "الإعدادات").forEach { tab ->
+                    listOf("الرئيسية", "الحاسبة", "القضاء", "السنن", "الذكر", "تدبر القرآن", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
@@ -348,7 +348,7 @@ fun SalatiScreen() {
                         TextButton(onClick = { mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
                     }
                 }
-            } else if (mainTab == "الذكر والقبلة") {
+            } else if (mainTab == "الذكر") {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
                         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -363,24 +363,8 @@ fun SalatiScreen() {
                         }
                     }
                 }
-                item {
-                    val kaabaLat = Math.toRadians(21.4225)
-                    val kaabaLon = Math.toRadians(39.8262)
-                    val userLat = Math.toRadians(lat)
-                    val userLon = Math.toRadians(lon)
-                    val dLon = kaabaLon - userLon
-                    val y = kotlin.math.sin(dLon) * kotlin.math.cos(kaabaLat)
-                    val x = kotlin.math.cos(userLat) * kotlin.math.sin(kaabaLat) - kotlin.math.sin(userLat) * kotlin.math.cos(kaabaLat) * kotlin.math.cos(dLon)
-                    val bearing = (Math.toDegrees(kotlin.math.atan2(y, x)) + 360.0) % 360.0
-                    Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
-                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Text("اتجاه القبلة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-                            Text(String.format(Locale.US, "%.1f°", bearing), style = MaterialTheme.typography.displaySmall, color = Green, fontWeight = FontWeight.Bold)
-                            Text("الاتجاه محسوب من الشمال الحقيقي اعتمادًا على موقع الجهاز. حرّك الهاتف باتجاه هذه الزاوية باستخدام بوصلة الهاتف.")
-                            Text("تأكد من تفعيل الموقع، ومن معايرة بوصلة الهاتف قبل الاعتماد على الاتجاه.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
-                        }
-                    }
-                }
+            } else if (mainTab == "تدبر القرآن") {
+                item { QuranReflectionScreen(prefs = prefs) }
             } else if (mainTab == "الإعدادات") {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
