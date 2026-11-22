@@ -462,6 +462,7 @@ fun SalatiScreen() {
                         }
                     }
                 }
+                item { AppDataBackupPanel(prefs = prefs, context = context) }
             } else {
                 item {
                     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -524,6 +525,15 @@ private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, cont
         }
     }
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        QuranReaderSection(prefs = prefs, context = context) { surahNumber, surahName, ayahNumber ->
+            currentSurah = surahName
+            currentAyah = ayahNumber.toString()
+            sessionSurah = surahName
+            sessionAyah = ayahNumber.toString()
+            prefs.edit().putInt("quran_surah_number", surahNumber)
+                .putString("quran_surah", surahName)
+                .putString("quran_ayah", ayahNumber.toString()).apply()
+        }
         Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
             Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text("ورد القرآن اليومي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
