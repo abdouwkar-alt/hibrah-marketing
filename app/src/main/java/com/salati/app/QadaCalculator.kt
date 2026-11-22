@@ -21,12 +21,13 @@ data class QadaEstimate(
 )
 
 object QadaCalculator {
-    fun calculate(birthDate: LocalDate, today: LocalDate = LocalDate.now(), egyptAdjustmentDays: Long = 1L): QadaEstimate {
+    fun calculate(birthDate: LocalDate, today: LocalDate = LocalDate.now(), egyptAdjustmentDays: Long = 1L, taklifAgeYears: Int = 15): QadaEstimate {
         require(!birthDate.isAfter(today)) { "تاريخ الميلاد لا يمكن أن يكون في المستقبل" }
+        require(taklifAgeYears in 1..40) { "سن بداية الحساب يجب أن يكون بين 1 و40 سنة" }
         // Egypt-facing calibration: apply one consistent, user-visible day adjustment to every converted date.
         // This is an approximation, not an official historical moon-sighting archive.
         val birthHijri = HijrahDate.from(birthDate).plus(egyptAdjustmentDays, ChronoUnit.DAYS) as HijrahDate
-        val taklifHijri = birthHijri.plus(15, ChronoUnit.YEARS) as HijrahDate
+        val taklifHijri = birthHijri.plus(taklifAgeYears.toLong(), ChronoUnit.YEARS) as HijrahDate
         val taklifDate = LocalDate.ofEpochDay(taklifHijri.toEpochDay() - egyptAdjustmentDays)
         require(!taklifDate.isAfter(today)) { "لم يصل تاريخ بداية الحساب بعد" }
 
