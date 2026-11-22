@@ -71,7 +71,7 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         val id = intent.getIntExtra("id", 1)
         val notification = NotificationCompat.Builder(context, PrayerNotifications.CHANNEL)
             .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
-            .setContentTitle(intent.getStringExtra("title") ?: "الصلاة جماعة")
+            .setContentTitle("الصلاة جامعة")
             .setContentText(intent.getStringExtra("message") ?: "الصلاة جماعة")
             .setStyle(NotificationCompat.BigTextStyle().bigText(intent.getStringExtra("message") ?: "الصلاة جماعة"))
             .setPriority(NotificationCompat.PRIORITY_HIGH).setAutoCancel(true).build()
