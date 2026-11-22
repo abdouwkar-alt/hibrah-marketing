@@ -27,17 +27,20 @@ object PrayerNotifications {
         for (offset in 0..7) {
             val date = LocalDate.now(zone).plusDays(offset.toLong())
             PrayerTimes.forDate(date, lat, lon, zone).forEachIndexed { index, prayer ->
-                buildList {
-                    if (notifyBefore) add(30 to ("باقي نصف ساعة على صلاة " + prayer.name + ". استعد للصلاة جماعة."))
-                    if (notifyAt) add(0 to ("دخل وقت صلاة " + prayer.name + ". الصلاة جماعة."))
-                }.forEach { (before, message) ->
+                listOf(
+                    Triple(30, notifyBefore, "باقي نصف ساعة على صلاة " + prayer.name + ". استعد للصلاة جماعة."),
+                    Triple(0, notifyAt, "دخل وقت صلاة " + prayer.name + ". الصلاة جماعة.")
+                ).forEach { (before, enabled, message) ->
                     val at = prayer.time - before * 60_000L
-                    if (at > now + 5_000L) {
-                        val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + before
-                        val intent = Intent(context, PrayerAlarmReceiver::class.java)
-                            .putExtra("title", notificationTitle)
-                            .putExtra("message", message).putExtra("id", id)
-                        val pi = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+                    val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + before
+                    val intent = Intent(context, PrayerAlarmReceiver::class.java)
+                        .putExtra("title", notificationTitle)
+                        .putExtra("message", message).putExtra("id", id)
+                    val pi = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+                    if (!enabled || at <= now + 5_000L) {
+                        alarm.cancel(pi)
+                        pi.cancel()
+                    } else {
                         try {
                             if (android.os.Build.VERSION.SDK_INT >= 31 && !alarm.canScheduleExactAlarms()) {
                                 alarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pi)
