@@ -64,15 +64,15 @@ object PrayerNotifications {
 
     fun schedule(context: Context, lat: Double, lon: Double) {
         val prefs = context.getSharedPreferences("salati", Context.MODE_PRIVATE)
-        val enabled = prefs.getBoolean("notify_at", true) || prefs.getBoolean("notify_before", true)
+        val notifyBefore = prefs.getBoolean("notify_before", true)\n        val notifyAt = prefs.getBoolean("notify_at", true)
         val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val zone = ZoneId.systemDefault()
         val now = System.currentTimeMillis()
-        fun setReminder(at: Long, id: Int, body: String, tag: String) {
+        fun setReminder(at: Long, id: Int, body: String, tag: String, isEnabled: Boolean) {
             val intent = Intent(context, PrayerAlarmReceiver::class.java)
                 .putExtra("message", body).putExtra("id", id).putExtra("tag", tag)
             val pi = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-            if (!enabled || at <= now + 5_000L) {
+            if (!isEnabled || at <= now + 5_000L) {
                 alarm.cancel(pi); pi.cancel()
             } else {
                 try {
