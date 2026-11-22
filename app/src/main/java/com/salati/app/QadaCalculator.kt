@@ -20,24 +20,24 @@ data class QadaEstimate(
 )
 
 object QadaCalculator {
-    fun calculate(birthDate: LocalDate, today: LocalDate = LocalDate.now()): QadaEstimate {
+    fun calculate(birthDate: LocalDate, today: LocalDate = LocalDate.now(), egyptAdjustmentDays: Long = 1L): QadaEstimate {
         require(!birthDate.isAfter(today)) { "تاريخ الميلاد لا يمكن أن يكون في المستقبل" }
-        // Verified Egyptian-calendar correction for this specific birth date: 27 March 1998 was 29 Dhu al-Qi'dah 1418 (Friday).
-        val deviceHijri = HijrahDate.from(birthDate)
-        val birthHijri = if (birthDate == LocalDate.of(1998, 3, 27)) deviceHijri.plus(1, ChronoUnit.DAYS) as HijrahDate else deviceHijri
+        // Egypt-facing calibration: apply one consistent, user-visible day adjustment to every converted date.
+        // This is an approximation, not an official historical moon-sighting archive.
+        val birthHijri = HijrahDate.from(birthDate).plus(egyptAdjustmentDays, ChronoUnit.DAYS) as HijrahDate
         val taklifHijri = birthHijri.plus(15, ChronoUnit.YEARS) as HijrahDate
-        val taklifDate = LocalDate.ofEpochDay(taklifHijri.toEpochDay())
+        val taklifDate = LocalDate.ofEpochDay(taklifHijri.toEpochDay() - egyptAdjustmentDays)
         require(!taklifDate.isAfter(today)) { "لم يصل تاريخ بداية الحساب بعد" }
 
         val prayerDays = ChronoUnit.DAYS.between(taklifDate, today.plusDays(1))
         val totalPrayers = prayerDays * 5L
 
         val startHijriYear = taklifHijri.get(ChronoField.YEAR_OF_ERA)
-        val endHijriYear = HijrahDate.from(today).get(ChronoField.YEAR_OF_ERA)
+        val endHijriYear = (HijrahDate.from(today).plus(egyptAdjustmentDays, ChronoUnit.DAYS) as HijrahDate).get(ChronoField.YEAR_OF_ERA)
         val periods = mutableListOf<RamadanPeriod>()
         for (year in startHijriYear..endHijriYear) {
-            val ramadanStart = LocalDate.ofEpochDay(HijrahDate.of(year, 9, 1).toEpochDay())
-            val nextMonth = LocalDate.ofEpochDay(HijrahDate.of(year, 10, 1).toEpochDay())
+            val ramadanStart = LocalDate.ofEpochDay(HijrahDate.of(year, 9, 1).toEpochDay() - egyptAdjustmentDays)
+            val nextMonth = LocalDate.ofEpochDay(HijrahDate.of(year, 10, 1).toEpochDay() - egyptAdjustmentDays)
             val from = if (ramadanStart.isBefore(taklifDate)) taklifDate else ramadanStart
             val until = if (nextMonth.isAfter(today.plusDays(1))) today.plusDays(1) else nextMonth
             if (from.isBefore(until)) periods.add(RamadanPeriod(year, from, until))
