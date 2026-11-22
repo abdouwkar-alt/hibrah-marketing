@@ -79,6 +79,10 @@ private object QuranTextRepository {
         val root = JSONObject(raw)
         if (root.optInt("code") != 200) throw IOException("مصدر النص القرآني أعاد استجابة غير مكتملة.")
         val data = root.getJSONObject("data")
+        val editionId = data.optJSONObject("edition")?.optString("identifier").orEmpty()
+        if (editionId.isNotBlank() && editionId != "quran-uthmani") {
+            throw IOException("مصدر النص أعاد إصدارًا مختلفًا عن الرسم العثماني المطلوب.")
+        }
         val array = data.getJSONArray("surahs")
         if (array.length() != 114) throw IOException("فشل التحقق من عدد سور القرآن.")
 
@@ -243,7 +247,10 @@ fun QuranReaderSection(
                 )
                 TextButton(onClick = {
                     context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://tanzil.net/docs/Text_License")))
-                }) { Text("مصدر النص وشروط استخدامه") }
+                }) { Text("ترخيص نصّ تنزيل") }
+                TextButton(onClick = {
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://alquran.cloud/terms-and-conditions")))
+                }) { Text("شروط خدمة AlQuran Cloud") }
             }
         }
     }
