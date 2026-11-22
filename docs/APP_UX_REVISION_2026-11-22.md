@@ -54,3 +54,20 @@ The worship app must not feel like an information dump. Prioritize calmness, pro
 - Verify hadith text, references, and grading before adding each new prophetic dua.
 - Preserve local user data during all navigation changes.
 - Build and inspect the APK after implementation; do not distribute a new APK until the exact latest workflow run succeeds.
+
+
+## 7. Prayer Home Screen: Contextual Prayer Sunnahs and Night Prayer
+
+- On the main `الصلاة` screen, keep the obligatory prayers as the primary structure.
+- Add a small contextual link beside/under each relevant prayer entry, for example: `اضغط لمعرفة سنة صلاة الفجر`. It should open the verified Sunnahs, adhkar, and supplications specifically associated with that prayer. Apply the same pattern to other prayers where there are established, relevant reports.
+- Keep `سنن الصلاة` available as its own destination/content area; the contextual links are an easier entry point, not a replacement for the full section.
+- Rename the general-life Sunnah section to `السنن العملية`. This collection is for practical daily-life Sunnahs, such as waking, sleeping, siwak, eating, entering the home, and leaving the home. Include only practices supported by reliable evidence, with their hadith references and grading.
+- Do not mix the practical daily-life Sunnahs with the prayer-specific Sunnahs. Keep `سنن الصلاة` distinct from `السنن العملية`.
+
+### Night prayer entry under Isha
+
+- Under the `العشاء` entry on the prayer home screen, add a visually separated optional section for `قيام الليل`, clearly distinguished from the five obligatory prayers.
+- Show an estimated time window for night prayer. Derive it from the user's local Maghrib and Fajr prayer times (for example, the last third of the night), and label it as an estimate / recommended time window rather than a fixed obligation. Do not hard-code a universal clock time.
+- Tapping `قيام الليل` should open a focused page containing the established Sunnahs and practices of night prayer, with the supporting hadith texts/references and authenticity grading.
+- Retain the existing `قيام الليل` tracker screen and its progress functionality; the new entry should provide access to the night-prayer guidance without removing the tracker.
+- Keep the home screen calm and uncluttered: use a subtle divider and concise links rather than adding large blocks of text under every prayer.
