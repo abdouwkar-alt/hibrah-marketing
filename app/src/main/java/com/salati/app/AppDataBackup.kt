@@ -1,6 +1,8 @@
 package com.salati.app
 
+import android.app.Activity
 import android.content.Context
+import android.widget.Toast
 import android.content.SharedPreferences
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -186,7 +188,12 @@ fun AppDataBackupPanel(prefs: SharedPreferences, context: Context) {
             confirmButton = {
                 TextButton(onClick = {
                     status = try {
-                        restoreAppBackup(prefs, backup)
+                        restoreAppBackup(prefs, backup).also { message ->
+                            if (message.startsWith("تمت استعادة")) {
+                                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                                (context as? Activity)?.recreate()
+                            }
+                        }
                     } catch (e: Exception) {
                         "تعذرت الاستعادة: ${e.message ?: "خطأ غير معروف"}"
                     }
