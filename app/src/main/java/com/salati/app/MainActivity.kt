@@ -295,7 +295,7 @@ fun SalatiScreen() {
                                 }
                                 OutlinedTextField(value = partialFastDays, onValueChange = { partialFastDays = it.filter(Char::isDigit) }, label = { Text("أيام صمتها متفرقة خارج الرمضانات الكاملة") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.fillMaxWidth())
                                 val checkedRamadanDays = result.ramadans.filter { ramadanChecks.contains(it.hijriYear) }.sumOf { it.days }
-                                val prayerDeduction = (if (deductOneYear) 354 * 5 else 0) + (performedPrayers.toIntOrNull() ?: 0)
+                                val prayerDeduction = (if (deductOneYear) result.oneHijriYearDays * 5 else 0) + (performedPrayers.toIntOrNull() ?: 0)
                                 val newPrayerBase = (result.totalPrayers - prayerDeduction).coerceAtLeast(0).toInt()
                                 val newFastBase = (result.totalRamadanDays - checkedRamadanDays - (partialFastDays.toIntOrNull() ?: 0)).coerceAtLeast(0)
                                 Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
