@@ -208,17 +208,15 @@ fun SalatiScreen() {
                                     }
                                 }
                                 HorizontalDivider(color = Color(0xFFD4DDCE))
+                                if (prayer.name == "العشاء") {
+                                    Column(Modifier.fillMaxWidth().padding(start = 8.dp, top = 4.dp, bottom = 6.dp), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                                        Text("قيام الليل — نافلة", color = Green, fontWeight = FontWeight.SemiBold)
+                                        Text(nightWindow + "، وهو تقدير للثلث الأخير من الليل.")
+                                        TextButton(onClick = { mainTab = "قيام الليل" }) { Text("سنن قيام الليل ومتابعتها") }
+                                    }
+                                }
                             }
                             Text("المواقيت محسوبة محليًا بطريقة تقريبية؛ راجعها مع التقويم الرسمي.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
-                        }
-                    }
-                }
-                item {
-                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
-                        Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Text("قيام الليل", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
-                            Text(nightWindow + " — وقت تقديري محسوب بين المغرب والفجر، وليس وقتًا إلزاميًا.")
-                            TextButton(onClick = { mainTab = "قيام الليل" }) { Text("معرفة سنن قيام الليل ومتابعة القراءة") }
                         }
                     }
                 }
