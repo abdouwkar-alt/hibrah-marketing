@@ -13,3 +13,6 @@
 
 ## الخصوصية
 الموقع وأرقام المتابعة محفوظة محليًا على الجهاز ولا تُرسل إلى خادم.
+
+
+Build validation includes the current verified remembrance guide revision.
