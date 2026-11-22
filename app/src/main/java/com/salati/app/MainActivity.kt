@@ -451,3 +451,63 @@ fun SalatiScreen() {
         }
     }
 }
+
+@Composable
+private fun QuranReflectionScreen(prefs: android.content.SharedPreferences) {
+    var currentSurah by remember { mutableStateOf(prefs.getString("quran_surah", "البقرة") ?: "البقرة") }
+    var currentAyah by remember { mutableStateOf(prefs.getString("quran_ayah", "1") ?: "1") }
+    var sessionSurah by remember { mutableStateOf("البقرة") }
+    var sessionAyah by remember { mutableStateOf("") }
+    var reflection by remember { mutableStateOf("") }
+    var question by remember { mutableStateOf("") }
+    var action by remember { mutableStateOf("") }
+    var sessions by remember { mutableStateOf(prefs.getString("quran_sessions", "[]") ?: "[]") }
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
+            Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("موضع وردك الحالي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                OutlinedTextField(value = currentSurah, onValueChange = { currentSurah = it; prefs.edit().putString("quran_surah", it).apply() }, label = { Text("السورة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
+                OutlinedTextField(value = currentAyah, onValueChange = { currentAyah = it; prefs.edit().putString("quran_ayah", it).apply() }, label = { Text("رقم الآية أو موضع القراءة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
+                Text("حدّث موضعك بعد كل جلسة قراءة لتعود إليه بسهولة.", style = MaterialTheme.typography.bodySmall)
+            }
+        }
+        Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+            Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("تسجيل جلسة تدبّر", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                OutlinedTextField(value = sessionSurah, onValueChange = { sessionSurah = it }, label = { Text("السورة") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
+                OutlinedTextField(value = sessionAyah, onValueChange = { sessionAyah = it }, label = { Text("الآيات من - إلى (اختياري)") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
+                OutlinedTextField(value = reflection, onValueChange = { reflection = it }, label = { Text("ما الذي لفت انتباهك أو تدبّرته؟") }, modifier = Modifier.fillMaxWidth(), minLines = 3)
+                OutlinedTextField(value = question, onValueChange = { question = it }, label = { Text("أسئلة تحتاج إلى بحث أو مراجعة") }, modifier = Modifier.fillMaxWidth(), minLines = 2)
+                OutlinedTextField(value = action, onValueChange = { action = it }, label = { Text("كيف تريد العمل بما تدبّرته؟") }, modifier = Modifier.fillMaxWidth(), minLines = 2)
+                Button(onClick = {
+                    if (reflection.isNotBlank() || question.isNotBlank() || action.isNotBlank()) {
+                        val array = try { org.json.JSONArray(sessions) } catch (_: Exception) { org.json.JSONArray() }
+                        val entry = org.json.JSONObject()
+                        entry.put("surah", sessionSurah); entry.put("ayah", sessionAyah)
+                        entry.put("reflection", reflection); entry.put("question", question); entry.put("action", action)
+                        entry.put("date", LocalDate.now().toString()); array.put(entry)
+                        sessions = array.toString(); prefs.edit().putString("quran_sessions", sessions).apply()
+                        currentSurah = sessionSurah; currentAyah = sessionAyah.ifBlank { currentAyah }
+                        prefs.edit().putString("quran_surah", currentSurah).putString("quran_ayah", currentAyah).apply()
+                        reflection = ""; question = ""; action = ""; sessionAyah = ""
+                    }
+                }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("حفظ جلسة التدبّر") }
+                Text("خواطرك وأسئلتك الشخصية ليست تفسيرًا معتمدًا؛ راجع كتب التفسير وأهل العلم عند البحث عن معنى الآية.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF755F45))
+            }
+        }
+        Text("دفتر جلساتك السابقة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+        val saved = try { org.json.JSONArray(sessions) } catch (_: Exception) { org.json.JSONArray() }
+        for (index in saved.length() - 1 downTo 0) {
+            val entry = saved.optJSONObject(index) ?: continue
+            Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text(entry.optString("surah") + if (entry.optString("ayah").isNotBlank()) " — " + entry.optString("ayah") else "", color = Green, fontWeight = FontWeight.Bold)
+                    Text(entry.optString("date"), style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+                    if (entry.optString("reflection").isNotBlank()) Text("تدبّري: " + entry.optString("reflection"))
+                    if (entry.optString("question").isNotBlank()) Text("سؤال للبحث: " + entry.optString("question"))
+                    if (entry.optString("action").isNotBlank()) Text("عمل: " + entry.optString("action"))
+                }
+            }
+        }
+    }
+}
