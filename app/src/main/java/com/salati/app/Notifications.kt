@@ -42,7 +42,7 @@ private fun contentForPrayer(name: String, slot: Int): ReminderContent {
             ReminderContent("قيام الليل", "ولو بركعتين خفيفتين؛ خذ من الليل نصيبًا بحسب استطاعتك.", "تذكير عملي")
         )
     }
-    val chosen = if (slot == 0) common[0] else if (slot == 1) specific[0] else if (slot == 2) specific[1] else specific[2]
+    val chosen = if (slot == 0) common[0] else if (slot == 1) specific[0] else common[2]
     return chosen
 }
 
@@ -106,6 +106,9 @@ object PrayerNotifications {
                     val id = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + slot + 1
                     setReminder(prayer.time - minutes * 60_000L, id, item.title + "\n" + item.body + "\nالمصدر: " + item.source, item.title, notifyBefore)
                 }
+                val adhanDua = ReminderContent("الدعاء بعد الأذان", "قل: «اللهم رب هذه الدعوة التامة، والصلاة القائمة، آت محمدًا الوسيلة والفضيلة، وابعثه مقامًا محمودًا الذي وعدته».", "صحيح البخاري 614")
+                val adhanId = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + 80
+                setReminder(prayer.time + 60_000L, adhanId, adhanDua.title + "\\n" + adhanDua.body + "\\nالمصدر: " + adhanDua.source, adhanDua.title, notifyAt)
                 val after = ReminderContent("أذكار ما بعد الصلاة", "لا تنس الاستغفار ثلاثًا، ثم: «اللهم أنت السلام ومنك السلام تباركت يا ذا الجلال والإكرام».", "صحيح مسلم 591")
                 val afterId = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + 90
                 setReminder(prayer.time + 7 * 60_000L, afterId, after.title + "\n" + after.body + "\nالمصدر: " + after.source, after.title, notifyAt)
