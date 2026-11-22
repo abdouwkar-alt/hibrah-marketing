@@ -113,7 +113,7 @@ fun SalatiScreen() {
     val context = androidx.compose.ui.platform.LocalContext.current
     val prefs = remember { context.getSharedPreferences("salati", 0) }
     var qadaPrayersDone by remember { mutableIntStateOf(prefs.getInt("prayers_done", 0)) }
-    var qadaFastsDone by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }
+    var qadaFastsDone by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }\n    val qadaDoneByPrayer = remember { androidx.compose.runtime.mutableStateMapOf<String, Int>().apply { PrayerNames.forEach { put(it, prefs.getInt("qada_done_" + it, 0)) } } }
     var missedSinceInstall by remember { mutableIntStateOf(prefs.getInt("missed_since_install", 0)) }
     var prayerBase by remember { mutableIntStateOf(prefs.getInt("prayer_base", -1)) }
     var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
@@ -331,7 +331,7 @@ fun SalatiScreen() {
             } else {
                 item {
                     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        listOf("سنن الصلاة", "البيت والمسجد", "قبل النوم").forEach { tab ->
+                        listOf("سنن الصلاة", "البيت والمسجد", "الاستيقاظ", "قبل الصلاة", "قبل النوم").forEach { tab ->
                             FilterChip(selected = sunnahTab == tab, onClick = { sunnahTab = tab }, label = { Text(tab) })
                         }
                     }
