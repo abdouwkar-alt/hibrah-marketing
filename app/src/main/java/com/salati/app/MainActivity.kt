@@ -136,6 +136,10 @@ fun SalatiScreen() {
     val lat = prefs.getFloat("lat", 30.0444f).toDouble()
     val lon = prefs.getFloat("lon", 31.2357f).toDouble()
     val todayTimes = remember(today, lat, lon) { PrayerTimes.forDate(today, lat, lon, ZoneId.systemDefault()) }
+    val nightStart = todayTimes.first { it.name == "المغرب" }.time
+    val nightEnd = tomorrowTimes.first { it.name == "الفجر" }.time
+    val lastThirdStart = nightStart + ((nightEnd - nightStart) * 2L / 3L)
+    val nightWindow = "الثلث الأخير تقريبًا: " + Instant.ofEpochMilli(lastThirdStart).atZone(ZoneId.systemDefault()).format(timeFormatter)
     val tomorrowTimes = remember(tomorrow, lat, lon) { PrayerTimes.forDate(tomorrow, lat, lon, ZoneId.systemDefault()) }
     val nextPrayer = (todayTimes + tomorrowTimes).firstOrNull { it.time > clockNow } ?: tomorrowTimes.first()
     val timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale("ar"))
@@ -196,7 +200,10 @@ fun SalatiScreen() {
                             todayTimes.forEach { prayer ->
                                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                                     Text(prayer.name, fontWeight = FontWeight.SemiBold)
-                                    Text(Instant.ofEpochMilli(prayer.time).atZone(ZoneId.systemDefault()).format(timeFormatter))
+                                    Column(horizontalAlignment = Alignment.End) {
+                                        Text(Instant.ofEpochMilli(prayer.time).atZone(ZoneId.systemDefault()).format(timeFormatter))
+                                        TextButton(onClick = { selectedPrayerGuide = prayer.name; sunnahTab = "سنن الصلاة"; mainTab = "السنن العملية" }) { Text("سنة صلاة " + prayer.name, style = MaterialTheme.typography.labelSmall) }
+                                    }
                                 }
                                 HorizontalDivider(color = Color(0xFFD4DDCE))
                             }
@@ -252,7 +259,13 @@ fun SalatiScreen() {
                         }
                     }
                 }
-            } else if (mainTab == "الحاسبة") {
+            } else if (mainTab == "الحاسبة" && calculatorView == "حساب الفوائت") {
+                item {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(selected = calculatorView == "حساب الفوائت", onClick = { calculatorView = "حساب الفوائت" }, label = { Text("حساب الفوائت") })
+                        FilterChip(selected = calculatorView == "متابعة القضاء", onClick = { calculatorView = "متابعة القضاء"; mainTab = "الحاسبة" }, label = { Text("متابعة القضاء") })
+                    }
+                }
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
                         Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -333,10 +346,16 @@ fun SalatiScreen() {
                         }
                     }
                 }
-            } else if (mainTab == "القضاء") {
+            } else if (mainTab == "الحاسبة" && calculatorView == "متابعة القضاء") {
+                item {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(selected = calculatorView == "حساب الفوائت", onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }, label = { Text("حساب الفوائت") })
+                        FilterChip(selected = calculatorView == "متابعة القضاء", onClick = { calculatorView = "متابعة القضاء" }, label = { Text("متابعة القضاء") })
+                    }
+                }
                 item {
                     if (prayerBase < 0 || fastBase < 0) {
-                        Card { Column(Modifier.padding(16.dp)) { Text("لم يتم إعداد رصيد القضاء بعد."); Button(onClick = { mainTab = "الحاسبة" }) { Text("افتح الحاسبة") } } }
+                        Card { Column(Modifier.padding(16.dp)) { Text("لم يتم إعداد رصيد القضاء بعد."); Button(onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }) { Text("افتح الحاسبة") } } }
                     } else {
                         Text("قضاء كل صلاة على حدة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
                         PrayerNames.forEachIndexed { index, prayer ->
@@ -352,7 +371,7 @@ fun SalatiScreen() {
                             onAdd = { qadaFastsDone++; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() },
                             onUndo = { if (qadaFastsDone > 0) { qadaFastsDone--; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() } })
                         Text("الرصيد = الفوائت المقدرة + ما تسجله من صلوات فائتة يوميًا - ما قضيته.")
-                        TextButton(onClick = { mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
+                        TextButton(onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
                     }
                 }
             } else if (mainTab == "فقه الوضوء" || mainTab == "فقه الصلاة") {
@@ -398,6 +417,12 @@ fun SalatiScreen() {
                     }
                 }
             } else if (mainTab == "قيام الليل") {
+                item { GuideCard("سنن قيام الليل", listOf(
+                    SunnahItem("افتتاح صلاة الليل بركعتين خفيفتين", "هدي نبوي ثابت", "إذا قام أحدكم من الليل فليفتتح صلاته بركعتين خفيفتين.", "صحيح مسلم 768"),
+                    SunnahItem("صلاة الليل مثنى مثنى", "صفة ثابتة", "صلاة الليل ركعتين ركعتين، ويختم المصلي بوتر.", "صحيح البخاري 990؛ صحيح مسلم 749"),
+                    SunnahItem("إطالة القيام والقراءة بحسب الاستطاعة", "هدي نبوي", "كان النبي ﷺ يطيل القيام والقراءة، ويشرع للمسلم أن يصلي ما تيسر له دون تكلف.", "صحيح البخاري 1135؛ صحيح مسلم 738"),
+                    SunnahItem("القنوت في الوتر", "دعاء ثابت", "ورد دعاء: اللهم اهدني فيمن هديت، وعافني فيمن عافيت، وتولني فيمن توليت...", "سنن أبي داود 1425؛ جامع الترمذي 464، صححه أهل العلم")
+                )) }
                 item { QiyamTrackerScreen(prefs = prefs) }
             } else if (mainTab == "الأذكار") {
                 item { AuthenticDhikrScreen(prefs = prefs) }
@@ -434,23 +459,19 @@ fun SalatiScreen() {
             } else {
                 item {
                     Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        listOf("سنن الصلاة", "البيت والمسجد", "الاستيقاظ", "قبل الصلاة", "قبل النوم", "القراءة في الصلاة").forEach { tab ->
+                        listOf("سنن الصلاة", "الاستيقاظ", "النوم", "السواك", "الطعام", "البيت", "المسجد").forEach { tab ->
                             FilterChip(selected = sunnahTab == tab, onClick = { sunnahTab = tab }, label = { Text(tab) })
                         }
                     }
                 }
                 when (sunnahTab) {
-                    "سنن الصلاة" -> item {
-                        GuideCard("السنن الرواتب والأذكار بعد الصلاة", PrayerNames.flatMap { name ->
-                            listOf(SunnahItem(name, "سنن الصلاة", "", "")) + (SunnahGuide.prayerItems[name] ?: emptyList())
-                        } + SunnahGuide.afterPrayer)
-                    }
-                    "البيت والمسجد" -> {
-                        item { GuideCard("أذكار وآداب البيت", SunnahGuide.home) }
-                        item { GuideCard("أذكار وآداب المسجد", SunnahGuide.mosque) }
-                    }
+                    "سنن الصلاة" -> item { GuideCard("سنن صلاة " + selectedPrayerGuide, (SunnahGuide.prayerItems[selectedPrayerGuide] ?: emptyList()) + SunnahGuide.afterPrayer) }
+                    "البيت" -> item { GuideCard("سنن وآداب البيت والدخول والخروج", SunnahGuide.home) }
+                    "المسجد" -> item { GuideCard("أذكار وآداب المسجد", SunnahGuide.mosque) }
                     "الاستيقاظ" -> item { GuideCard("سنن وأذكار الاستيقاظ", SunnahGuide.waking) }
-                    "قبل الصلاة" -> item { GuideCard("سنن وآداب قبل الصلاة", SunnahGuide.beforePrayer) }
+                    "النوم" -> item { GuideCard("سنن وأذكار النوم", SunnahGuide.sleep) }
+                    "السواك" -> item { GuideCard("مواضع السواك", SunnahGuide.waking.filter { it.title.contains("السواك") } + SunnahGuide.beforePrayer.filter { it.title.contains("السواك") }) }
+                    "الطعام" -> item { GuideCard("سنن الطعام", SunnahGuide.food) }
                     "القراءة في الصلاة" -> item {
                         GuideCard("ماذا أقرأ في الصلاة؟", listOf(
                             SunnahItem("سنة الفجر", "وردت سنة مخصوصة", "في الركعة الأولى بعد الفاتحة: سورة الكافرون، وفي الثانية: سورة الإخلاص.", "صحيح مسلم 726"),
@@ -459,7 +480,7 @@ fun SalatiScreen() {
                             SunnahItem("المغرب والعشاء", "هدي القراءة", "يجهر في الأوليين؛ ووردت قراءات متفاوتة الطول، ولا تلزم سورة بعينها لكل صلاة.", "صحيح البخاري 763، 769")
                         ))
                     }
-                    else -> item { GuideCard("أذكار النوم", SunnahGuide.sleep) }
+                    else -> item { GuideCard("السنن العملية", SunnahGuide.home + SunnahGuide.waking + SunnahGuide.sleep + SunnahGuide.food) }
                 }
             }
             item { Spacer(Modifier.height(12.dp)) }
