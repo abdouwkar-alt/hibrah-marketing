@@ -46,6 +46,19 @@ private fun contentForPrayer(name: String, slot: Int): ReminderContent {
     return chosen
 }
 
+private fun dailyLearning(date: LocalDate): ReminderContent {
+    val lessons = listOf(
+        ReminderContent("تعلّم: أركان الصلاة", "راجع أركان الصلاة كما يقررها المذهب الذي تتبعه؛ فعدّ الأركان وتفصيلها فيه خلاف فقهي.", "باب صفة الصلاة في كتب المذاهب الأربعة"),
+        ReminderContent("تعلّم: فرائض الوضوء", "راجع فرائض الوضوء وشروطه ونواقضه على المذهب المالكي من قسم فقه الوضوء والصلاة داخل التطبيق.", "مختصر خليل وشروحه؛ ويحتاج التفصيل إلى مراجعة معتمدة"),
+        ReminderContent("تعلّم: سنن الوضوء", "تعلّم سنن الوضوء وآدابه على المذهب المالكي، ولا تخلط بين الفرض والسنة والمندوب.", "كتب الفقه المالكي المعتمدة"),
+        ReminderContent("سنة نبوية: السواك", "قال ﷺ: «لولا أن أشق على أمتي لأمرتهم بالسواك عند كل صلاة».", "صحيح البخاري 887، صحيح مسلم 252"),
+        ReminderContent("تعلّم: سنن الصلاة", "راجع السنن القبلية والبعدية، وميّز بين الراتبة المؤكدة وغير المؤكدة بحسب المذهب.", "كتب الفقه المعتمدة في المذاهب الأربعة"),
+        ReminderContent("تعلّم: أذكار الصلاة", "راجع أذكار ما بعد الصلاة، وابدأ بالاستغفار ثلاثًا ثم «اللهم أنت السلام ومنك السلام».", "صحيح مسلم 591"),
+        ReminderContent("سنة الاثنين والخميس", "من هدي النبي ﷺ صيام الاثنين، وورد في الحديث أنه يوم وُلد فيه ويوم بُعث أو أُنزل عليه فيه.", "صحيح مسلم 1162")
+    )
+    return lessons[(date.toEpochDay() % lessons.size).toInt()]
+}
+
 private fun nightContent(kind: String): ReminderContent = if (kind == "قيام الليل")
     ReminderContent("حان وقت قيام الليل", "قال رسول الله ﷺ: «أفضل الصلاة بعد الفريضة صلاة الليل». صلّ ما تيسّر لك ولو ركعتين.", "صحيح مسلم 1163")
 else
@@ -97,6 +110,10 @@ object PrayerNotifications {
                 val afterId = (date.toEpochDay() % 100000).toInt() * 10000 + index * 100 + 90
                 setReminder(prayer.time + 7 * 60_000L, afterId, after.title + "\n" + after.body + "\nالمصدر: " + after.source, after.title, notifyAt)
             }
+            val learning = dailyLearning(date)
+            val learningAt = date.atTime(11, 0).atZone(zone).toInstant().toEpochMilli()
+            val learningId = (date.toEpochDay() % 100000).toInt() * 10000 + 950
+            setReminder(learningAt, learningId, learning.title + "\\n" + learning.body + "\\nالمصدر: " + learning.source, learning.title, notifyBefore)
             // Night reminders: middle of the night and the final third, using Maghrib-to-Fajr interval.
             val maghrib = prayers.first { it.name == "المغرب" }.time
             val fajr = PrayerTimes.forDate(date.plusDays(1), lat, lon, zone).first().time
