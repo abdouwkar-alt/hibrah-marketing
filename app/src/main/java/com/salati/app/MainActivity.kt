@@ -113,7 +113,8 @@ fun SalatiScreen() {
     val context = androidx.compose.ui.platform.LocalContext.current
     val prefs = remember { context.getSharedPreferences("salati", 0) }
     var qadaPrayersDone by remember { mutableIntStateOf(prefs.getInt("prayers_done", 0)) }
-    var qadaFastsDone by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }\n    val qadaDoneByPrayer = remember { androidx.compose.runtime.mutableStateMapOf<String, Int>().apply { PrayerNames.forEach { put(it, prefs.getInt("qada_done_" + it, 0)) } } }
+    var qadaFastsDone by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }
+    val qadaDoneByPrayer = remember { androidx.compose.runtime.mutableStateMapOf<String, Int>().apply { PrayerNames.forEach { put(it, prefs.getInt("qada_done_" + it, 0)) } } }
     var missedSinceInstall by remember { mutableIntStateOf(prefs.getInt("missed_since_install", 0)) }
     var prayerBase by remember { mutableIntStateOf(prefs.getInt("prayer_base", -1)) }
     var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
