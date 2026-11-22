@@ -122,6 +122,8 @@ fun SalatiScreen() {
     var prayerBase by remember { mutableIntStateOf(prefs.getInt("prayer_base", -1)) }
     var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
     var mainTab by remember { mutableStateOf("الصلاة") }
+    var calculatorView by remember { mutableStateOf("حساب الفوائت") }
+    var selectedPrayerGuide by remember { mutableStateOf("الفجر") }
     var sunnahTab by remember { mutableStateOf("سنن الصلاة") }
     var wuduFiqhTopic by remember { mutableStateOf("أركان الوضوء") }
     var prayerFiqhTopic by remember { mutableStateOf("شروط الصلاة") }
