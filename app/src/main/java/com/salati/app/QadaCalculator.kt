@@ -16,7 +16,8 @@ data class QadaEstimate(
     val prayerDays: Long,
     val totalPrayers: Long,
     val ramadans: List<RamadanPeriod>,
-    val totalRamadanDays: Int
+    val totalRamadanDays: Int,
+    val oneHijriYearDays: Int
 )
 
 object QadaCalculator {
