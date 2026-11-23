@@ -500,10 +500,11 @@ private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, cont
     val today = LocalDate.now().toString()
     var currentSurah by remember { mutableStateOf(prefs.getString("quran_surah", "البقرة") ?: "البقرة") }
     var currentAyah by remember { mutableStateOf(prefs.getString("quran_ayah", "1") ?: "1") }
-    var dailyTarget by remember { mutableIntStateOf(prefs.getInt("quran_daily_target", 2)) }
+    val dailyTarget = 10
+    var enteredAyahCount by remember { mutableStateOf("") }
     var quranSection by remember { mutableStateOf("المصحف") }
-    var progressDate by remember { mutableStateOf(prefs.getString("quran_progress_date", today) ?: today) }
-    var dailyProgress by remember { mutableIntStateOf(if (progressDate == today) prefs.getInt("quran_daily_progress", 0) else 0) }
+    var progressDate by remember { mutableStateOf(prefs.getString("quran_daily_ayah_progress_date", today) ?: today) }
+    var dailyProgress by remember { mutableIntStateOf(if (progressDate == today) prefs.getInt("quran_daily_ayah_progress", 0) else 0) }
     var sessionSurah by remember { mutableStateOf("البقرة") }
     var sessionAyah by remember { mutableStateOf("") }
     var reflection by remember { mutableStateOf("") }
@@ -522,7 +523,7 @@ private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, cont
         LaunchedEffect(today) {
             progressDate = today
             dailyProgress = 0
-            prefs.edit().putString("quran_progress_date", today).putInt("quran_daily_progress", 0).apply()
+            prefs.edit().putString("quran_daily_ayah_progress_date", today).putInt("quran_daily_ayah_progress", 0).apply()
         }
     }
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -551,14 +552,37 @@ private fun QuranReflectionScreen(prefs: android.content.SharedPreferences, cont
         } else {
         Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
             Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("ورد القرآن اليومي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-                Text("هدفك: $dailyTarget صفحة — أنجزت اليوم: $dailyProgress صفحة")
-                LinearProgressIndicator(progress = { (dailyProgress.toFloat() / dailyTarget.coerceAtLeast(1)).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = Green)
+                Text("الورد اليومي المقترح", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                Text("الهدف: $dailyTarget آيات — قرأت اليوم: $dailyProgress آية")
+                LinearProgressIndicator(progress = { (dailyProgress.toFloat() / dailyTarget).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = Green)
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedTextField(value = dailyTarget.toString(), onValueChange = { value -> value.toIntOrNull()?.takeIf { it in 1..100 }?.let { dailyTarget = it; prefs.edit().putInt("quran_daily_target", it).apply() } }, label = { Text("هدف الصفحات") }, modifier = Modifier.weight(1f), singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
-                    Button(onClick = { dailyProgress++; prefs.edit().putString("quran_progress_date", today).putInt("quran_daily_progress", dailyProgress).apply() }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("+ صفحة") }
+                    OutlinedTextField(
+                        value = enteredAyahCount,
+                        onValueChange = { enteredAyahCount = it.filter(Char::isDigit).take(4) },
+                        label = { Text("عدد الآيات التي قرأتها") },
+                        modifier = Modifier.weight(1f),
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
+                    Button(
+                        onClick = {
+                            val amount = enteredAyahCount.toIntOrNull()
+                            if (amount != null && amount in 1..1000) {
+                                dailyProgress += amount
+                                enteredAyahCount = ""
+                                prefs.edit().putString("quran_daily_ayah_progress_date", today)
+                                    .putInt("quran_daily_ayah_progress", dailyProgress).apply()
+                            }
+                        },
+                        enabled = enteredAyahCount.toIntOrNull()?.let { it in 1..1000 } == true,
+                        colors = ButtonDefaults.buttonColors(containerColor = Green)
+                    ) { Text("تسجيل") }
                 }
-                Text(if (dailyProgress >= dailyTarget) "أتممت هدفك اليومي." else "التقدم يومي ويتجدد تلقائيًا مع بداية يوم جديد.", style = MaterialTheme.typography.bodySmall)
+                Text(
+                    if (dailyProgress >= dailyTarget) "أتممت الورد المقترح. الزيادة خير، من غير إلزام."
+                    else "عشر آيات هدف مقترح للتدرّب على المداومة، وليس حدًا شرعيًا لازمًا. يتجدد العداد يوميًا.",
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
         }
         Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
