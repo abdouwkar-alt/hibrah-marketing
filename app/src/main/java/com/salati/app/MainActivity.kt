@@ -131,7 +131,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
     var prayerBase by remember { mutableIntStateOf(prefs.getInt("prayer_base", -1)) }
     var fastBase by remember { mutableIntStateOf(prefs.getInt("fast_base", -1)) }
     var mainTab by remember { mutableStateOf("الصلاة") }
-    var calculatorView by remember { mutableStateOf("حساب الفوائت") }
+    var calculatorView by remember { mutableStateOf("الحاسبة") }
     var selectedPrayerGuide by remember { mutableStateOf("الفجر") }
     var sunnahTab by remember { mutableStateOf("سنن الصلاة") }
     var wuduFiqhTopic by remember { mutableStateOf("أركان الوضوء") }
@@ -200,7 +200,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الصلاة", "الأذكار", "الأدعية", "الحاسبة", "السنن العملية", "فقه الوضوء", "فقه الصلاة", "تدبر القرآن", "الإعدادات").forEach { tab ->
+                    listOf("الصلاة", "الأذكار", "الأدعية", "القضاء", "السنن العملية", "فقه الوضوء", "فقه الصلاة", "تدبر القرآن", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
@@ -287,15 +287,23 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                             Text("رصيدك الحالي", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
                             Text(if (prayerBase < 0) "ابدأ من الحاسبة لتحديد رصيدك." else "قضاء الصلاة: " + prayerRemaining + " فرض")
                             Text(if (fastBase < 0) "لم يتم حساب قضاء الصيام بعد." else "قضاء الصيام: " + fastRemaining + " يوم")
-                            TextButton(onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }) { Text("ابدأ حساب الفوائت") }
+                            TextButton(onClick = { calculatorView = "الحاسبة"; mainTab = "القضاء" }) { Text("ابدأ الحاسبة") }
                         }
                     }
                 }
-            } else if (mainTab == "الحاسبة" && calculatorView == "حساب الفوائت") {
+            } else if (mainTab == "القضاء" && calculatorView == "الحاسبة") {
                 item {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        FilterChip(selected = calculatorView == "حساب الفوائت", onClick = { calculatorView = "حساب الفوائت" }, label = { Text("حساب الفوائت") })
-                        FilterChip(selected = calculatorView == "متابعة القضاء", onClick = { calculatorView = "متابعة القضاء"; mainTab = "الحاسبة" }, label = { Text("متابعة القضاء") })
+                        FilterChip(selected = calculatorView == "الحاسبة", onClick = { calculatorView = "الحاسبة" }, label = { Text("الحاسبة") })
+                        FilterChip(selected = calculatorView == "القضاء", onClick = { calculatorView = "القضاء"; mainTab = "القضاء" }, label = { Text("القضاء") })
+                    }
+                }
+                item {
+                    Card(colors = CardDefaults.cardColors(containerColor = Color(0xFFE7EDDF))) {
+                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text("﴿وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا﴾", color = Green, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                            Text("العنكبوت: 69", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                        }
                     }
                 }
                 item {
@@ -375,16 +383,24 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                         }
                     }
                 }
-            } else if (mainTab == "الحاسبة" && calculatorView == "متابعة القضاء") {
+            } else if (mainTab == "القضاء" && calculatorView == "القضاء") {
                 item {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        FilterChip(selected = calculatorView == "حساب الفوائت", onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }, label = { Text("حساب الفوائت") })
-                        FilterChip(selected = calculatorView == "متابعة القضاء", onClick = { calculatorView = "متابعة القضاء" }, label = { Text("متابعة القضاء") })
+                        FilterChip(selected = calculatorView == "الحاسبة", onClick = { calculatorView = "الحاسبة"; mainTab = "القضاء" }, label = { Text("الحاسبة") })
+                        FilterChip(selected = calculatorView == "القضاء", onClick = { calculatorView = "القضاء" }, label = { Text("القضاء") })
+                    }
+                }
+                item {
+                    Card(colors = CardDefaults.cardColors(containerColor = Color(0xFFE7EDDF))) {
+                        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text("الْمُجَاهِدُ مَنْ جَاهَدَ نَفْسَهُ فِي طَاعَةِ اللَّهِ", color = Green, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                            Text("رواه أحمد (23967)، وأصل الحديث في سنن الترمذي (1621)، وقال الترمذي: حسن صحيح.", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
+                        }
                     }
                 }
                 item {
                     if (prayerBase < 0 || fastBase < 0) {
-                        Card { Column(Modifier.padding(16.dp)) { Text("لم يتم إعداد رصيد القضاء بعد."); Button(onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }) { Text("افتح الحاسبة") } } }
+                        Card { Column(Modifier.padding(16.dp)) { Text("لم يتم إعداد رصيد القضاء بعد."); Button(onClick = { calculatorView = "الحاسبة"; mainTab = "القضاء" }) { Text("افتح الحاسبة") } } }
                     } else {
                         Text("قضاء كل صلاة على حدة", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
                         PrayerNames.forEachIndexed { index, prayer ->
@@ -400,7 +416,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                             onAdd = { qadaFastsDone++; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() },
                             onUndo = { if (qadaFastsDone > 0) { qadaFastsDone--; prefs.edit().putInt("fasts_done", qadaFastsDone).apply() } })
                         Text("الرصيد = الفوائت المقدرة + ما تسجله من صلوات فائتة يوميًا - ما قضيته.")
-                        TextButton(onClick = { calculatorView = "حساب الفوائت"; mainTab = "الحاسبة" }) { Text("مراجعة الحسبة") }
+                        TextButton(onClick = { calculatorView = "الحاسبة"; mainTab = "القضاء" }) { Text("مراجعة الحسبة") }
                     }
                 }
             } else if (mainTab == "فقه الوضوء" || mainTab == "فقه الصلاة") {
