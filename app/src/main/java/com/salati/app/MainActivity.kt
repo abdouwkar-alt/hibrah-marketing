@@ -39,7 +39,7 @@ private val PrayerNames = listOf("الفجر", "الظهر", "العصر", "ال
 private val PrayerStatuses = listOf("لم أسجل بعد", "في الوقت جماعة", "في الوقت منفردًا", "بعد الوقت", "لم أصلِّ")
 
 class MainActivity : ComponentActivity() {
-    private val permissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { getLocationAndSchedule() }
+    private val permissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { getLocationAndSchedule(); PrayerNotifications.scheduleGazaReminder(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         PrayerNotifications.createChannel(this)
