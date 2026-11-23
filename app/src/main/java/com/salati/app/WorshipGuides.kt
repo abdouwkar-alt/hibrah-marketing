@@ -280,7 +280,12 @@ fun DuaLibraryScreen() {
         }
         val entries = if (selected == "أدعية نبوية") prophetic else quranic
         val startIndex = if (selected == "أدعية نبوية") propheticStart else quranStart
-        entries.drop(startIndex).take(2).forEach { entry ->
+        val visibleEntries = if (startIndex + 1 < entries.size) {
+            entries.drop(startIndex).take(2)
+        } else {
+            listOf(entries[startIndex], entries.first())
+        }
+        visibleEntries.forEach { entry ->
             DuaCard(entry.title, entry.dua, entry.source, entry.matn)
         }
         OutlinedButton(
