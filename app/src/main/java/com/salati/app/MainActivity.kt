@@ -149,7 +149,13 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
     LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
     var duhaDone by remember(today) { mutableStateOf(prefs.getBoolean("duha_" + today, false)) }
-    var sunnahRakaatCount by remember(today) { mutableIntStateOf(prefs.getInt("sunnah_rakats_" + today, 0)) }
+    val sunnahSlots = listOf("قبل الفجر" to 2, "قبل الظهر" to 4, "بعد الظهر" to 2, "بعد المغرب" to 2, "بعد العشاء" to 2)
+    val sunnahDoneBySlot = remember(today) {
+        androidx.compose.runtime.mutableStateMapOf<String, Int>().apply {
+            sunnahSlots.forEach { (slot, _) -> put(slot, prefs.getInt("sunnah_slot_" + today + "_" + slot, 0)) }
+        }
+    }
+    val sunnahRakaatCount = sunnahDoneBySlot.values.sum()
     var fastLogged by remember(today) { mutableStateOf(prefs.getString("fast_type_" + today, "") ?: "") }
     var actionFeedback by remember { mutableStateOf("") }
     LaunchedEffect(actionFeedback) {
@@ -569,18 +575,27 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                     Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
                         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                             Text("متابعة السنن الرواتب اليوم", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
-                            Text("سجّل ركعتين كلما أديت سنة راتبة. العداد يومي ويتجدد مع بداية اليوم.")
+                            Text("سجّل كل سنة بعد أدائها. يتجدد العداد يوميًا.")
                             Text(sunnahRakaatCount.toString() + " من 12 ركعة", style = MaterialTheme.typography.headlineMedium, color = Green, fontWeight = FontWeight.Bold)
                             LinearProgressIndicator(progress = { (sunnahRakaatCount.toFloat() / 12f).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = Green)
-                            Button(onClick = {
-                                sunnahRakaatCount += 2
-                                actionFeedback = "أستغفر الله"
-                                prefs.edit().putInt("sunnah_rakats_" + today, sunnahRakaatCount).apply()
-                            }, enabled = sunnahRakaatCount < 12, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("تسجيل ركعتين") }
-                            OutlinedButton(onClick = {
-                                sunnahRakaatCount = (sunnahRakaatCount - 2).coerceAtLeast(0)
-                                prefs.edit().putInt("sunnah_rakats_" + today, sunnahRakaatCount).apply()
-                            }, enabled = sunnahRakaatCount > 0, modifier = Modifier.fillMaxWidth()) { Text("تراجع عن آخر تسجيل") }
+                            sunnahSlots.forEach { (slot, target) ->
+                                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                                    Text(slot + " — " + (sunnahDoneBySlot[slot] ?: 0) + "/" + target)
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        TextButton(onClick = {
+                                            val next = ((sunnahDoneBySlot[slot] ?: 0) + 2).coerceAtMost(target)
+                                            sunnahDoneBySlot[slot] = next
+                                            actionFeedback = "أستغفر الله"
+                                            prefs.edit().putInt("sunnah_slot_" + today + "_" + slot, next).apply()
+                                        }, enabled = (sunnahDoneBySlot[slot] ?: 0) < target) { Text("+2") }
+                                        TextButton(onClick = {
+                                            val next = ((sunnahDoneBySlot[slot] ?: 0) - 2).coerceAtLeast(0)
+                                            sunnahDoneBySlot[slot] = next
+                                            prefs.edit().putInt("sunnah_slot_" + today + "_" + slot, next).apply()
+                                        }, enabled = (sunnahDoneBySlot[slot] ?: 0) > 0) { Text("تراجع") }
+                                    }
+                                }
+                            }
                             Text("قد تختلف تفاصيل الرواتب وعددها المؤكد باختلاف المذاهب؛ هذا العداد لمتابعة الاثنتي عشرة ركعة الواردة في الحديث، وليس حكمًا على قبول العبادة.", color = Color(0xFF755F45), style = MaterialTheme.typography.bodySmall)
                         }
                     }
