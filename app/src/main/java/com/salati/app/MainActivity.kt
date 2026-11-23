@@ -148,6 +148,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
     var fastSection by remember { mutableStateOf("رمضان") }
     var fastLogged by remember(today) { mutableStateOf(prefs.getString("fast_type_" + today, "") ?: "") }
     var fastRamadanCount by remember { mutableIntStateOf(prefs.getInt("fast_ramadan_count", 0)) }
+    var fastShawwalCount by remember { mutableIntStateOf(prefs.getInt("fast_shawwal_count", 0)) }
     LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
     val tomorrow = today.plusDays(1)
@@ -293,7 +294,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                                     Text(prayer.name, fontWeight = FontWeight.SemiBold)
                                     Column(horizontalAlignment = Alignment.End) {
                                         Text(Instant.ofEpochMilli(prayer.time).atZone(ZoneId.systemDefault()).format(timeFormatter))
-                                        TextButton(onClick = { selectedPrayerGuide = prayer.name; sunnahTab = "سنن الصلاة"; mainTab = "السنن العملية" }) { Text("سنة صلاة " + prayer.name, style = MaterialTheme.typography.labelSmall) }
+                                        TextButton(onClick = { selectedPrayerGuide = prayer.name; sunnahTab = "سنن الصلاة"; mainTab = "السنن" }) { Text("سنة صلاة " + prayer.name, style = MaterialTheme.typography.labelSmall) }
                                     }
                                 }
                                 HorizontalDivider(color = Color(0xFFD4DDCE))
@@ -607,13 +608,14 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                                 Text(when (fastSection) { "رمضان" -> "متابعة صيام رمضان"; "شوال" -> "ستة أيام من شوال"; else -> "صيام التطوع" }, style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
                                 Text(when (fastSection) {
                                     "رمضان" -> "الأيام المسجلة من رمضان: " + fastRamadanCount
-                                    "شوال" -> "سجّل أيام شوال التي صمتها، وتابع إكمال ستة أيام."
+                                    "شوال" -> "الأيام المسجلة من شوال: " + fastShawwalCount + " من 6. سجّل أيام شوال التي صمتها."
                                     else -> "من السنن: الاثنين والخميس، وثلاثة أيام من كل شهر، ويوم عرفة لغير الحاج، وعاشوراء."
                                 })
                                 if (fastLogged.isNotBlank()) {
                                     Text("تم تسجيل اليوم: " + fastLogged, color = Green, fontWeight = FontWeight.SemiBold)
                                     OutlinedButton(onClick = {
                                         if (fastLogged == "رمضان") { fastRamadanCount = (fastRamadanCount - 1).coerceAtLeast(0); prefs.edit().putInt("fast_ramadan_count", fastRamadanCount).apply() }
+                                        if (fastLogged == "شوال") { fastShawwalCount = (fastShawwalCount - 1).coerceAtLeast(0); prefs.edit().putInt("fast_shawwal_count", fastShawwalCount).apply() }
                                         fastLogged = ""
                                         prefs.edit().remove("fast_type_" + today).apply()
                                     }, modifier = Modifier.fillMaxWidth()) { Text("إلغاء تسجيل صيام اليوم") }
@@ -622,6 +624,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                                         fastLogged = fastSection
                                         prefs.edit().putString("fast_type_" + today, fastSection).apply()
                                         if (fastSection == "رمضان") { fastRamadanCount++; prefs.edit().putInt("fast_ramadan_count", fastRamadanCount).apply() }
+                                        if (fastSection == "شوال") { fastShawwalCount++; prefs.edit().putInt("fast_shawwal_count", fastShawwalCount).apply() }
                                     }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("سجّلت صيام اليوم") }
                                 }
                                 if (fastSection == "شوال") Text("العدد المسجل تراكمي؛ راجع أنه داخل شهر شوال نفسه.", color = Color(0xFF755F45), style = MaterialTheme.typography.bodySmall)
