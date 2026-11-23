@@ -141,18 +141,18 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
     var notifyBefore by remember { mutableStateOf(prefs.getBoolean("notify_before", true)) }
     var notifyAt by remember { mutableStateOf(prefs.getBoolean("notify_at", true)) }
     var notifyGaza by remember { mutableStateOf(prefs.getBoolean("notify_gaza", true)) }
-    val notificationPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        if (granted) {
-            PrayerNotifications.schedule(context, lat, lon)
-            PrayerNotifications.scheduleGazaReminder(context, notifyGaza)
-        }
-    }
     var tasbeehCount by remember { mutableIntStateOf(prefs.getInt("tasbeeh_count", 0)) }
     LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
     val tomorrow = today.plusDays(1)
     val lat = prefs.getFloat("lat", 30.0444f).toDouble()
     val lon = prefs.getFloat("lon", 31.2357f).toDouble()
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
+            PrayerNotifications.schedule(context, lat, lon)
+            PrayerNotifications.scheduleGazaReminder(context, notifyGaza)
+        }
+    }
     val todayTimes = remember(today, lat, lon) { PrayerTimes.forDate(today, lat, lon, ZoneId.systemDefault()) }
     val tomorrowTimes = remember(tomorrow, lat, lon) { PrayerTimes.forDate(tomorrow, lat, lon, ZoneId.systemDefault()) }
     val timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale("ar"))
