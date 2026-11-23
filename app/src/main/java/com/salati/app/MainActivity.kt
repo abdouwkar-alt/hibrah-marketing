@@ -151,6 +151,13 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
     var duhaDone by remember(today) { mutableStateOf(prefs.getBoolean("duha_" + today, false)) }
     var sunnahRakaatCount by remember(today) { mutableIntStateOf(prefs.getInt("sunnah_rakats_" + today, 0)) }
     var fastLogged by remember(today) { mutableStateOf(prefs.getString("fast_type_" + today, "") ?: "") }
+    var actionFeedback by remember { mutableStateOf("") }
+    LaunchedEffect(actionFeedback) {
+        if (actionFeedback.isNotBlank()) {
+            delay(1_400L)
+            actionFeedback = ""
+        }
+    }
     val tomorrow = today.plusDays(1)
     val lat = prefs.getFloat("lat", 30.0444f).toDouble()
     val lon = prefs.getFloat("lon", 31.2357f).toDouble()
@@ -211,6 +218,9 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
             item {
                 Text("الصَّلَاةُ جَامِعَةٌ", style = MaterialTheme.typography.headlineLarge, color = Green, fontWeight = FontWeight.Bold)
                 Text("\u2067﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا﴾ [النساء: 103]\u2069", color = Color(0xFF6D716A))
+            }
+            if (actionFeedback.isNotBlank()) {
+                item { Text(actionFeedback, color = Green, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium) }
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -319,6 +329,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                                 Text(if (duhaDone) "تم تسجيل الضحى اليوم" else "لم تسجل الضحى اليوم")
                                 Button(onClick = {
                                     duhaDone = !duhaDone
+                                    actionFeedback = "أستغفر الله"
                                     prefs.edit().putBoolean("duha_" + today, duhaDone).apply()
                                 }, colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text(if (duhaDone) "تراجع" else "سجل الضحى") }
                             }
@@ -341,6 +352,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                                                 DropdownMenuItem(text = { Text(status) }, onClick = {
                                                     val old = dailyStatus[name] ?: "لم أسجل بعد"
                                                     dailyStatus[name] = status
+                                                    if (status != "لم أسجل بعد") actionFeedback = "أستغفر الله"
                                                     prefs.edit().putString("status_" + today + "_" + name, status).apply()
                                                     if (old != "لم أصلِّ" && status == "لم أصلِّ") {
                                                         missedSinceInstall++
@@ -562,6 +574,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                             LinearProgressIndicator(progress = { (sunnahRakaatCount.toFloat() / 12f).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = Green)
                             Button(onClick = {
                                 sunnahRakaatCount += 2
+                                actionFeedback = "أستغفر الله"
                                 prefs.edit().putInt("sunnah_rakats_" + today, sunnahRakaatCount).apply()
                             }, enabled = sunnahRakaatCount < 12, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) { Text("تسجيل ركعتين") }
                             OutlinedButton(onClick = {
@@ -624,6 +637,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                                 } else {
                                     Button(onClick = {
                                         fastLogged = fastSection
+                                        actionFeedback = "أستغفر الله"
                                         prefs.edit().putString("fast_type_" + today, fastSection).apply()
                                         if (fastSection == "رمضان") { fastRamadanCount++; prefs.edit().putInt("fast_ramadan_count", fastRamadanCount).apply() }
                                         if (fastSection == "شوال") { fastShawwalCount++; prefs.edit().putInt("fast_shawwal_count", fastShawwalCount).apply() }
