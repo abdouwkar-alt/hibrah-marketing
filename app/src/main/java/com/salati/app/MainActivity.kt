@@ -472,7 +472,7 @@ fun SalatiScreen() {
                     }
                 }
                 when (sunnahTab) {
-                    "سنن الصلاة" -> item { GuideCard("سنن صلاة " + selectedPrayerGuide, (SunnahGuide.prayerItems[selectedPrayerGuide] ?: emptyList()) + SunnahGuide.afterPrayer) }
+                    "سنن الصلاة" -> item { GuideCard("سنن عامة في الصلاة وسنن صلاة " + selectedPrayerGuide, SunnahGuide.generalPrayer + (SunnahGuide.prayerItems[selectedPrayerGuide] ?: emptyList()) + SunnahGuide.afterPrayer) }
                     "البيت" -> item { GuideCard("سنن وآداب البيت والدخول والخروج", SunnahGuide.home) }
                     "المسجد" -> item { GuideCard("أذكار وآداب المسجد", SunnahGuide.mosque) }
                     "الاستيقاظ" -> item { GuideCard("سنن وأذكار الاستيقاظ", SunnahGuide.waking) }
