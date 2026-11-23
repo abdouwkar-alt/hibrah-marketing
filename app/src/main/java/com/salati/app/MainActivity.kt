@@ -143,14 +143,14 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
     var notifyAt by remember { mutableStateOf(prefs.getBoolean("notify_at", true)) }
     var notifyGaza by remember { mutableStateOf(prefs.getBoolean("notify_gaza", true)) }
     var tasbeehCount by remember { mutableIntStateOf(prefs.getInt("tasbeeh_count", 0)) }
-    var duhaDone by remember(today) { mutableStateOf(prefs.getBoolean("duha_" + today, false)) }
-    var sunnahRakaatCount by remember(today) { mutableIntStateOf(prefs.getInt("sunnah_rakats_" + today, 0)) }
     var fastSection by remember { mutableStateOf("رمضان") }
-    var fastLogged by remember(today) { mutableStateOf(prefs.getString("fast_type_" + today, "") ?: "") }
     var fastRamadanCount by remember { mutableIntStateOf(prefs.getInt("fast_ramadan_count", 0)) }
     var fastShawwalCount by remember { mutableIntStateOf(prefs.getInt("fast_shawwal_count", 0)) }
     LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
+    var duhaDone by remember(today) { mutableStateOf(prefs.getBoolean("duha_" + today, false)) }
+    var sunnahRakaatCount by remember(today) { mutableIntStateOf(prefs.getInt("sunnah_rakats_" + today, 0)) }
+    var fastLogged by remember(today) { mutableStateOf(prefs.getString("fast_type_" + today, "") ?: "") }
     val tomorrow = today.plusDays(1)
     val lat = prefs.getFloat("lat", 30.0444f).toDouble()
     val lon = prefs.getFloat("lon", 31.2357f).toDouble()
