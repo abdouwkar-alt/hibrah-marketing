@@ -308,7 +308,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                 item {
                     Card(colors = CardDefaults.cardColors(containerColor = Color(0xFFE7EDDF))) {
                         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Text("﴿وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا﴾", color = Green, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                            Text("\u200F﴿وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا﴾\u200F", color = Green, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
                             Text("العنكبوت: 69", color = Color(0xFF77736B), style = MaterialTheme.typography.bodySmall)
                         }
                     }
