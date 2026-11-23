@@ -635,6 +635,20 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                     }
                 }
                 item {
+                    val recentFasts = (0..29).mapNotNull { offset ->
+                        val loggedDate = today.minusDays(offset.toLong())
+                        val kind = prefs.getString("fast_type_" + loggedDate, null)
+                        if (kind.isNullOrBlank()) null else Pair(loggedDate, kind)
+                    }
+                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                        Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Text("سجل الصيام — آخر 30 يومًا", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                            if (recentFasts.isEmpty()) Text("لم تسجل أيام صيام بعد.")
+                            recentFasts.forEach { record -> Text(record.first.toString() + " — " + record.second) }
+                        }
+                    }
+                }
+                item {
                     GuideCard("مواسم وصيام مستحب", listOf(
                         SunnahItem("الاثنين والخميس", "صيام متكرر", "كان النبي ﷺ يتحرى صيام يومي الاثنين والخميس.", "جامع الترمذي 747؛ سنن النسائي 2360"),
                         SunnahItem("الأيام البيض", "13 و14 و15 من الشهر الهجري", "صيام ثلاثة أيام من كل شهر، ومنه الأيام البيض.", "صحيح البخاري 1981؛ صحيح مسلم 721"),
