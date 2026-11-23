@@ -93,9 +93,10 @@ private object QuranTextRepository {
             val number = obj.getInt("number")
             if (number != surahIndex + 1) throw IOException("ترتيب السور في البيانات غير صحيح.")
             val name = obj.getString("name")
-            val expectedAyahs = obj.getInt("numberOfAyahs")
             val ayahArray = obj.getJSONArray("ayahs")
-            if (ayahArray.length() != expectedAyahs) throw IOException("فشل التحقق من آيات سورة $number.")
+            // بعض استجابات المصدر لا ترسل numberOfAyahs؛ عدد عناصر ayahs هو المرجع البنيوي هنا.
+            val expectedAyahs = obj.optInt("numberOfAyahs", ayahArray.length())
+            if (ayahArray.length() != expectedAyahs || expectedAyahs <= 0) throw IOException("فشل التحقق من آيات سورة $number.")
 
             val ayahs = ArrayList<QuranAyahData>(ayahArray.length())
             for (ayahIndex in 0 until ayahArray.length()) {
@@ -140,7 +141,7 @@ fun QuranReaderSection(
                 selectedNumber = selected.number
                 selectedAyah = selectedAyah.coerceIn(1, selected.ayahs.size)
             } catch (e: Exception) {
-                error = e.message ?: "تعذر تحميل النص القرآني. تحقق من اتصال الإنترنت وحاول مرة أخرى."
+                error = if (e is IOException && !e.message.isNullOrBlank()) e.message else "تعذر تحميل المصحف أو التحقق من بياناته. تحقق من الاتصال ثم أعد المحاولة."
             } finally {
                 loading = false
             }
