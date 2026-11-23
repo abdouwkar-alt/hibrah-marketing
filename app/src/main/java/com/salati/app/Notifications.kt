@@ -66,13 +66,44 @@ else
 
 object PrayerNotifications {
     const val CHANNEL = "salati_prayers"
+    const val GAZA_CHANNEL = "salati_gaza"
+    private const val GAZA_NOTIFICATION_ID = 980001
     fun createChannel(context: Context) {
         if (android.os.Build.VERSION.SDK_INT >= 26) {
             val manager = context.getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(NotificationChannel(CHANNEL, "تنبيهات الصلاة والعبادات", NotificationManager.IMPORTANCE_HIGH).apply {
                 description = "تذكيرات متنوعة للصلاة والسنن والذكر وقيام الليل"
             })
+            manager.createNotificationChannel(NotificationChannel(GAZA_CHANNEL, "تذكير لأهل غزة", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "تذكير يومي بالدعاء لأهل غزة"
+            })
         }
+    }
+
+    fun scheduleGazaReminder(context: Context, enabled: Boolean = context.getSharedPreferences("salati", Context.MODE_PRIVATE).getBoolean("notify_gaza", true)) {
+        val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, PrayerAlarmReceiver::class.java)
+            .putExtra("id", GAZA_NOTIFICATION_ID)
+            .putExtra("gaza_reminder", true)
+            .putExtra("message", "لا تنسَ أهل غزة من دعائك؛ اسأل الله أن يفرّج كربهم ويحفظهم. وانصر المظلوم بما تستطيع من دعاء وعمل مشروع.")
+        val pending = PendingIntent.getBroadcast(
+            context, GAZA_NOTIFICATION_ID, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        if (!enabled) {
+            alarm.cancel(pending)
+            pending.cancel()
+            return
+        }
+        val now = ZonedDateTime.now()
+        var first = now.toLocalDate().atTime(20, 0).atZone(now.zone)
+        if (!first.isAfter(now)) first = first.plusDays(1)
+        alarm.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            first.toInstant().toEpochMilli(),
+            AlarmManager.INTERVAL_DAY,
+            pending
+        )
     }
 
     fun schedule(context: Context, lat: Double, lon: Double) {
@@ -141,9 +172,12 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         PrayerNotifications.createChannel(context)
         val id = intent.getIntExtra("id", 1)
         val message = intent.getStringExtra("message") ?: "تذكير بالعبادة"
-        val notification = NotificationCompat.Builder(context, PrayerNotifications.CHANNEL)
+        val isGazaReminder = intent.getBooleanExtra("gaza_reminder", false)
+        val channel = if (isGazaReminder) PrayerNotifications.GAZA_CHANNEL else PrayerNotifications.CHANNEL
+        val title = if (isGazaReminder) "تذكير لأهل غزة" else "الصَّلَاةُ جَامِعَةٌ"
+        val notification = NotificationCompat.Builder(context, channel)
             .setSmallIcon(R.drawable.ic_notification_logo)
-            .setContentTitle("الصَّلَاةُ جَامِعَةٌ")
+            .setContentTitle(title)
             .setContentText(message.substringBefore('\n'))
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .setPriority(NotificationCompat.PRIORITY_HIGH).setAutoCancel(true).build()
@@ -154,6 +188,7 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val p = context.getSharedPreferences("salati", Context.MODE_PRIVATE)
+        PrayerNotifications.scheduleGazaReminder(context)
         if (p.contains("lat") && p.contains("lon")) PrayerNotifications.schedule(context, p.getFloat("lat", 30.0444f).toDouble(), p.getFloat("lon", 31.2357f).toDouble())
     }
 }
