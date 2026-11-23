@@ -1,0 +1,47 @@
+name: iOS Simulator Build
+
+on:
+  push:
+    branches: [salati-ios]
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios.yml"
+  workflow_dispatch:
+
+jobs:
+  build-ios-simulator:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          xcodebuild -version
+          xcrun simctl list devices available | head -40
+
+      - name: Build iOS Simulator app
+        run: |
+          xcodebuild \
+            -project ios/SalatiApp.xcodeproj \
+            -scheme SalatiApp \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package simulator app
+        run: |
+          APP_PATH="build/DerivedData/Build/Products/Debug-iphonesimulator/SalatiApp.app"
+          test -d "$APP_PATH"
+          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" build/SalatiApp-iOS-Simulator.zip
+
+      - name: Upload simulator build
+        uses: actions/upload-artifact@v4
+        with:
+          name: salati-ios-simulator
+          path: build/SalatiApp-iOS-Simulator.zip
+          if-no-files-found: error
+          retention-days: 14
