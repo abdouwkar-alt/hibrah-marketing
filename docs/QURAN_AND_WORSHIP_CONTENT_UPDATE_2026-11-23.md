@@ -29,7 +29,7 @@ Two general prayer practices are displayed alongside prayer-specific guidance:
 The post-prayer section now also includes: `اللهم أعني على ذكرك وشكرك وحسن عبادتك` — Sunan Abi Dawud 1522 (authenticated by al-Albani).
 
 ## Dua library expansion
-The app continues to show two entries at a time and now has 12 Prophetic supplications and 14 Quranic supplications.
+The app continues to show two entries at a time and now has 12 Prophetic supplications and 15 Quranic supplications.
 
 New Prophetic entries and references:
 - Seeking forgiveness for one's wrongdoing: Sahih al-Bukhari 834.
