@@ -1,0 +1,42 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 56;
+  objects = {
+    A10000000000000000000001 /* SalatiApp.app */ = {isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000011; buildPhases = (A10000000000000000000021, A10000000000000000000022,); buildRules = (); dependencies = (); name = SalatiApp; productName = SalatiApp; productReference = A10000000000000000000031; productType = "com.apple.product-type.application"; };
+    A10000000000000000000002 /* Project */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600;}; buildConfigurationList = A10000000000000000000012; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base,); mainGroup = A10000000000000000000041; productRefGroup = A10000000000000000000042; projectDirPath = ""; projectRoot = ""; targets = (A10000000000000000000001,); };
+    A10000000000000000000003 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000051, A10000000000000000000052, A10000000000000000000053,); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000004 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000005 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000006 /* SalatiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000061; };
+    A10000000000000000000007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000062; };
+    A10000000000000000000008 /* PrayerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000063; };
+    A10000000000000000000009 /* SalatiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalatiApp.swift; sourceTree = "<group>"; };
+    A1000000000000000000000A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+    A1000000000000000000000B /* PrayerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerStatus.swift; sourceTree = "<group>"; };
+    A1000000000000000000000C /* SalatiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalatiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    A1000000000000000000000D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+    A1000000000000000000000E /* App sources */ = {isa = PBXGroup; children = (A10000000000000000000061, A10000000000000000000062, A10000000000000000000063,); path = SalatiApp; sourceTree = "<group>"; };
+    A1000000000000000000000F /* Products */ = {isa = PBXGroup; children = (A1000000000000000000000C,); name = Products; sourceTree = "<group>"; };
+    A10000000000000000000010 /* Root */ = {isa = PBXGroup; children = (A1000000000000000000000E, A1000000000000000000000D, A1000000000000000000000F,); sourceTree = "<group>"; };
+    A10000000000000000000011 /* Target configs */ = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000071, A10000000000000000000072,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    A10000000000000000000012 /* Project configs */ = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000073, A10000000000000000000074,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    A10000000000000000000021 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000006, A10000000000000000000007, A10000000000000000000008,); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000022 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+    A10000000000000000000031 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalatiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    A10000000000000000000041 = {isa = PBXGroup; children = (A1000000000000000000000E, A1000000000000000000000D, A1000000000000000000000F,); sourceTree = "<group>"; };
+    A10000000000000000000042 = {isa = PBXGroup; children = (A10000000000000000000031,); name = Products; sourceTree = "<group>"; };
+    A10000000000000000000051 = {isa = PBXBuildFile; fileRef = A10000000000000000000061; };
+    A10000000000000000000052 = {isa = PBXBuildFile; fileRef = A10000000000000000000062; };
+    A10000000000000000000053 = {isa = PBXBuildFile; fileRef = A10000000000000000000063; };
+    A10000000000000000000061 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalatiApp.swift; sourceTree = "<group>"; };
+    A10000000000000000000062 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+    A10000000000000000000063 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerStatus.swift; sourceTree = "<group>"; };
+    A10000000000000000000071 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "الصلاة جامعة"; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = org.hibrah.salati; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2";}; name = Debug; };
+    A10000000000000000000072 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "الصلاة جامعة"; IPHONEOS_DEPLOYMENT_TARGET = 17.0; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = org.hibrah.salati; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2";}; name = Release; };
+    A10000000000000000000073 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SWIFT_VERSION = 5.0;}; name = Debug; };
+    A10000000000000000000074 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SWIFT_VERSION = 5.0;}; name = Release; };
+  };
+  rootObject = A10000000000000000000002;
+}
