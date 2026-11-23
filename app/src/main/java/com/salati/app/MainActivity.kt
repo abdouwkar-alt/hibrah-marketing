@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
@@ -42,10 +43,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         PrayerNotifications.createChannel(this)
-        val needed = mutableListOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        if (android.os.Build.VERSION.SDK_INT >= 33) needed.add(Manifest.permission.POST_NOTIFICATIONS)
-        if (needed.any { ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED }) permissions.launch(needed.toTypedArray()) else getLocationAndSchedule()
-        setContent { SalatiScreen() }
+        setContent { SalatiScreen(onFirstLaunchAccepted = { requestLocationPermissions() }) }
+        if (getSharedPreferences("salati", MODE_PRIVATE).getBoolean("intro_seen", false)) requestLocationPermissions()
+    }
+    private fun requestLocationPermissions() {
+        val needed = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (needed.any { ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED }) {
+            permissions.launch(needed)
+        } else {
+            getLocationAndSchedule()
+            PrayerNotifications.scheduleGazaReminder(this)
+        }
     }
     override fun onResume() {
         super.onResume()
@@ -111,9 +119,10 @@ private fun CounterCard(title: String, remaining: Int, unit: String, actionLabel
 }
 
 @Composable
-fun SalatiScreen() {
+fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
     val context = androidx.compose.ui.platform.LocalContext.current
     val prefs = remember { context.getSharedPreferences("salati", 0) }
+    var introSeen by remember { mutableStateOf(prefs.getBoolean("intro_seen", false)) }
     var qadaPrayersDone by remember { mutableIntStateOf(prefs.getInt("prayers_done", 0)) }
     var qadaFastsDone by remember { mutableIntStateOf(prefs.getInt("fasts_done", 0)) }
     val qadaDoneByPrayer = remember { androidx.compose.runtime.mutableStateMapOf<String, Int>().apply { PrayerNames.forEach { put(it, prefs.getInt("qada_done_" + it, 0)) } } }
@@ -131,6 +140,13 @@ fun SalatiScreen() {
     var clockNow by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var notifyBefore by remember { mutableStateOf(prefs.getBoolean("notify_before", true)) }
     var notifyAt by remember { mutableStateOf(prefs.getBoolean("notify_at", true)) }
+    var notifyGaza by remember { mutableStateOf(prefs.getBoolean("notify_gaza", true)) }
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
+            PrayerNotifications.schedule(context, lat, lon)
+            PrayerNotifications.scheduleGazaReminder(context, notifyGaza)
+        }
+    }
     var tasbeehCount by remember { mutableIntStateOf(prefs.getInt("tasbeeh_count", 0)) }
     LaunchedEffect(Unit) { while (true) { delay(1_000L); clockNow = System.currentTimeMillis() } }
     val today = Instant.ofEpochMilli(clockNow).atZone(ZoneId.systemDefault()).toLocalDate()
@@ -169,6 +185,13 @@ fun SalatiScreen() {
     val prayerRemaining = if (prayerBase >= 0) (prayerBase + missedByPrayer.values.sum() - qadaDoneByPrayer.values.sum()).coerceAtLeast(0) else 0
     val fastRemaining = if (fastBase >= 0) (fastBase - qadaFastsDone).coerceAtLeast(0) else 0
 
+    if (!introSeen) {
+        FirstLaunchNotice {
+            prefs.edit().putBoolean("intro_seen", true).apply()
+            introSeen = true
+            onFirstLaunchAccepted()
+        }
+    } else {
     Surface(Modifier.fillMaxSize(), color = Cream) {
         LazyColumn(Modifier.fillMaxSize().padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
@@ -443,6 +466,23 @@ fun SalatiScreen() {
                             Text("إعدادات التنبيهات", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
                             Text("اختر توقيت وصول الإشعار.")
                             Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(checked = notifyGaza, onCheckedChange = { value ->
+                                    notifyGaza = value
+                                    prefs.edit().putBoolean("notify_gaza", value).apply()
+                                    PrayerNotifications.scheduleGazaReminder(context, value)
+                                })
+                                Text("تذكير يومي بالدعاء لأهل غزة — الساعة 8 مساءً تقريبًا")
+                            }
+                            if (android.os.Build.VERSION.SDK_INT >= 33 &&
+                                ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+                            ) {
+                                OutlinedButton(
+                                    onClick = { notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS) },
+                                    modifier = Modifier.fillMaxWidth()
+                                ) { Text("السماح بإشعارات التطبيق") }
+                                Text("لن تصل تذكيرات غزة أو الصلاة قبل السماح بإشعارات التطبيق من النظام.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF8A4B19))
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
                                 Checkbox(checked = notifyBefore, onCheckedChange = { value ->
                                     notifyBefore = value
                                     prefs.edit().putBoolean("notify_before", value).apply()
@@ -491,6 +531,53 @@ fun SalatiScreen() {
                 }
             }
             item { Spacer(Modifier.height(12.dp)) }
+        }
+    }
+    }
+}
+
+@Composable
+private fun FirstLaunchNotice(onContinue: () -> Unit) {
+    Surface(Modifier.fillMaxSize(), color = Cream) {
+        LazyColumn(
+            Modifier.fillMaxSize().padding(horizontal = 18.dp, vertical = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
+        ) {
+            item {
+                Text("قبل أن تبدأ", style = MaterialTheme.typography.headlineMedium, color = Green, fontWeight = FontWeight.Bold)
+                Text("الصَّلَاةُ جَامِعَةٌ", style = MaterialTheme.typography.titleLarge, color = Green, fontWeight = FontWeight.Bold)
+                Text("تطبيق مساعد على تذكّر الصلاة وتعلّم ما يتصل بها، وتنظيم بعض أعمال العبادة والتدبّر.")
+            }
+            item {
+                Card(colors = CardDefaults.cardColors(containerColor = PaleGreen)) {
+                    Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text("هدف التطبيق", color = Green, fontWeight = FontWeight.Bold)
+                        Text("أن يكون وسيلة تذكير وتعلّم ومتابعة، لا أن يحل محل العبادة نفسها أو يحوّلها إلى أرقام ومنافسة. استخدمه بما يعينك على الإخلاص والمداومة.")
+                    }
+                }
+            }
+            item {
+                Text("تنبيهات مهمة", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                Text("• المعلومات الشرعية والأحاديث جُمعت للتعريف والتذكير، وقد تحتاج بعض المسائل إلى مراجعة أهل العلم. التطبيق ليس جهة إفتاء، ولا يغني عن سؤال عالم مؤهل.")
+                Text("• قد تختلف بعض أحكام الصلاة والسنن وتفاصيلها بين المذاهب الفقهية؛ راعينا الإشارة إلى الخلاف حيث يظهر، فلا تجعل التطبيق سببًا للإنكار على الآخرين.")
+                Text("• مواقيت الصلاة المحسوبة تقديرية وتتأثر بالموقع وطريقة الحساب وإعدادات الجهاز؛ راجع تقويم بلدك أو الجهة الرسمية، ولا تعتمد على التطبيق وحده عند الشك.")
+                Text("• نص القرآن يُعرض من مصدر رقمي ويُخزّن على الجهاز بعد تحميله؛ راجع المصحف المعتمد عند وجود أي اختلاف أو شك في الرسم أو الضبط.")
+                Text("• التنبيهات تحتاج إلى أذونات الإشعارات، وقد تتأثر بإعدادات توفير البطارية أو قيود الجهاز. التطبيق لا يشغّل أذانًا صوتيًا.")
+            }
+            item {
+                Text("الخصوصية والبيانات", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                Text("سجل الصلاة ودفتر التدبّر والإعدادات تُحفظ محليًا على جهازك. لا توجد مزامنة سحابية لحساب شخصي في الوقت الحالي. إذا حذفت التطبيق أو بياناته فقد تفقد سجلك؛ استخدم النسخة الاحتياطية من الإعدادات واحتفظ بها في مكان آمن.")
+                Text("يُستخدم إذن الموقع لحساب مواقيت الصلاة، ويمكنك رفضه واستخدام الموقع الافتراضي أو إدخال/تعديل الموقع لاحقًا بحسب ما يتيحه التطبيق.")
+            }
+            item {
+                Text("تنبيه أخير", style = MaterialTheme.typography.titleMedium, color = Green, fontWeight = FontWeight.Bold)
+                Text("هذا التطبيق عمل مساعد قابل للتطوير، وقد توجد أخطاء أو معلومات ناقصة. نرحب بالتنبيه عنها ومراجعتها، ولا تنسب كل ما يظهر فيه إلى الشرع قبل التحقق من دليله.")
+            }
+            item {
+                Button(onClick = onContinue, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Green)) {
+                    Text("قرأت التنبيهات — ابدأ الاستخدام")
+                }
+            }
         }
     }
 }
