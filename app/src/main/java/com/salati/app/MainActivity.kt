@@ -576,13 +576,15 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
             } else if (mainTab == "الصوم") {
                 item {
                     val hijriToday = HijrahDate.from(today)
-                    val ramadanYear = if (hijriToday.monthValue > 9) hijriToday.year + 1 else hijriToday.year
-                    val ramadanStart = HijrahDate.of(ramadanYear, 9, 1).toLocalDate()
+                    val hijriMonth = hijriToday.get(java.time.temporal.ChronoField.MONTH_OF_YEAR)
+                    val hijriYear = hijriToday.get(java.time.temporal.ChronoField.YEAR)
+                    val ramadanYear = if (hijriMonth > 9) hijriYear + 1 else hijriYear
+                    val ramadanStart = LocalDate.ofEpochDay(HijrahDate.of(ramadanYear, 9, 1).toEpochDay())
                     val daysToRamadan = java.time.temporal.ChronoUnit.DAYS.between(today, ramadanStart).coerceAtLeast(0)
                     Card(colors = CardDefaults.cardColors(containerColor = Green)) {
                         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text("رمضان القادم", color = Color.White.copy(alpha = 0.85f))
-                            Text(if (hijriToday.monthValue == 9) "نحن في شهر رمضان" else "متبقي تقريبًا " + daysToRamadan + " يومًا", color = Color.White, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                            Text(if (hijriMonth == 9) "نحن في شهر رمضان" else "متبقي تقريبًا " + daysToRamadan + " يومًا", color = Color.White, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
                             Text("بداية الشهر محسوبة بالتقويم الهجري الحسابي في الجهاز، وقد تختلف عن إعلان الرؤية الرسمي في مصر بيوم.", color = Color.White.copy(alpha = 0.85f), style = MaterialTheme.typography.bodySmall)
                         }
                     }
