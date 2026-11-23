@@ -170,9 +170,10 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
             PrayerNames.forEach { name -> put(name, prefs.getString("status_" + today + "_" + name, "لم أسجل بعد") ?: "لم أسجل بعد") }
         }
     }
-    LaunchedEffect(qadaPrayersDone, qadaFastsDone, today) {
+    val qadaPrayerTotalForSnapshot = qadaDoneByPrayer.values.sum()
+    LaunchedEffect(qadaPrayerTotalForSnapshot, qadaFastsDone, today) {
         prefs.edit()
-            .putInt("qada_prayer_snapshot_" + today, qadaPrayersDone)
+            .putInt("qada_prayer_snapshot_" + today, qadaPrayerTotalForSnapshot)
             .putInt("qada_fast_snapshot_" + today, qadaFastsDone)
             .apply()
     }
