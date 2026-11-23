@@ -170,6 +170,12 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
             PrayerNames.forEach { name -> put(name, prefs.getString("status_" + today + "_" + name, "لم أسجل بعد") ?: "لم أسجل بعد") }
         }
     }
+    LaunchedEffect(qadaPrayersDone, qadaFastsDone, today) {
+        prefs.edit()
+            .putInt("qada_prayer_snapshot_" + today, qadaPrayersDone)
+            .putInt("qada_fast_snapshot_" + today, qadaFastsDone)
+            .apply()
+    }
 
     var birthDay by remember { mutableStateOf("") }
     var birthMonth by remember { mutableStateOf("") }
@@ -200,7 +206,7 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
             }
             item {
                 Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("الصلاة", "الأذكار", "الأدعية", "القضاء", "السنن العملية", "فقه الوضوء", "فقه الصلاة", "تدبر القرآن", "الإعدادات").forEach { tab ->
+                    listOf("الصلاة", "الإحصائيات", "الأذكار", "الأدعية", "القضاء", "السنن العملية", "فقه الوضوء", "فقه الصلاة", "تدبر القرآن", "الإعدادات").forEach { tab ->
                         FilterChip(selected = mainTab == tab, onClick = { mainTab = tab }, label = { Text(tab) })
                     }
                 }
@@ -469,6 +475,18 @@ fun SalatiScreen(onFirstLaunchAccepted: () -> Unit = {}) {
                     SunnahItem("القنوت في الوتر", "دعاء ثابت", "ورد دعاء: اللهم اهدني فيمن هديت، وعافني فيمن عافيت، وتولني فيمن توليت...", "سنن أبي داود 1425؛ جامع الترمذي 464، صححه أهل العلم")
                 )) }
                 item { QiyamTrackerScreen(prefs = prefs) }
+            } else if (mainTab == "الإحصائيات") {
+                item {
+                    PrayerStatisticsScreen(
+                        prefs = prefs,
+                        today = today,
+                        prayerBase = prayerBase,
+                        qadaDoneByPrayer = qadaDoneByPrayer.toMap(),
+                        missedByPrayer = missedByPrayer.toMap(),
+                        fastBase = fastBase,
+                        qadaFastsDone = qadaFastsDone
+                    )
+                }
             } else if (mainTab == "الأذكار") {
                 item { AuthenticDhikrScreen(prefs = prefs) }
             } else if (mainTab == "الأدعية") {
